@@ -1,5 +1,6 @@
 import 'package:danek/main.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class GamePage extends StatelessWidget {
   const GamePage({super.key});
