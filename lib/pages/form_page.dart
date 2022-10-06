@@ -2,6 +2,7 @@ import 'package:danek/helpers/colors.dart';
 import 'package:danek/main.dart';
 import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
