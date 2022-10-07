@@ -1,6 +1,8 @@
 import 'package:danek/helpers/colors.dart';
+import 'package:danek/main.dart';
 import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
@@ -29,42 +31,45 @@ class FormPageState extends State<FormPage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Image(
-                  image: AssetImage('assets/images/boy.jpg'),
-                  height: 40,
-                  width: 40,
-                ),
-                Switch(
-                  value: isSwitched,
-                  onChanged: (value) {
-                    setState(() {
-                      isSwitched = value;
-                      if (boyGirlKey == BoyGirlType.boy) {
-                        boyGirlKey = BoyGirlType.girl;
-                      } else if (boyGirlKey == BoyGirlType.girl) {
-                        boyGirlKey = BoyGirlType.boy;
-                      }
-                    });
-                  },
-                ),
-                const Image(
-                  image: AssetImage('assets/images/girl.jpg'),
-                  height: 35,
-                  width: 35,
-                ),
-              ],
-            ),
-            SwitchReplaceInherited(
-              boyGirlKey: boyGirlKey,
-              child: const BoyGirl(),
-            )
-          ],
-        ),
+        child: Column(children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Image(
+                image: AssetImage('assets/images/boy.jpg'),
+                height: 40,
+                width: 40,
+              ),
+              Switch(
+                value: isSwitched,
+                onChanged: (value) {
+                  setState(() {
+                    isSwitched = value;
+                    if (boyGirlKey == BoyGirlType.boy) {
+                      boyGirlKey = BoyGirlType.girl;
+                    } else if (boyGirlKey == BoyGirlType.girl) {
+                      boyGirlKey = BoyGirlType.boy;
+                    }
+                  });
+                },
+              ),
+              const Image(
+                image: AssetImage('assets/images/girl.jpg'),
+                height: 35,
+                width: 35,
+              ),
+            ],
+          ),
+          SwitchReplaceInherited(
+            boyGirlKey: boyGirlKey,
+            child: const BoyGirl(),
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/chooseheroes');
+              },
+              child: Text('Далее'))
+        ]),
       ),
     );
   }
