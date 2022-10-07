@@ -6,6 +6,7 @@ import 'package:danek/pages/setting_page.dart';
 import 'package:danek/pages/shop_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,7 @@ void main() async {
         Locale('tg')
       ],
       path: 'assets/translations',
-      fallbackLocale: Locale('ru'),
+      fallbackLocale: Locale('en'),
       child: const MyApp()));
 }
 
@@ -29,7 +30,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         // title: '',
         routes: {
           '/': (context) => MenuPage(),
