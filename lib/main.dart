@@ -7,7 +7,22 @@ import 'package:danek/pages/shop_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  runApp(EasyLocalization(
+      supportedLocales: [
+        Locale('en'),
+        Locale('kk'),
+        Locale('ky'),
+        Locale('ru'),
+        Locale('tg')
+      ],
+      path: 'assets/translations',
+      fallbackLocale: Locale('ru'),
+      child: const MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
