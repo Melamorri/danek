@@ -1,3 +1,5 @@
+import 'package:danek/helpers/colors.dart';
+import 'package:danek/models/animation_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -8,31 +10,77 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: Container(
-          child: Column(
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/shoppage');
-                  },
-                  child: const Text('Магазин')),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/formpage');
-                  },
-                  child: const Text('Играть')),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/settingpage');
-                  },
-                  child: const Text('Настройки')),
-              ElevatedButton(
-                  onPressed: () {
-                    SystemNavigator.pop();
-                  },
-                  child: const Text('Выход')),
-            ],
+      child: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/menubackground.png"),
+                fit: BoxFit.cover)),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/settingpage');
+                        },
+                        icon: const Icon(Icons.settings))
+                  ],
+                ),
+                SizedBox(
+                  height: 550,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      AnimatedButton(
+                          color: CustomColors.pinkColor,
+                          borderColor: CustomColors.darkBlueColor,
+                          shadowColor: CustomColors.darkBlueColor,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/formpage');
+                          },
+                          child: const Text('ИГРАТЬ',
+                              style: TextStyle(
+                                  fontFamily: 'RobotoCondensed',
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold))),
+                      const SizedBox(
+                        height: 100,
+                        //здеь должен быть логотип
+                      ),
+                      AnimatedButton(
+                          color: CustomColors.yellowColor,
+                          borderColor: CustomColors.yellowColor,
+                          shadowColor: CustomColors.orangeColor,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/shoppage');
+                          },
+                          child: const Text('МЕНЮ',
+                              style: TextStyle(
+                                  fontFamily: 'RobotoCondensed',
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold))),
+                      AnimatedButton(
+                          color: CustomColors.lightBlueColor,
+                          borderColor: CustomColors.darkBlueColor,
+                          shadowColor: CustomColors.darkBlueColor,
+                          onPressed: () {
+                            SystemNavigator.pop();
+                          },
+                          child: const Text('ВЫХОД',
+                              style: TextStyle(
+                                  fontFamily: 'RobotoCondensed',
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold))),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
