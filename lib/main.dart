@@ -1,6 +1,7 @@
 import 'package:danek/pages/choose_heroes.dart';
 import 'package:danek/pages/form_page.dart';
 import 'package:danek/pages/game_page.dart';
+import 'package:danek/pages/activity_page.dart';
 import 'package:danek/pages/menu_page.dart';
 import 'package:danek/pages/setting_page.dart';
 import 'package:danek/pages/shop_page.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           '/formpage': (context) => FormPage(),
           '/chooseheroes': (context) => ChooseHeroes(),
           '/gamepage': (context) => GamePage(),
+          '/activitypage': (context) => ActivityPage(),
           '/shoppage': (context) => ShopPage(),
           '/settingpage': (context) => SettingPage(),
         });
