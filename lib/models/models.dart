@@ -5,23 +5,27 @@ import 'package:flutter/material.dart';
 
 InputDecoration inputDecoration(String labelText) {
   return InputDecoration(
-    labelStyle: const TextStyle(color: Colors.black54),
-    fillColor: CustomColors.white38Color,
-    filled: true,
-    labelText: labelText,
-    focusedBorder: const OutlineInputBorder(
-      borderSide: BorderSide(
-        color: CustomColors.whiteColor,
-        width: 3,
-      ),
-      borderRadius: BorderRadius.all(Radius.circular(30)),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(40),
     ),
-    enabledBorder: const OutlineInputBorder(
-      borderSide: BorderSide(
-        color: CustomColors.whiteColor,
+    floatingLabelAlignment: FloatingLabelAlignment.center,
+    labelStyle: const TextStyle(color: CustomColors.darkBlueColor),
+    fillColor: CustomColors.white30Color,
+    filled: true,
+    label: Text(labelText),
+    focusedBorder: OutlineInputBorder(
+      borderSide: const BorderSide(
+        color: CustomColors.darkBlueColor,
         width: 3,
       ),
-      borderRadius: BorderRadius.all(Radius.circular(30)),
+      borderRadius: BorderRadius.circular(40),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: const BorderSide(
+        color: CustomColors.darkBlueColor,
+        width: 3,
+      ),
+      borderRadius: BorderRadius.circular(40),
     ),
   );
 }
@@ -30,7 +34,18 @@ InputDecoration inputDecoration(String labelText) {
 
 TextStyle textStyleInput() {
   return const TextStyle(
+      fontFamily: 'RobotoCondensed-Regular',
       fontSize: 26,
-      color: CustomColors.black54Color,
+      color: CustomColors.darkBlueColor,
       fontWeight: FontWeight.bold);
+}
+
+//Стиль названий кнопок
+
+TextStyle textStyleButton() {
+  return const TextStyle(
+    fontFamily: 'RobotoCondensed-Regular',
+    fontSize: 26,
+    fontWeight: FontWeight.bold,
+  );
 }
