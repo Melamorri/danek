@@ -1,3 +1,4 @@
+import 'package:danek/helpers/colors.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedButton extends StatefulWidget {
@@ -16,14 +17,14 @@ class AnimatedButton extends StatefulWidget {
       {Key? key,
       required this.onPressed,
       required this.child,
-      this.borderColor = Colors.black,
+      this.borderColor = CustomColors.blackColor,
       this.enabled = true,
-      this.color = Colors.blue,
+      this.color = CustomColors.blueStandartColor,
       this.height = 55,
       this.width = 160,
       this.duration = 70,
       this.shape = BoxShape.rectangle,
-      this.shadowColor = Colors.black})
+      this.shadowColor = CustomColors.blackColor})
       : super(key: key);
 
   @override
