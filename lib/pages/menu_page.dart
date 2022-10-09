@@ -1,5 +1,6 @@
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
+import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -39,46 +40,59 @@ class MenuPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       AnimatedButton(
-                          color: CustomColors.pinkColor,
-                          borderColor: CustomColors.darkBlueColor,
-                          shadowColor: CustomColors.darkBlueColor,
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/formpage');
-                          },
-                          child: const Text('ИГРАТЬ',
+                        color: CustomColors.pinkColor,
+                        borderColor: CustomColors.darkBlueColor,
+                        shadowColor: CustomColors.darkBlueColor,
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/formpage');
+                        },
+                        child: Text(
+                          'ИГРАТЬ',
+                          style: textStyleButton(),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 207,
+                        child: Column(
+                          children: const [
+                            Image(
+                              image: AssetImage('assets/images/logotype.png'),
+                            ),
+                            Text(
+                              'Детский развлекательно-познавательный портал',
                               style: TextStyle(
-                                  fontFamily: 'RobotoCondensed',
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold))),
-                      const SizedBox(
-                        height: 150,
-                        child: Image(
-                            image: AssetImage('assets/images/logotype.png')),
+                                  color: CustomColors.whiteColor,
+                                  fontFamily: 'HelloDinaScriptStyle',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16),
+                            ),
+                          ],
+                        ),
                       ),
                       AnimatedButton(
-                          color: CustomColors.yellowColor,
-                          borderColor: CustomColors.yellowColor,
-                          shadowColor: CustomColors.orangeColor,
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/shoppage');
-                          },
-                          child: const Text('МЕНЮ',
-                              style: TextStyle(
-                                  fontFamily: 'RobotoCondensed',
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold))),
+                        color: CustomColors.yellowColor,
+                        borderColor: CustomColors.yellowColor,
+                        shadowColor: CustomColors.orangeColor,
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/shoppage');
+                        },
+                        child: Text(
+                          'МЕНЮ',
+                          style: textStyleButton(),
+                        ),
+                      ),
                       AnimatedButton(
-                          color: CustomColors.lightBlueColor,
-                          borderColor: CustomColors.darkBlueColor,
-                          shadowColor: CustomColors.darkBlueColor,
-                          onPressed: () {
-                            SystemNavigator.pop();
-                          },
-                          child: const Text('ВЫХОД',
-                              style: TextStyle(
-                                  fontFamily: 'RobotoCondensed',
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold))),
+                        color: CustomColors.lightBlueColor,
+                        borderColor: CustomColors.darkBlueColor,
+                        shadowColor: CustomColors.darkBlueColor,
+                        onPressed: () {
+                          SystemNavigator.pop();
+                        },
+                        child: Text(
+                          'ВЫХОД',
+                          style: textStyleButton(),
+                        ),
+                      ),
                     ],
                   ),
                 )
