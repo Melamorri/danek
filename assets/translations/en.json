@@ -1,7 +1,5 @@
-{
-"магазин": "Shop",
-"играть": "Play",
-"настройки": "Settings",
-"выход" : "Exit"
-
+{"shop": "Shop",
+"play": "Play",
+"settings": "Settings",
+"exit" : "Exit"
 }
