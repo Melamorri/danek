@@ -11,6 +11,7 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        padding: const EdgeInsets.only(top: 20),
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/menubackground.png"),
@@ -32,8 +33,9 @@ class MenuPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 550,
+                  height: MediaQuery.of(context).size.height / 6 * 5,
                   child: Column(
+                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       AnimatedButton(
@@ -49,8 +51,9 @@ class MenuPage extends StatelessWidget {
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold))),
                       const SizedBox(
-                        height: 100,
-                        //здеь должен быть логотип
+                        height: 150,
+                        child: Image(
+                            image: AssetImage('assets/images/logotype.png')),
                       ),
                       AnimatedButton(
                           color: CustomColors.yellowColor,
