@@ -1,5 +1,7 @@
+import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
+import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,6 +13,7 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        padding: const EdgeInsets.only(top: 20),
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/menubackground.png"),
@@ -32,50 +35,65 @@ class MenuPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 550,
+                  height: MediaQuery.of(context).size.height / 6 * 5,
                   child: Column(
+                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       AnimatedButton(
-                          color: CustomColors.pinkColor,
-                          borderColor: CustomColors.darkBlueColor,
-                          shadowColor: CustomColors.darkBlueColor,
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/formpage');
-                          },
-                          child: const Text('ИГРАТЬ',
+                        color: CustomColors.pinkColor,
+                        borderColor: CustomColors.darkBlueColor,
+                        shadowColor: CustomColors.darkBlueColor,
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/formpage');
+                        },
+                        child: Text(
+                          LocaleKeys.play.tr().toUpperCase(),
+                          style: textStyleButton(),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 207,
+                        child: Column(
+                          children: const [
+                            Image(
+                              image: AssetImage('assets/images/logotype.png'),
+                            ),
+                            Text(
+                              'Детский развлекательно-познавательный портал',
                               style: TextStyle(
-                                  fontFamily: 'RobotoCondensed',
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold))),
-                      const SizedBox(
-                        height: 100,
-                        //здеь должен быть логотип
+                                  color: CustomColors.whiteColor,
+                                  fontFamily: 'HelloDinaScriptStyle',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16),
+                            ),
+                          ],
+                        ),
                       ),
                       AnimatedButton(
-                          color: CustomColors.yellowColor,
-                          borderColor: CustomColors.yellowColor,
-                          shadowColor: CustomColors.orangeColor,
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/shoppage');
-                          },
-                          child: const Text('МЕНЮ',
-                              style: TextStyle(
-                                  fontFamily: 'RobotoCondensed',
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold))),
+                        color: CustomColors.yellowColor,
+                        borderColor: CustomColors.yellowColor,
+                        shadowColor: CustomColors.orangeColor,
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/shoppage');
+                        },
+                        child: Text(
+                          LocaleKeys.menu.tr().toUpperCase(),
+                          style: textStyleButton(),
+                        ),
+                      ),
                       AnimatedButton(
-                          color: CustomColors.lightBlueColor,
-                          borderColor: CustomColors.darkBlueColor,
-                          shadowColor: CustomColors.darkBlueColor,
-                          onPressed: () {
-                            SystemNavigator.pop();
-                          },
-                          child: const Text('ВЫХОД',
-                              style: TextStyle(
-                                  fontFamily: 'RobotoCondensed',
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold))),
+                        color: CustomColors.lightBlueColor,
+                        borderColor: CustomColors.darkBlueColor,
+                        shadowColor: CustomColors.darkBlueColor,
+                        onPressed: () {
+                          SystemNavigator.pop();
+                        },
+                        child: Text(
+                          LocaleKeys.exit.tr().toUpperCase(),
+                          style: textStyleButton(),
+                        ),
+                      ),
                     ],
                   ),
                 )
