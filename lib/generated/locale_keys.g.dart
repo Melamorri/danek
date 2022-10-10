@@ -5,5 +5,6 @@ abstract class  LocaleKeys {
   static const play = 'play';
   static const settings = 'settings';
   static const exit = 'exit';
+  static const menu = 'menu';
 
 }

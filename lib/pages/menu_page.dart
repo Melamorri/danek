@@ -1,3 +1,4 @@
+import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
@@ -47,7 +48,7 @@ class MenuPage extends StatelessWidget {
                           Navigator.pushNamed(context, '/formpage');
                         },
                         child: Text(
-                          'ИГРАТЬ',
+                          LocaleKeys.play.tr().toUpperCase(),
                           style: textStyleButton(),
                         ),
                       ),
@@ -77,7 +78,7 @@ class MenuPage extends StatelessWidget {
                           Navigator.pushNamed(context, '/shoppage');
                         },
                         child: Text(
-                          'МЕНЮ',
+                          LocaleKeys.menu.tr().toUpperCase(),
                           style: textStyleButton(),
                         ),
                       ),
@@ -89,7 +90,7 @@ class MenuPage extends StatelessWidget {
                           SystemNavigator.pop();
                         },
                         child: Text(
-                          'ВЫХОД',
+                          LocaleKeys.exit.tr().toUpperCase(),
                           style: textStyleButton(),
                         ),
                       ),

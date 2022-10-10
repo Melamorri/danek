@@ -1,3 +1,4 @@
+import 'package:danek/generated/codegen_loader.g.dart';
 import 'package:danek/pages/choose_heroes.dart';
 import 'package:danek/pages/form_page.dart';
 import 'package:danek/pages/game_page.dart';
@@ -24,6 +25,7 @@ void main() async {
         ],
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
+        assetLoader: CodegenLoader(),
         child: const MyApp()),
   );
 }
