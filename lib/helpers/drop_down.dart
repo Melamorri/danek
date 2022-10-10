@@ -1,58 +1,73 @@
+import 'package:danek/helpers/colors.dart';
+import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+// Эта страница создает кнопку выбора языка и вызыввется в страниц
 
-void main() => runApp(const DropdownButtonApp());
+class Drop extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _DropState();
+}
 
-class DropdownButtonApp extends StatelessWidget {
-  const DropdownButtonApp({super.key});
-
+class _DropState extends State<Drop> {
+  List<String> _language = [
+    ' Русский',
+    ' English',
+    ' Кыргыз',
+    ' қазақ',
+    ' ozbek',
+    ' тоҷикӣ'
+  ];
+  String? _selectedlanguage;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('DropdownButton Sample')),
-        body: const Center(
-          child: DropdownButtonExample(),
+    return Center(
+      child: Container(
+        height: 55,
+        width: 175,
+        decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: CustomColors.orangeColor.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              ),
+            ],
+            color: CustomColors.yellowColor,
+            borderRadius: BorderRadius.circular(40),
+            border: Border.all(color: CustomColors.yellowColor, width: 4)),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            borderRadius: BorderRadius.circular(30),
+            dropdownColor: CustomColors.orangeColor,
+            hint: Text(
+              ' Language',
+              style: TextStyle(color: CustomColors.black54Color),
+            ),
+            iconEnabledColor: CustomColors.orangeColor,
+            iconSize: 60,
+            isDense: true,
+            style: TextStyle(
+                fontFamily: 'RobotoCondensed-Regular',
+                fontSize: 26,
+                color: CustomColors.darkBlueColor,
+                fontWeight: FontWeight.bold),
+            value: _selectedlanguage,
+            onChanged: (newValue) {
+              setState(() {
+                _selectedlanguage = newValue;
+              });
+            },
+            items: _language.map((language) {
+              return DropdownMenuItem(
+                child: new Text(language),
+                value: language,
+              );
+            }).toList(),
+          ),
         ),
       ),
-    );
-  }
-}
-
-class DropdownButtonExample extends StatefulWidget {
-  const DropdownButtonExample({super.key});
-
-  @override
-  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
-}
-
-class _DropdownButtonExampleState extends State<DropdownButtonExample> {
-  String dropdownValue = list.first;
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      items: list.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
     );
   }
 }
