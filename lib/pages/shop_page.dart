@@ -112,7 +112,7 @@ showAlertDialog(BuildContext context, Shop shop) {
       style: TextStyle(color: CustomColors.blackColor),
     ),
     onPressed: () {
-      Navigator.pushNamed(context, '/gamepage');
+      Navigator.pushNamed(context, '/shoppage');
     },
   );
 
