@@ -1,3 +1,4 @@
+import 'package:danek/helpers/drop_down.dart';
 import 'package:danek/main.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -22,8 +23,9 @@ class SettingPage extends StatelessWidget {
             child: SizedBox(
               height: 550,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  Drop(),
                   AnimatedButton(
                       color: CustomColors.yellowColor,
                       borderColor: CustomColors.yellowColor,
