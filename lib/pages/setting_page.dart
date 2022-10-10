@@ -19,22 +19,25 @@ class SettingPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           body: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                AnimatedButton(
-                    color: CustomColors.yellowColor,
-                    borderColor: CustomColors.yellowColor,
-                    shadowColor: CustomColors.orangeColor,
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/');
-                    },
-                    child: const Text('МЕНЮ',
-                        style: TextStyle(
-                            fontFamily: 'RobotoCondensed',
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold))),
-              ],
+            child: SizedBox(
+              height: 550,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  AnimatedButton(
+                      color: CustomColors.yellowColor,
+                      borderColor: CustomColors.yellowColor,
+                      shadowColor: CustomColors.orangeColor,
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/');
+                      },
+                      child: const Text('МЕНЮ',
+                          style: TextStyle(
+                              fontFamily: 'RobotoCondensed',
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold))),
+                ],
+              ),
             ),
           ),
         ),
