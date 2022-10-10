@@ -81,9 +81,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: RobotoCondensed-Regular
+    - family: RobotoCondensed
       fonts:
         - asset: assets/fonts/RobotoCondensed-Regular.ttf
+        # - asset: assets/fonts/RobotoCondensed-Bold.ttf
+        # - asset: assets/fonts/RobotoCondensed-Light.ttf
 
     - family: HelloDinaScript
       fonts:
@@ -93,6 +95,14 @@ flutter:
       fonts:
         - asset: assets/fonts/HelloDinaScriptStyle.otf
 
+    - family: LeOslerRoughRegular
+      fonts:
+        - asset: assets/fonts/LeOsler_Rough-Regular.otf
+        # - asset: assets/fonts/LeOsler_Rough-Border-Regular.otf
+
+    - family: SairaExtraCondensed
+      fonts:
+        - asset: assets/fonts/SairaExtraCondensed-Medium.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
