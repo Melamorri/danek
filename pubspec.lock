@@ -238,6 +238,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  neon_circular_timer:
+    dependency: "direct main"
+    description:
+      name: neon_circular_timer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   ordered_set:
     dependency: transitive
     description:
