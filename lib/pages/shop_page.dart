@@ -27,63 +27,12 @@ class ShopPage extends StatelessWidget {
           //   centerTitle: true,
           // ),
           backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(height: 30),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  child: GridView.builder(
-                      padding: const EdgeInsets.all(15),
-                      itemCount: shopList.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3),
-                      itemBuilder: (context, index) {
-                        Shop shop = shopList[index];
-                        return InkWell(
-                          onTap: (() {
-                            showAlertDialog(context, shop, index);
-                          }),
-                          child: Card(
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 5),
-                                Text(
-                                  shop.name,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Image.asset(
-                                  shop.image,
-                                  height: 65,
-                                ),
-                                Text(
-                                  shop.price,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }),
-                ),
-                const SizedBox(height: 10),
-                AnimatedButton(
-                  color: CustomColors.yellowColor,
-                  borderColor: CustomColors.yellowColor,
-                  shadowColor: CustomColors.orangeColor,
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/');
-                  },
-                  child: Text(
-                    LocaleKeys.menu.tr().toUpperCase(),
-                    style: textStyleButton(),
-                  ),
-                ),
-              ],
-            ),
+          body: StreamBuilder(
+            initialData: bloc.shopList,
+            stream: bloc.getStream,
+            builder: (context, snapshot) {
+              return shopItemsListBuilder(snapshot, context);
+            },
           ),
         ),
       ),
@@ -91,13 +40,76 @@ class ShopPage extends StatelessWidget {
   }
 }
 
-showAlertDialog(BuildContext context, Shop shop, index) {
+Widget shopItemsListBuilder(snapshot, context) {
+  return Column(children: [
+    const SizedBox(height: 30),
+    SizedBox(
+      height: MediaQuery.of(context).size.height * 0.8,
+      child: GridView.builder(
+          padding: const EdgeInsets.all(15),
+          itemCount: snapshot.data["shop_items"].length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3),
+          itemBuilder: (contextsnapshot, index) {
+            final shopList = snapshot.data["shop_items"];
+            return InkWell(
+              onTap: (() {
+                showAlertDialog(context, shopList, index);
+              }),
+              child: Card(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 5),
+                    Text(
+                      shopList[index]['name'],
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Image.asset(
+                      shopList[index]['image'],
+                      height: 65,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          shopList[index]['price'],
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(width: 5),
+                        Image.asset(
+                          'assets/images/coin.png',
+                          width: 20,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
+    ),
+    const SizedBox(height: 10),
+    AnimatedButton(
+      color: CustomColors.yellowColor,
+      borderColor: CustomColors.yellowColor,
+      shadowColor: CustomColors.orangeColor,
+      onPressed: () {
+        Navigator.pushNamed(context, '/');
+      },
+      child: Text(
+        LocaleKeys.menu.tr().toUpperCase(),
+        style: textStyleButton(),
+      ),
+    ),
+  ]);
+}
+
+showAlertDialog(context, shopList, index) {
   Widget cancelButton = TextButton(
-    style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(CustomColors.blueColor)),
+    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
     child: const Text(
       "Отмена",
-      style: TextStyle(color: CustomColors.blackColor),
+      style: TextStyle(color: Colors.black),
     ),
     onPressed: () {
       // переход на страницу или с героем или в магазин
@@ -106,22 +118,21 @@ showAlertDialog(BuildContext context, Shop shop, index) {
     },
   );
   Widget okButton = TextButton(
-    style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(CustomColors.blueColor)),
+    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
     child: const Text(
       "Купить",
-      style: TextStyle(color: CustomColors.blackColor),
+      style: TextStyle(color: Colors.black),
     ),
     onPressed: () {
+      bloc.addToCart(shopList[index]);
+      // Navigator.pushReplacementNamed(
+      //   context,
+      //   '/mypurchases',
+      // );
       Navigator.pushNamedAndRemoveUntil(
         context,
         '/mypurchases',
         (route) => false,
-        arguments: Shop(
-            id: shopList[index].image,
-            image: shopList[index].image,
-            name: shopList[index].name,
-            price: shopList[index].price),
       );
     },
   );
@@ -134,16 +145,23 @@ showAlertDialog(BuildContext context, Shop shop, index) {
     ),
     titlePadding: const EdgeInsets.only(left: 100, top: 10),
     actionsAlignment: MainAxisAlignment.center,
-    title: Text(shop.name),
+    title: Text(
+      shopList[index]['name'],
+    ),
     content: Wrap(children: [
       Row(
         children: [
           const SizedBox(width: 20),
-          Image.asset(shop.image, width: 100),
+          Image.asset(shopList[index]['image'], width: 100),
           const SizedBox(
             width: 20,
           ),
-          Text(shop.price)
+          Text(shopList[index]['price']),
+          const SizedBox(width: 10),
+          Image.asset(
+            'assets/images/coin.png',
+            width: 40,
+          )
         ],
       ),
     ]),
