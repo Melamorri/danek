@@ -1,4 +1,3 @@
-import 'package:danek/pages/form_page.dart';
 import 'package:flutter/material.dart';
 
 class GamePage extends StatefulWidget {
@@ -12,7 +11,7 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 60),
+      padding: const EdgeInsets.only(top: 60),
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
@@ -37,10 +36,19 @@ class _GamePageState extends State<GamePage> {
                   backgroundImage: AssetImage("assets/images/backbutton.png"),
                 ),
               ),
-              SizedBox(
-                height: 20,
-                width: MediaQuery.of(context).size.width * 0.4,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/mypurchases');
+                },
+                child: const CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage: AssetImage("assets/images/shopbutton.png"),
+                ),
               ),
+              // SizedBox(
+              //   height: 20,
+              //   width: MediaQuery.of(context).size.width * 0.4,
+              // ),
               const CircleAvatar(
                 radius: 30.0,
                 backgroundImage: AssetImage("assets/images/coin.png"),
