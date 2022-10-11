@@ -43,7 +43,7 @@ class ShopPage extends StatelessWidget {
                         Shop shop = shopList[index];
                         return InkWell(
                           onTap: (() {
-                            showAlertDialog(context, shop);
+                            showAlertDialog(context, shop, index);
                           }),
                           child: Card(
                             child: Column(
@@ -91,7 +91,7 @@ class ShopPage extends StatelessWidget {
   }
 }
 
-showAlertDialog(BuildContext context, Shop shop) {
+showAlertDialog(BuildContext context, Shop shop, index) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.blueColor)),
@@ -100,8 +100,9 @@ showAlertDialog(BuildContext context, Shop shop) {
       style: TextStyle(color: CustomColors.blackColor),
     ),
     onPressed: () {
-      // переход на страницу.....
-      Navigator.pushNamed(context, '/gamepage');
+      // переход на страницу или с героем или в магазин
+      Navigator.of(context).pop();
+      //Navigator.pushNamed(context, '/shoppage');
     },
   );
   Widget okButton = TextButton(
@@ -112,7 +113,16 @@ showAlertDialog(BuildContext context, Shop shop) {
       style: TextStyle(color: CustomColors.blackColor),
     ),
     onPressed: () {
-      Navigator.pushNamed(context, '/shoppage');
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/mypurchases',
+        (route) => false,
+        arguments: Shop(
+            id: shopList[index].image,
+            image: shopList[index].image,
+            name: shopList[index].name,
+            price: shopList[index].price),
+      );
     },
   );
 
