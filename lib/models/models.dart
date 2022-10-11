@@ -34,7 +34,7 @@ InputDecoration inputDecoration(String labelText) {
 
 TextStyle textStyleInput() {
   return const TextStyle(
-      fontFamily: 'RobotoCondensed-Regular',
+      fontFamily: 'RobotoCondensed',
       fontSize: 26,
       color: CustomColors.darkBlueColor,
       fontWeight: FontWeight.bold);
@@ -44,7 +44,7 @@ TextStyle textStyleInput() {
 
 TextStyle textStyleButton() {
   return const TextStyle(
-    fontFamily: 'RobotoCondensed-Regular',
+    fontFamily: 'RobotoCondensed',
     fontSize: 26,
     fontWeight: FontWeight.bold,
   );
