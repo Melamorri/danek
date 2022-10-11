@@ -61,13 +61,14 @@ class MenuPage extends StatelessWidget {
                             Image(
                               image: AssetImage('assets/images/logotype.png'),
                             ),
+                            SizedBox(height: 4),
                             Text(
                               'Детский развлекательно-познавательный портал',
                               style: TextStyle(
                                   color: CustomColors.whiteColor,
-                                  fontFamily: 'HelloDinaScriptStyle',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16),
+                                  fontFamily: 'LeOslerRoughRegular',
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 12),
                             ),
                           ],
                         ),
