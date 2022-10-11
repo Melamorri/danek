@@ -9,7 +9,10 @@ class CustomColors {
   static const Color pinkColor = Color(0xFFED1E79);
 
   static const Color whiteColor = Colors.white;
-  static const Color white38Color = Colors.white38;
+  static const Color white30Color = Colors.white30;
   static const Color blackColor = Colors.black;
   static const Color black54Color = Colors.black54;
+  static const Color yellowColor = Colors.yellow;
+  static const Color lightBlueColor = Color.fromARGB(255, 98, 231, 231);
+  static const Color blueStandartColor = Colors.blue;
 }
