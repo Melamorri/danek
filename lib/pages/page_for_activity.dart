@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
+import 'package:danek/models/activity_button.dart';
+import 'package:danek/pages/hero_page_bars.dart';
+import 'package:danek/models/models.dart';
 
 class ActivityDetailsScreen extends StatelessWidget {
   final ActivityList ativityList;
 
-  const ActivityDetailsScreen({super.key,
+  const ActivityDetailsScreen({
+    super.key,
     required this.ativityList,
   });
 
@@ -38,24 +42,30 @@ class ActivityDetailsScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/');
+                        Navigator.pushNamed(context, '/gamepage');
                       },
                       child: const CircleAvatar(
                         radius: 30.0,
-                        backgroundImage: AssetImage("assets/images/backbutton.png"),
+                        backgroundImage:
+                            AssetImage("assets/images/backbutton.png"),
                       ),
                     ),
                     SizedBox(
                       height: 20,
                       width: MediaQuery.of(context).size.width * 0.4,
                     ),
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 30.0,
                       backgroundImage: AssetImage("assets/images/coin.png"),
+                      child: Text(
+                        '$value',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ],
                 ),
-                Text(ativityList.name.toString(), style: Theme.of(context).textTheme.headline6),
+                Text(ativityList.name.toString(),
+                    style: Theme.of(context).textTheme.headline6),
                 Image(
                   image: NetworkImage(ativityList.gif.toString()),
                   width: 500,
