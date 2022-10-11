@@ -75,7 +75,7 @@ class _ChooseHeroesState extends State<ChooseHeroes> {
                   }
                 },
                 child: Text(
-                  'SELECT',
+                  'SELECT', 
                   style: textStyleButton(),
                 ),
               ),
