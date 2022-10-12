@@ -109,8 +109,8 @@ Widget shopItemsListBuilder(snapshot, context) {
 showAlertDialog(context, shopList, index) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
-    child: const Text(
-      "Отмена",
+    child: Text(
+      LocaleKeys.cancel.tr(),
       style: TextStyle(color: Colors.black),
     ),
     onPressed: () {
@@ -120,8 +120,8 @@ showAlertDialog(context, shopList, index) {
   );
   Widget okButton = TextButton(
     style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
-    child: const Text(
-      "Купить",
+    child: Text(
+      LocaleKeys.buy.tr(),
       style: TextStyle(color: Colors.black),
     ),
     onPressed: () {
