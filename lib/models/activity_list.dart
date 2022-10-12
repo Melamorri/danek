@@ -5,11 +5,13 @@ class ActivityList {
   String name;
   String image;
   String gif;
+  String wav;
 
   ActivityList({
     required this.name,
     required this.image,
     required this.gif,
+    this.wav = '',
   });
 }
 
@@ -21,15 +23,15 @@ List<ActivityList> ativityList = [
         'https://advance-club.ru/images/uploads/kakie-knigi-predlojit-rebenku-2.gif',
   ),
   ActivityList(
-    name: LocaleKeys.teeth.tr(),
-    image: 'assets/images/toothbrushbutton.png',
-    gif: 'http://file.mobilmusic.ru/7d/28/db/878164.gif',
-  ),
+      name: LocaleKeys.teeth.tr(),
+      image: 'assets/images/toothbrushbutton.png',
+      gif: 'http://file.mobilmusic.ru/7d/28/db/878164.gif',
+      wav: 'teeth.mp3'),
   ActivityList(
-    name: LocaleKeys.toys.tr(),
-    image: 'assets/images/toysbutton.png',
-    gif: 'https://i.gifer.com/aMs.gif',
-  ),
+      name: LocaleKeys.toys.tr(),
+      image: 'assets/images/toysbutton.png',
+      gif: 'https://i.gifer.com/aMs.gif',
+      wav: 'toys.mp3'),
   ActivityList(
     name: LocaleKeys.eat.tr(),
     image: 'assets/images/eatbutton.png',
