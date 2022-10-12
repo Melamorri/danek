@@ -97,7 +97,7 @@ Widget shopItemsListBuilder(snapshot, context) {
         Navigator.pushNamed(context, '/');
       },
       child: Text(
-        LocaleKeys.menu.tr().toUpperCase(),
+        'НАЗАД',
         style: textStyleButton(),
       ),
     ),
@@ -112,7 +112,6 @@ showAlertDialog(context, shopList, index) {
       style: TextStyle(color: Colors.black),
     ),
     onPressed: () {
-      // переход на страницу или с героем или в магазин
       Navigator.of(context).pop();
       //Navigator.pushNamed(context, '/shoppage');
     },
@@ -124,6 +123,7 @@ showAlertDialog(context, shopList, index) {
       style: TextStyle(color: Colors.black),
     ),
     onPressed: () {
+      // функция переодевания героя
       bloc.addToCart(shopList[index]);
       // Navigator.pushReplacementNamed(
       //   context,
