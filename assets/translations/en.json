@@ -3,5 +3,12 @@
 "play": "Play",
 "settings": "Settings",
 "exit" : "Exit",
-"menu":"Menu"
+"menu":"Menu",
+"language": "Язык",
+"swipe": "Swipe left/right to",
+"select_character":"Select your character",
+"enter_name'=":"Enter your name",
+"name":"Name",
+"age": "Age",
+"enter_age":"Enter your age"
 }
