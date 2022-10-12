@@ -1,3 +1,4 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';
 import 'package:danek/models/activity_list.dart';
@@ -53,6 +54,7 @@ class HeroListState extends State<HeroList> {
                 onTap: () {
                   setState(() {
                     _selectedIndex = index;
+                    FlameAudio.play(activity.wav);
                   });
                   Navigator.push(
                       context,

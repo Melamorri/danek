@@ -31,7 +31,7 @@ class MenuPage extends StatelessWidget {
                     IconButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/settingpage');
-                          FlameAudio.play('zvukmonet.wav');
+                          FlameAudio.play('fonemusic.wav', volume: 1);
                         },
                         icon: const Icon(Icons.settings))
                   ],
