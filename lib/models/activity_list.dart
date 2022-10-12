@@ -1,4 +1,3 @@
-
 class ActivityList {
   String name;
   String image;
@@ -15,7 +14,8 @@ List<ActivityList> ativityList = [
   ActivityList(
     name: 'Читать книгу',
     image: 'assets/images/readbookbutton.png',
-    gif: 'https://advance-club.ru/images/uploads/kakie-knigi-predlojit-rebenku-2.gif',
+    gif:
+        'https://advance-club.ru/images/uploads/kakie-knigi-predlojit-rebenku-2.gif',
   ),
   ActivityList(
     name: 'Чистить зубы',
@@ -30,7 +30,8 @@ List<ActivityList> ativityList = [
   ActivityList(
     name: 'Вкусно поесть',
     image: 'assets/images/eatbutton.png',
-    gif: 'https://i.pinimg.com/originals/26/6a/31/266a31e4d7dcf4eb9deba7dd32ca8a34.gif',
+    gif:
+        'https://i.pinimg.com/originals/26/6a/31/266a31e4d7dcf4eb9deba7dd32ca8a34.gif',
   ),
   ActivityList(
     name: 'Делать зарядку',
@@ -38,3 +39,6 @@ List<ActivityList> ativityList = [
     gif: 'https://media.tenor.com/fhBpSJxEozwAAAAC/iworkout-winniethepooh.gif',
   ),
 ];
+// нужно тогда добавить сюда же  стоимость действия,  это переменная cash
+//прописано в helpers/activity_button   
+
