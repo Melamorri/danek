@@ -1,3 +1,4 @@
+import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/main.dart';
 import 'package:danek/models/animation_button.dart';
@@ -44,15 +45,15 @@ class _ChooseHeroesState extends State<ChooseHeroes> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: <Widget>[
-                    const Text('SWIPE LEFT/RIGHT TO',
+                    Text(LocaleKeys.swipe.tr(),
                         style: TextStyle(
                           color: CustomColors.lightBlueColor,
                           fontFamily: 'HelloDinaScriptStyle',
                           fontWeight: FontWeight.w700,
                           fontSize: 40,
                         )),
-                    const Text(
-                      'SELECT YOUR CHARACTER',
+                    Text(
+                      LocaleKeys.select_character.tr(),
                       style: TextStyle(
                         color: CustomColors.lightBlueColor,
                         fontFamily: 'HelloDinaScriptStyle',
