@@ -23,7 +23,6 @@ class HeroListState extends State<HeroList> {
           fit: BoxFit.cover,
         ),
       ),
-
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -56,12 +55,12 @@ class HeroListState extends State<HeroList> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ActivityDetailsScreen(ativityList: activity)));
+                          builder: (context) =>
+                              ActivityDetailsScreen(ativityList: activity)));
                 },
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(1),
-                  leading:
-                  Container(
+                  leading: Container(
                     width: 70,
                     child: CircleAvatar(
                       radius: 70.0,
