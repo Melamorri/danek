@@ -32,11 +32,11 @@ class CodegenLoader extends AssetLoader{
   "buy": "Buy",
   "portal": "Children's entertainment and educational portal",
   "next": "Next",
-  "read_book": "Read a book",
-  "teeth": "Brush your teeth",
-  "toys": "Clean up your room",
+  "read_book": "Let's read a book",
+  "teeth": "Let's brush your teeth",
+  "toys": "Let's clean up your room",
   "eat": "Bon appetit",
-  "exercise": "Do some exercise"
+  "exercise": "Let's do some exercise"
 };
 static const Map<String,dynamic> kk = {
   "shop": "Гол",
