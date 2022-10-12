@@ -1,7 +1,9 @@
+import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
@@ -37,26 +39,26 @@ class FormPageState extends State<FormPage> {
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Введите ваше имя';
+                          return LocaleKeys.enter_name.tr();
                         }
                         return null;
                       },
                       textCapitalization: TextCapitalization.sentences,
                       textAlign: TextAlign.center,
-                      decoration: inputDecoration('Имя'),
+                      decoration: inputDecoration(LocaleKeys.name.tr()),
                       style: textStyleInput(),
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Введите ваш возраст';
+                          return LocaleKeys.enter_age.tr();
                         }
                         return null;
                       },
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
-                      decoration: inputDecoration('Возраст'),
+                      decoration: inputDecoration(LocaleKeys.age.tr()),
                       style: textStyleInput(),
                     ),
                     const SizedBox(height: 100),
@@ -70,7 +72,7 @@ class FormPageState extends State<FormPage> {
                         }
                       },
                       child: Text(
-                        'ДАЛЕЕ',
+                        LocaleKeys.next.tr().toUpperCase(),
                         style: textStyleButton(),
                       ),
                     ),

@@ -50,7 +50,7 @@ class _DropState extends State<Drop> {
             isDense: true,
             style: TextStyle(
                 fontFamily: 'RobotoCondensed-Regular',
-                fontSize: 26,
+                fontSize: 20,
                 color: CustomColors.darkBlueColor,
                 fontWeight: FontWeight.bold),
             value: _selectedlanguage,

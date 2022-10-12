@@ -20,13 +20,23 @@ class CodegenLoader extends AssetLoader{
   "settings": "Settings",
   "exit": "Exit",
   "menu": "Menu",
-  "language": "Язык",
+  "language": "Language",
   "swipe": "Swipe left/right to",
-  "select_character": "Select your character",
-  "enter_name'=": "Enter your name",
+  "select_character": "select your character",
   "name": "Name",
   "age": "Age",
-  "enter_age": "Enter your age"
+  "enter_age": "Enter your age",
+  "enter_name": "Enter your name",
+  "back": "Back",
+  "cancel": "Cancel",
+  "buy": "Buy",
+  "portal": "Children's entertainment and educational portal",
+  "next": "Next",
+  "read_book": "Read a book",
+  "teeth": "Brush your teeth",
+  "toys": "Clean up your room",
+  "eat": "Bon appetit",
+  "exercise": "Do some exercise"
 };
 static const Map<String,dynamic> kk = {
   "shop": "Гол",
@@ -47,12 +57,16 @@ static const Map<String,dynamic> ru = {
   "exit": "Выход",
   "menu": "Меню",
   "language": "Язык",
-  "swipe": "Проведите пальцем влево/вправо",
-  "select_character": "Выберите персонажа",
-  "enter_name": "Введите ваше имя",
+  "swipe": "Проведите пальцем влево/вправо для",
+  "select_character": "выбора персонажа",
   "name": "Имя",
   "age": "Возраст",
-  "enter_age": "Введите ваш возраст"
+  "enter_age": "Введите ваш возраст",
+  "enter_name": "Введите ваше имя",
+  "back": "Назад",
+  "cancel": "Отмена",
+  "buy": "Купить",
+  "portal": "Детский развлекательно-познавательный портал"
 };
 static const Map<String,dynamic> tg = {
   "shop": "Shop",
