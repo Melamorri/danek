@@ -1,5 +1,4 @@
 import 'package:danek/helpers/colors.dart';
-import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
 
 // Эта страница создает кнопку выбора языка и вызыввется в страниц
@@ -24,7 +23,7 @@ class _DropState extends State<Drop> {
     return Center(
       child: Container(
         height: 55,
-        width: 175,
+        // width: 160,
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(

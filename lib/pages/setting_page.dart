@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -34,6 +35,19 @@ class SettingPage extends StatelessWidget {
                         Navigator.pushNamed(context, '/');
                       },
                       child: const Text('МЕНЮ',
+                          style: TextStyle(
+                              fontFamily: 'RobotoCondensed',
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold))),
+                  AnimatedButton(
+                      color: CustomColors.yellowColor,
+                      borderColor: CustomColors.yellowColor,
+                      shadowColor: CustomColors.orangeColor,
+                      onPressed: () {
+                        AudioCache player = new AudioCache();
+                        player.loop('fonemusic.wav');
+                      },
+                      child: const Text('Звук',
                           style: TextStyle(
                               fontFamily: 'RobotoCondensed',
                               fontSize: 26,
