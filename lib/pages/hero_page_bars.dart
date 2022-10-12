@@ -14,22 +14,23 @@ class HeroListState extends State<HeroList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/bars.png'),
-          fit: BoxFit.cover,
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bars.png'),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _addSpace(550),
-            _addHorizontalList(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _addSpace(550),
+              _addHorizontalList(),
+            ],
+          ),
         ),
       ),
     );
@@ -56,12 +57,12 @@ class HeroListState extends State<HeroList> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ActivityDetailsScreen(ativityList: activity)));
+                          builder: (context) =>
+                              ActivityDetailsScreen(ativityList: activity)));
                 },
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(1),
-                  leading:
-                  Container(
+                  leading: Container(
                     width: 70,
                     child: CircleAvatar(
                       radius: 70.0,
