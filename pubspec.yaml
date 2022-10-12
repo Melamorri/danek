@@ -67,7 +67,13 @@ flutter:
     - assets/images/menubackground.png
     - assets/images/eatbutton.png
     - assets/images/logotype.png
+<<<<<<< HEAD
     - assets/fonemusic.wav
+=======
+    - assets/sounds/fonemusic.wav
+    - assets/sfx/
+    - assets/images/bars.png
+>>>>>>> 2f9d568fe1c3906e801dff692d09d1b2a7800c42
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
