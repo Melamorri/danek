@@ -97,7 +97,7 @@ Widget shopItemsListBuilder(snapshot, context) {
         Navigator.pushNamed(context, '/');
       },
       child: Text(
-        'НАЗАД',
+        LocaleKeys.back.tr().toUpperCase(),
         style: textStyleButton(),
       ),
     ),
