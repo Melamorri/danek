@@ -13,6 +13,8 @@ class MyPurchases extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
@@ -116,11 +118,11 @@ Widget checkoutListBuilder(snapshot, context) {
                   ),
                   Image.asset(
                     cartList[index]['image'],
-                    height: 50,
+                    height: MediaQuery.of(context).size.height * 0.075,
                   ),
                   SizedBox(
-                    width: 80,
-                    height: 30,
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: MediaQuery.of(context).size.height * 0.035,
                     child: TextButton(
                         style: ButtonStyle(
                           backgroundColor:

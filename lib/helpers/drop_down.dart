@@ -25,8 +25,8 @@ class _DropState extends State<Drop> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 55,
-        width: 175,
+        // height: MediaQuery.of(context).size.height * 0.08,
+        // width: MediaQuery.of(context).size.width * 0.5,
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
