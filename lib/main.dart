@@ -9,7 +9,6 @@ import 'package:danek/pages/menu_page.dart';
 import 'package:danek/pages/my_purchases.dart';
 import 'package:danek/pages/setting_page.dart';
 import 'package:danek/pages/shop_page.dart';
-import 'package:danek/pages/page_for_activity.dart';
 import 'package:danek/pages/hero_page_bars.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';

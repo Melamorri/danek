@@ -1,4 +1,3 @@
-import 'package:danek/pages/form_page.dart';
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_button.dart';
 
@@ -38,10 +37,19 @@ class _GamePageState extends State<GamePage> {
                     backgroundImage: AssetImage("assets/images/backbutton.png"),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                  width: MediaQuery.of(context).size.width * 0.4,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/mypurchases');
+                  },
+                  child: const CircleAvatar(
+                    radius: 30.0,
+                    backgroundImage: AssetImage("assets/images/shopbutton.png"),
+                  ),
                 ),
+                // SizedBox(
+                //   height: 20,
+                //   width: MediaQuery.of(context).size.width * 0.4,
+                // ),
                 CircleAvatar(
                   radius: 30.0,
                   backgroundImage: const AssetImage("assets/images/coin.png"),
