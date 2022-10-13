@@ -65,6 +65,7 @@ flutter:
     - assets/images/
     - assets/translations/
     - assets/images/menubackground.png
+    - assets/images/eatbutton.png
     - assets/images/logotype.png
     # - assets/sounds/fonemusic.wav
     # - assets/sfx/
