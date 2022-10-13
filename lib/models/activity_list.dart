@@ -18,35 +18,40 @@ class ActivityList {
 }
 
 List<ActivityList> ativityList = [
+
   ActivityList(
     id: 1,
     name: LocaleKeys.read_book.tr(),
     image: 'assets/images/readbookbutton.png',
     gif: 'assets/images/reeding_books.gif',
   ),
+
   ActivityList(
       id: 2,
       name: LocaleKeys.teeth.tr(),
       image: 'assets/images/toothbrushbutton.png',
       gif: 'assets/images/frog.gif',
       wav: 'teeth.mp3'),
+
   ActivityList(
       id: 3,
       name: LocaleKeys.toys.tr(),
       image: 'assets/images/toysbutton.png',
       gif: 'assets/images/fold_toys.gif',
       wav: 'toys.mp3'),
+
   ActivityList(
-    id: 4,
-    name: LocaleKeys.eat.tr(),
-    image: 'assets/images/eatbutton.png',
-    gif: 'assets/images/eating.gif',
+      id: 4,
+      name: LocaleKeys.eat.tr(),
+      image: 'assets/images/eatbutton.png',
+      gif: 'assets/images/eating.gif',
   ),
+
   ActivityList(
-    id: 5,
-    name: LocaleKeys.exercise.tr(),
-    image: 'assets/images/gymbutton.png',
-    gif: 'assets/images/excercise.gif',
+      id: 5,
+      name: LocaleKeys.exercise.tr(),
+      image: 'assets/images/gymbutton.png',
+      gif: 'assets/images/excercise.gif',
   ),
 ];
 // нужно тогда добавить сюда же  стоимость действия,  это переменная cash
