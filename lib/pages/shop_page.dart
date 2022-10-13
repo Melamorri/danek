@@ -13,6 +13,8 @@ class ShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
@@ -42,7 +44,7 @@ class ShopPage extends StatelessWidget {
 
 Widget shopItemsListBuilder(snapshot, context) {
   return Column(children: [
-    const SizedBox(height: 30),
+    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
     SizedBox(
       height: MediaQuery.of(context).size.height * 0.8,
       child: GridView.builder(
@@ -66,7 +68,7 @@ Widget shopItemsListBuilder(snapshot, context) {
                     ),
                     Image.asset(
                       shopList[index]['image'],
-                      height: 65,
+                      height: MediaQuery.of(context).size.height * 0.08,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -97,7 +99,7 @@ Widget shopItemsListBuilder(snapshot, context) {
         Navigator.pushNamed(context, '/');
       },
       child: Text(
-        'НАЗАД',
+        LocaleKeys.back.tr().toUpperCase(),
         style: textStyleButton(),
       ),
     ),
@@ -107,8 +109,8 @@ Widget shopItemsListBuilder(snapshot, context) {
 showAlertDialog(context, shopList, index) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
-    child: const Text(
-      "Отмена",
+    child: Text(
+      LocaleKeys.cancel.tr(),
       style: TextStyle(color: Colors.black),
     ),
     onPressed: () {
@@ -118,8 +120,8 @@ showAlertDialog(context, shopList, index) {
   );
   Widget okButton = TextButton(
     style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
-    child: const Text(
-      "Купить",
+    child: Text(
+      LocaleKeys.buy.tr(),
       style: TextStyle(color: Colors.black),
     ),
     onPressed: () {
@@ -152,7 +154,10 @@ showAlertDialog(context, shopList, index) {
       Row(
         children: [
           const SizedBox(width: 20),
-          Image.asset(shopList[index]['image'], width: 100),
+          Image.asset(
+            shopList[index]['image'],
+            width: MediaQuery.of(context).size.width * 0.25,
+          ),
           const SizedBox(
             width: 20,
           ),
