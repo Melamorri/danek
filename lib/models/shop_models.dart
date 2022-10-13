@@ -8,20 +8,20 @@ class Shop {
   final Map shopList = {
     'shop_items': [
       {
-        'name': 'Юбка',
-        'image': 'assets/images/ubka.png',
+        'name': 'Меч',
+        'image': 'assets/images/sword.png',
         'price': '20',
         'id': 1
       },
       {
-        'name': 'Юбка',
-        'image': 'assets/images/ubka_2.png',
+        'name': 'Брюки',
+        'image': 'assets/images/pants.png',
         'price': '100',
         'id': 2
       },
       {
-        'name': 'Колпак',
-        'image': 'assets/images/kolpak.png',
+        'name': 'Майка',
+        'image': 'assets/images/t-shirt.png',
         'price': '10',
         'id': 3
       },
@@ -32,76 +32,70 @@ class Shop {
         'id': 4
       },
       {
-        'name': 'Юбка',
-        'image': 'assets/images/ubka.png',
+        'name': 'Пальто',
+        'image': 'assets/images/coat.png',
         'price': '20',
         'id': 5
       },
       {
-        'name': 'Юбка',
-        'image': 'assets/images/ubka_2.png',
-        'price': '100',
-        'id': 6
-      },
-      {
-        'name': 'Колпак',
-        'image': 'assets/images/kolpak.png',
-        'price': '10',
-        'id': 7
-      },
-      {
-        'name': 'Шляпа',
-        'image': 'assets/images/hat.png',
-        'price': '90',
-        'id': 8
-      },
-      {
-        'name': 'Юбка',
-        'image': 'assets/images/ubka.png',
+        'name': 'Меч',
+        'image': 'assets/images/sword.png',
         'price': '20',
-        'id': 9
+        'id': 1
       },
       {
-        'name': 'Юбка',
-        'image': 'assets/images/ubka_2.png',
+        'name': 'Брюки',
+        'image': 'assets/images/pants.png',
         'price': '100',
-        'id': 10
+        'id': 2
       },
       {
-        'name': 'Колпак',
-        'image': 'assets/images/kolpak.png',
+        'name': 'Майка',
+        'image': 'assets/images/t-shirt.png',
         'price': '10',
-        'id': 11
+        'id': 3
       },
       {
         'name': 'Шляпа',
         'image': 'assets/images/hat.png',
         'price': '90',
-        'id': 12
+        'id': 4
       },
       {
-        'name': 'Юбка',
-        'image': 'assets/images/ubka.png',
+        'name': 'Пальто',
+        'image': 'assets/images/coat.png',
         'price': '20',
-        'id': 13
+        'id': 5
       },
       {
-        'name': 'Юбка',
-        'image': 'assets/images/ubka_2.png',
+        'name': 'Меч',
+        'image': 'assets/images/sword.png',
+        'price': '20',
+        'id': 1
+      },
+      {
+        'name': 'Брюки',
+        'image': 'assets/images/pants.png',
         'price': '100',
-        'id': 14
+        'id': 2
       },
       {
-        'name': 'Колпак',
-        'image': 'assets/images/kolpak.png',
+        'name': 'Майка',
+        'image': 'assets/images/t-shirt.png',
         'price': '10',
-        'id': 15
+        'id': 3
       },
       {
         'name': 'Шляпа',
         'image': 'assets/images/hat.png',
         'price': '90',
-        'id': 16
+        'id': 4
+      },
+      {
+        'name': 'Пальто',
+        'image': 'assets/images/coat.png',
+        'price': '20',
+        'id': 5
       },
     ],
     'my_items': []

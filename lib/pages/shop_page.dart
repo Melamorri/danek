@@ -44,9 +44,17 @@ class ShopPage extends StatelessWidget {
 
 Widget shopItemsListBuilder(snapshot, context) {
   return Column(children: [
-    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+    Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Stack(
+        children: [
+          Text("Магазин", style: stackTextStyle_1()),
+          Text("Магазин", style: stackTextStyle_2()),
+        ],
+      ),
+    ),
     SizedBox(
-      height: MediaQuery.of(context).size.height * 0.8,
+      height: MediaQuery.of(context).size.height * 0.75,
       child: GridView.builder(
           padding: const EdgeInsets.all(15),
           itemCount: snapshot.data["shop_items"].length,
@@ -59,23 +67,24 @@ Widget shopItemsListBuilder(snapshot, context) {
                 showAlertDialog(context, shopList, index);
               }),
               child: Card(
+                color: CustomColors.blueGrey,
                 child: Column(
                   children: [
                     const SizedBox(height: 5),
-                    Text(
-                      shopList[index]['name'],
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    // Text(
+                    //   shopList[index]['name'],
+                    //   style: const TextStyle(fontWeight: FontWeight.bold),
+                    // ),
                     Image.asset(
                       shopList[index]['image'],
-                      height: MediaQuery.of(context).size.height * 0.08,
+                      height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           shopList[index]['price'],
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: textStylePriceShop(),
                         ),
                         const SizedBox(width: 5),
                         Image.asset(
@@ -108,21 +117,22 @@ Widget shopItemsListBuilder(snapshot, context) {
 
 showAlertDialog(context, shopList, index) {
   Widget cancelButton = TextButton(
-    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
       LocaleKeys.cancel.tr(),
-      style: TextStyle(color: Colors.black),
+      style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
       Navigator.of(context).pop();
-      //Navigator.pushNamed(context, '/shoppage');
     },
   );
   Widget okButton = TextButton(
-    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
       LocaleKeys.buy.tr(),
-      style: TextStyle(color: Colors.black),
+      style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
       // функция переодевания героя
@@ -147,21 +157,21 @@ showAlertDialog(context, shopList, index) {
     ),
     titlePadding: const EdgeInsets.only(left: 100, top: 10),
     actionsAlignment: MainAxisAlignment.center,
-    title: Text(
-      shopList[index]['name'],
-    ),
+    // title: Text(
+    //   shopList[index]['name'],
+    // ),
     content: Wrap(children: [
       Row(
         children: [
-          const SizedBox(width: 20),
           Image.asset(
             shopList[index]['image'],
-            width: MediaQuery.of(context).size.width * 0.25,
+            width: MediaQuery.of(context).size.width * 0.4,
           ),
-          const SizedBox(
-            width: 20,
+          //const SizedBox(width: 5),
+          Text(
+            shopList[index]['price'],
+            style: textStyleAlertDialog(),
           ),
-          Text(shopList[index]['price']),
           const SizedBox(width: 10),
           Image.asset(
             'assets/images/coin.png',
@@ -181,8 +191,10 @@ showAlertDialog(context, shopList, index) {
     builder: (BuildContext context) {
       return Theme(
           data: ThemeData(
-              //dialogTheme: DialogTheme(backgroundColor: CustomColors.whiteColor),
-              ),
+            dialogTheme: const DialogTheme(
+              backgroundColor: CustomColors.blueGrey,
+            ),
+          ),
           child: alert);
     },
   );

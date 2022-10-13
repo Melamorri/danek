@@ -25,10 +25,11 @@ class MyPurchases extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          title: const Text('Мои покупки'),
-          centerTitle: true,
-        ),
+        // appBar:
+        //  AppBar(
+        //   title: const Text('Мои покупки'),
+        //   centerTitle: true,
+        // ),
         body: StreamBuilder(
           stream: bloc.getStream,
           initialData: bloc.shopList,
@@ -36,6 +37,15 @@ class MyPurchases extends StatelessWidget {
             return snapshot.data['my_items'].length > 0
                 ? Column(
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Stack(
+                          children: <Widget>[
+                            Text('Мои покупки', style: stackTextStyle_1()),
+                            Text('Мои покупки', style: stackTextStyle_2())
+                          ],
+                        ),
+                      ),
                       Expanded(child: checkoutListBuilder(snapshot, context)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -73,18 +83,29 @@ class MyPurchases extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Ничего нет",
-                          style: TextStyle(
-                              fontFamily: 'LeOslerRoughRegular',
-                              fontSize: 36,
-                              color: CustomColors.whiteColor,
-                              fontWeight: FontWeight.bold),
+                        Stack(
+                          children: [
+                            Text("Ничего нет", style: stackTextStyle_1()),
+                            Text("Ничего нет", style: stackTextStyle_2()),
+                          ],
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 50),
                         Image.asset(
                           'assets/images/smile.png',
                           width: 160,
+                        ),
+                        const SizedBox(height: 70),
+                        AnimatedButton(
+                          color: CustomColors.yellowColor,
+                          borderColor: CustomColors.yellowColor,
+                          shadowColor: CustomColors.orangeColor,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/gamepage');
+                          },
+                          child: Text(
+                            LocaleKeys.back.tr().toUpperCase(),
+                            style: textStyleButton(),
+                          ),
                         ),
                       ],
                     ),
@@ -109,34 +130,47 @@ Widget checkoutListBuilder(snapshot, context) {
           return InkWell(
             onTap: (() {}),
             child: Card(
+              color: CustomColors.blueGrey,
               child: Column(
                 children: [
                   const SizedBox(height: 5),
-                  Text(
-                    cartList[index]['name'],
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  // Text(
+                  //   cartList[index]['name'],
+                  //   style: const TextStyle(fontWeight: FontWeight.bold),
+                  // ),
                   Image.asset(
                     cartList[index]['image'],
-                    height: MediaQuery.of(context).size.height * 0.075,
+                    height: MediaQuery.of(context).size.height * 0.1,
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.2,
-                    height: MediaQuery.of(context).size.height * 0.035,
-                    child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blue),
-                        ),
-                        onPressed: () {
-                          // переход на героя в новой одежде
-                          Navigator.pushNamed(context, '/gamepage');
-                        },
-                        child: const Text(
-                          'Применить',
-                          style: TextStyle(fontSize: 10, color: Colors.black),
-                        )),
-                  )
+                  InkWell(
+                    onTap: () {
+                      // переход на героя в новой одежде + уменьшение монеток
+                      Navigator.pushNamed(context, '/gamepage');
+                    },
+                    child: Text(
+                      'Выбрать',
+                      style: buttonStyleMyPurchases(),
+                    ),
+                  ),
+                  // SizedBox(
+                  //   width: MediaQuery.of(context).size.width * 0.2,
+                  //   height: MediaQuery.of(context).size.height * 0.035,
+                  //   child:
+                  //   TextButton(
+                  //     style: ButtonStyle(
+                  //       backgroundColor: MaterialStateProperty.all(
+                  //           CustomColors.darkBlueGrey),
+                  //     ),
+                  //     onPressed: () {
+                  //       // переход на героя в новой одежде + уменьшение монеток
+                  //       Navigator.pushNamed(context, '/gamepage');
+                  //     },
+                  //     child: Text(
+                  //       'Выбрать',
+                  //       style: buttonStyleMyPurchases(),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),

@@ -11,7 +11,7 @@ class ActivityList {
     required this.name,
     required this.image,
     required this.gif,
-    this.wav = '',
+    this.wav = 'null.mp3',
   });
 }
 
@@ -45,5 +45,4 @@ List<ActivityList> ativityList = [
   ),
 ];
 // нужно тогда добавить сюда же  стоимость действия,  это переменная cash
-//прописано в helpers/activity_button   
-
+//прописано в helpers/activity_button
