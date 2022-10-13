@@ -71,6 +71,11 @@ flutter:
     # - assets/sfx/
     - assets/images/bars.png
     - assets/audio/
+    - assets/images/frog.gif
+    - assets/images/fold_toys.gif
+    - assets/images/eating.gif
+    - assets/images/excercise.gif
+    - assets/images/reeding_books.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -16,6 +16,30 @@ class ActivityDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
+    List<int> timelist = [600, 120, 300, 900, 600];
+    late int time;
+
+    int _chekId() {
+      if (ativityList.id == 1) {
+        return timelist.elementAt(0);
+      }
+      if (ativityList.id == 2) {
+        return timelist.elementAt(1);
+      }
+      if (ativityList.id == 3) {
+        return timelist.elementAt(2);
+      }
+      if (ativityList.id == 4) {
+        return timelist.elementAt(3);
+      }
+      if (ativityList.id == 5) {
+        return timelist.elementAt(4);
+      }
+      throw 'Нет нужного элемента';
+    }
+
+    time = _chekId();
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -66,10 +90,10 @@ class ActivityDetailsScreen extends StatelessWidget {
                 ),
                 Text(ativityList.name.toString(),
                     style: Theme.of(context).textTheme.headline6),
-                Image(
-                  image: NetworkImage(ativityList.gif.toString()),
-                  width: 500,
-                  height: 350,
+                Image.asset(
+                  ativityList.gif.toString(),
+                  height: 325.0,
+                  width: 325.0,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(30),
@@ -83,11 +107,11 @@ class ActivityDetailsScreen extends StatelessWidget {
                             }),
                         NeonCircularTimer(
                             onComplete: () {
-                              controller.restart();
+                              // controller.restart();
                             },
                             width: 80,
                             controller: controller,
-                            duration: 120,
+                            duration: time,
                             strokeWidth: 3,
                             textStyle: const TextStyle(fontSize: 20),
                             isTimerTextShown: true,
