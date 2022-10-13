@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 import 'package:danek/models/activity_button.dart';
-import 'package:danek/pages/hero_page_bars.dart';
-import 'package:danek/models/models.dart';
 
 class ActivityDetailsScreen extends StatelessWidget {
   final ActivityList ativityList;
