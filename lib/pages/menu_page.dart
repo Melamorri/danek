@@ -100,13 +100,13 @@ class _MenuPageState extends State<MenuPage> {
                       SizedBox(
                         height: 207,
                         child: Column(
-                          children: const [
-                            Image(
+                          children: [
+                            const Image(
                               image: AssetImage('assets/images/logotype.png'),
                             ),
                             SizedBox(height: 4),
                             Text(
-                              'Детский развлекательно-познавательный портал',
+                              LocaleKeys.portal.tr(),
                               style: TextStyle(
                                   color: CustomColors.whiteColor,
                                   fontFamily: 'LeOslerRoughRegular',
