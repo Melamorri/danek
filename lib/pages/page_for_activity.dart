@@ -1,3 +1,5 @@
+import 'package:danek/models/models.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
@@ -76,18 +78,36 @@ class ActivityDetailsScreen extends StatelessWidget {
                       height: 20,
                       width: MediaQuery.of(context).size.width * 0.4,
                     ),
-                    CircleAvatar(
-                      radius: 30.0,
-                      backgroundImage: AssetImage("assets/images/coin.png"),
-                      child: Text(
-                        '$value',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                    InkWell(
+                      enableFeedback: false,
+                      onTap: () {
+                        FlameAudio.play('zvukmonet.wav', volume: 5);
+                      },
+                      child: CircleAvatar(
+                        radius: 30.0,
+                        backgroundImage:
+                            const AssetImage("assets/images/coin.png"),
+                        child: Text(
+                          "$value",
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ],
                 ),
-                Text(ativityList.name.toString(),
-                    style: Theme.of(context).textTheme.headline6),
+                Stack(
+                  children: [
+                    Text(
+                      ativityList.name.toString(),
+                      style: activityText_1(),
+                      //style: Theme.of(context).textTheme.headline6,
+                    ),
+                    Text(
+                      ativityList.name.toString(),
+                      style: activityText_2(),
+                    ),
+                  ],
+                ),
                 Image.asset(
                   ativityList.gif.toString(),
                   height: 325.0,

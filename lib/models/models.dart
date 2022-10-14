@@ -49,3 +49,89 @@ TextStyle textStyleButton() {
     fontWeight: FontWeight.bold,
   );
 }
+
+TextStyle textStyleAlertDialog() {
+  return const TextStyle(
+    color: CustomColors.darkBlueColor,
+    fontFamily: 'RobotoCondensed',
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+TextStyle textStylePriceShop() {
+  return const TextStyle(
+    color: CustomColors.darkBlueColor,
+    fontFamily: 'RobotoCondensed',
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+TextStyle buttonStyleAlertDialog() {
+  return const TextStyle(
+    color: CustomColors.darkBlueColor,
+    fontFamily: 'RobotoCondensed',
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+TextStyle buttonStyleMyPurchases() {
+  return const TextStyle(
+    //decoration: TextDecoration.underline,
+    color: CustomColors.darkBlueColor,
+    fontFamily: 'RobotoCondensed',
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+TextStyle textStyleNothing() {
+  return const TextStyle(
+      fontFamily: 'LeOslerRoughRegular',
+      fontSize: 36,
+      color: CustomColors.whiteColor,
+      fontWeight: FontWeight.bold);
+}
+
+/////////////////////////
+TextStyle stackTextStyle_1() {
+  return TextStyle(
+    fontSize: 36,
+    fontFamily: 'LeOslerRoughRegular',
+    foreground: Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 5
+      ..color = CustomColors.whiteColor,
+  );
+}
+
+TextStyle stackTextStyle_2() {
+  return const TextStyle(
+    fontSize: 36,
+    color: CustomColors.darkBlueColor,
+    fontFamily: 'LeOslerRoughRegular',
+  );
+}
+
+///////////////////////////
+TextStyle activityText_1() {
+  return TextStyle(
+    fontFamily: 'RobotoCondensed',
+    fontSize: 26,
+    fontWeight: FontWeight.bold,
+    foreground: Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 3
+      ..color = CustomColors.whiteColor,
+  );
+}
+
+TextStyle activityText_2() {
+  return const TextStyle(
+      fontSize: 26,
+      color: CustomColors.darkBlueColor,
+      fontFamily: 'RobotoCondensed',
+      fontWeight: FontWeight.bold);
+}
