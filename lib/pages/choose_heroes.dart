@@ -20,7 +20,7 @@ class ChooseHeroes extends StatefulWidget {
   // ];
 
   @override
-  State<ChooseHeroes> createState() => _ChooseHeroesState();
+    _ChooseHeroesState createState() => _ChooseHeroesState();
 }
 
 class _ChooseHeroesState extends State<ChooseHeroes>
@@ -66,22 +66,34 @@ class _ChooseHeroesState extends State<ChooseHeroes>
               builder: (BuildContext context) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                  children: <Widget>[
-                    Text(LocaleKeys.swipe.tr(),
-                        style: TextStyle(
-                          color: CustomColors.lightBlueColor,
-                          fontFamily: 'HelloDinaScriptStyle',
-                          fontWeight: FontWeight.w700,
-                          fontSize: 40,
-                        )),
-                    Text(
-                      LocaleKeys.select_character.tr(),
-                      style: TextStyle(
-                        color: CustomColors.lightBlueColor,
-                        fontFamily: 'HelloDinaScriptStyle',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 40,
-                      ),
+                  children: [
+                    SizedBox(height: 20),
+                    Container(
+                      child: Stack(
+                        children: <Widget> [
+                          Text(
+                              'Swipe left/right to\nselect your character',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                                fontFamily: 'LeOslerRoughRegular',
+                                foreground: Paint()
+                                  ..style = PaintingStyle.stroke
+                                  ..strokeWidth = 5
+                                  ..color = CustomColors.whiteColor,
+                              ),
+                            ),
+                            Text(
+                              'Swipe left/right to\nselect your character',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: CustomColors.darkBlueColor,
+                                fontFamily: 'LeOslerRoughRegular',
+                              ),
+                            )
+                        ]
+                        ),
                     ),
                     const TabPageSelector(),
                     Expanded(

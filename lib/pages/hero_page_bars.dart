@@ -114,6 +114,7 @@ class HeroListState extends State<HeroList> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
+                    FlameAudio.play(activity.wav);
                     _selectedIndex = index;
                   });
                   Navigator.push(

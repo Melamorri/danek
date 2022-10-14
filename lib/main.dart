@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
@@ -46,11 +46,11 @@ class MyApp extends StatelessWidget {
           '/': (context) => MenuPage(),
           '/formpage': (context) => FormPage(),
           '/chooseheroes': (context) => ChooseHeroes(),
-          // '/gamepage': (context) => GamePage(),
+          //'/gamepage': (context) => GamePage(),
           '/shoppage': (context) => ShopPage(),
+          '/mypurchases': (context) => MyPurchases(),
           '/settingpage': (context) => SettingPage(),
           '/heropage': (context) => HeroList(),
-          '/mypurchases': (context) => MyPurchases(),
         });
   }
 }
