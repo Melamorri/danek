@@ -39,6 +39,7 @@ dependencies:
   flame_audio: ^1.3.2
   neon_circular_timer: ^0.0.7
   toggle_switch: ^2.0.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

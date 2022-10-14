@@ -1,3 +1,4 @@
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/pages/choose_heroes.dart';
 import 'package:danek/pages/form_page.dart';
 import 'package:danek/pages/game_page.dart';
@@ -15,6 +16,7 @@ import 'package:danek/pages/hero_page_bars.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await UserPreferences().init();
 
   runApp(
     EasyLocalization(
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
