@@ -64,7 +64,7 @@ class ActivityDetailsScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/gamepage');
+                        Navigator.pushNamed(context, '/heropage');
                       },
                       child: const CircleAvatar(
                         radius: 30.0,

@@ -1,3 +1,4 @@
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';
@@ -12,6 +13,17 @@ class HeroList extends StatefulWidget {
 
 class HeroListState extends State<HeroList> {
   int _selectedIndex = -1;
+  String heroImage = '';
+  int? amountCoins;
+
+  @override
+  void initState() {
+    super.initState();
+    heroImage = UserPreferences().getHero() ?? '';
+    amountCoins = UserPreferences().getCoins();
+    print(heroImage);
+    print(amountCoins);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +33,68 @@ class HeroListState extends State<HeroList> {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/bars.png'),
+            image: AssetImage('assets/images/menubackground.png'),
             fit: BoxFit.cover,
           ),
         ),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _addSpace(550),
+              _addSpace(30),
+              _addHorizontalListForAppBar(),
+              // _addSpace(10),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.75,
+                child: Image.asset(heroImage),
+              ),
+              // _addSpace(10),
               _addHorizontalList(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _addHorizontalListForAppBar() {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/');
+          },
+          child: const CircleAvatar(
+            radius: 30.0,
+            backgroundImage: AssetImage("assets/images/backbutton.png"),
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/mypurchases');
+          },
+          child: const CircleAvatar(
+            radius: 30.0,
+            backgroundImage: AssetImage("assets/images/shopbutton.png"),
+          ),
+        ),
+        InkWell(
+          enableFeedback: false,
+          onTap: () {
+            FlameAudio.play('zvukmonet.wav', volume: 5);
+          },
+          child: CircleAvatar(
+            radius: 30.0,
+            backgroundImage: const AssetImage("assets/images/coin.png"),
+            child: Text(
+              "5",
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -43,18 +104,17 @@ class HeroListState extends State<HeroList> {
       child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(1),
           itemCount: ativityList.length,
           itemBuilder: (BuildContext context, int index) {
             ActivityList activity = ativityList[index];
             return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 1),
               width: MediaQuery.of(context).size.width * 0.3,
               child: GestureDetector(
                 onTap: () {
                   setState(() {
                     _selectedIndex = index;
-                    FlameAudio.play(activity.wav);
                   });
                   Navigator.push(
                       context,

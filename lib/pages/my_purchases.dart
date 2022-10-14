@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/StringToObject.dart';
@@ -65,7 +63,7 @@ class _MyPurchasesState extends State<MyPurchases> {
           ],
         ),
         body: StreamBuilder(
-          // stream: bloc.getStream,
+          stream: bloc.getStream,
           initialData: myPurchase,
           // initialData: bloc.shopList,
           builder: (context, snapshot) {

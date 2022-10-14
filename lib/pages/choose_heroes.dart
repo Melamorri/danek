@@ -136,8 +136,9 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                         if (!controller.indexIsChanging) {
                           //controller.animateTo(ChooseHeroes.kImages.length - 1);
 
-                          Navigator.pushNamed(context, '/gamepage');
+                          // Navigator.pushNamed(context, '/gamepage');
 
+                          Navigator.pushNamed(context, '/heropage');
                           FlameAudio.play('hello.mp3', volume: 10);
                         }
                       },

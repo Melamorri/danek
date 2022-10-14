@@ -58,6 +58,7 @@ class _MenuPageState extends State<MenuPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    // техническая кнопка для обнуления
                     IconButton(
                         onPressed: () {
                           deleteInfo();
@@ -84,7 +85,7 @@ class _MenuPageState extends State<MenuPage> {
                         shadowColor: CustomColors.darkBlueColor,
                         onPressed: () {
                           if (newFormLaunch! && newHeroLaunch!) {
-                            Navigator.pushNamed(context, '/gamepage');
+                            Navigator.pushNamed(context, '/heropage');
                           } else if (newFormLaunch! && newHeroLaunch == false) {
                             Navigator.pushNamed(context, '/chooseheroes');
                           } else if (newFormLaunch! == false) {
