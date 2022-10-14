@@ -33,11 +33,11 @@ List<ActivityList> ativityList = [
       gif: 'https://i.gifer.com/aMs.gif',
       wav: 'toys.mp3'),
   ActivityList(
-    name: LocaleKeys.eat.tr(),
-    image: 'assets/images/eatbutton.png',
-    gif:
-        'https://i.pinimg.com/originals/26/6a/31/266a31e4d7dcf4eb9deba7dd32ca8a34.gif',
-  ),
+      name: LocaleKeys.eat.tr(),
+      image: 'assets/images/eatbutton.png',
+      gif:
+          'https://i.pinimg.com/originals/26/6a/31/266a31e4d7dcf4eb9deba7dd32ca8a34.gif',
+      wav: 'masha.mp3'),
   ActivityList(
     name: LocaleKeys.exercise.tr(),
     image: 'assets/images/gymbutton.png',

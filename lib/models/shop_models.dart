@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:danek/models/activity_button.dart';
+
 class Shop {
   final cartStreamController = StreamController.broadcast();
 
@@ -7,94 +9,24 @@ class Shop {
 
   final Map shopList = {
     'shop_items': [
-      {
-        'name': 'Меч',
-        'image': 'assets/images/sword.png',
-        'price': '20',
-        'id': 1
-      },
+      {'name': 'Меч', 'image': 'assets/images/sword.png', 'price': 20, 'id': 1},
       {
         'name': 'Брюки',
         'image': 'assets/images/pants.png',
-        'price': '100',
+        'price': 100,
         'id': 2
       },
       {
         'name': 'Майка',
         'image': 'assets/images/t-shirt.png',
-        'price': '10',
+        'price': 10,
         'id': 3
       },
-      {
-        'name': 'Шляпа',
-        'image': 'assets/images/hat.png',
-        'price': '90',
-        'id': 4
-      },
+      {'name': 'Шляпа', 'image': 'assets/images/hat.png', 'price': 90, 'id': 4},
       {
         'name': 'Пальто',
         'image': 'assets/images/coat.png',
-        'price': '20',
-        'id': 5
-      },
-      {
-        'name': 'Меч',
-        'image': 'assets/images/sword.png',
-        'price': '20',
-        'id': 1
-      },
-      {
-        'name': 'Брюки',
-        'image': 'assets/images/pants.png',
-        'price': '100',
-        'id': 2
-      },
-      {
-        'name': 'Майка',
-        'image': 'assets/images/t-shirt.png',
-        'price': '10',
-        'id': 3
-      },
-      {
-        'name': 'Шляпа',
-        'image': 'assets/images/hat.png',
-        'price': '90',
-        'id': 4
-      },
-      {
-        'name': 'Пальто',
-        'image': 'assets/images/coat.png',
-        'price': '20',
-        'id': 5
-      },
-      {
-        'name': 'Меч',
-        'image': 'assets/images/sword.png',
-        'price': '20',
-        'id': 1
-      },
-      {
-        'name': 'Брюки',
-        'image': 'assets/images/pants.png',
-        'price': '100',
-        'id': 2
-      },
-      {
-        'name': 'Майка',
-        'image': 'assets/images/t-shirt.png',
-        'price': '10',
-        'id': 3
-      },
-      {
-        'name': 'Шляпа',
-        'image': 'assets/images/hat.png',
-        'price': '90',
-        'id': 4
-      },
-      {
-        'name': 'Пальто',
-        'image': 'assets/images/coat.png',
-        'price': '20',
+        'price': 20,
         'id': 5
       },
     ],

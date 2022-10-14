@@ -25,11 +25,6 @@ class MyPurchases extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        // appBar:
-        //  AppBar(
-        //   title: const Text('Мои покупки'),
-        //   centerTitle: true,
-        // ),
         body: StreamBuilder(
           stream: bloc.getStream,
           initialData: bloc.shopList,
@@ -46,7 +41,13 @@ class MyPurchases extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Expanded(child: checkoutListBuilder(snapshot, context)),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        child: Expanded(
+                          child: checkoutListBuildertwo(snapshot, context),
+                        ),
+                      ),
+                      Image.asset('assets/images/girl1.png'),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -67,6 +68,7 @@ class MyPurchases extends StatelessWidget {
                             borderColor: CustomColors.darkBlueColor,
                             shadowColor: CustomColors.darkBlueColor,
                             onPressed: () {
+                              // герой в новой одежде переходит на свою страницу
                               Navigator.pushNamed(context, '/gamepage');
                             },
                             child: Text(
@@ -116,62 +118,86 @@ class MyPurchases extends StatelessWidget {
     ));
   }
 }
+// Построение списка покупок без героя
 
-Widget checkoutListBuilder(snapshot, context) {
+// Widget checkoutListBuilder(snapshot, context) {
+//   return SizedBox(
+//     height: MediaQuery.of(context).size.height * 0.75,
+//     child: GridView.builder(
+//         padding: const EdgeInsets.all(15),
+//         gridDelegate:
+//             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+//         itemCount: snapshot.data["my_items"].length,
+//         itemBuilder: (context, index) {
+//           final cartList = snapshot.data["my_items"];
+//           return InkWell(
+//             onTap: (() {}),
+//             child: Card(
+//               color: CustomColors.blueGrey,
+//               child: Column(
+//                 children: [
+//                   const SizedBox(height: 5),
+//                   // Text(
+//                   //   cartList[index]['name'],
+//                   //   style: const TextStyle(fontWeight: FontWeight.bold),
+//                   // ),
+//                   Image.asset(
+//                     cartList[index]['image'],
+//                     height: MediaQuery.of(context).size.height * 0.1,
+//                   ),
+//                   InkWell(
+//                     onTap: () {
+//                       Navigator.pushNamed(context, '/gamepage');
+//                     },
+//                     child: Text(
+//                       'Выбрать',
+//                       style: buttonStyleMyPurchases(),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           );
+//         }),
+//   );
+// }
+
+Widget checkoutListBuildertwo(snapshot, context) {
   return SizedBox(
-    height: MediaQuery.of(context).size.height * 0.75,
-    child: GridView.builder(
+    //height: MediaQuery.of(context).size.height * 0.25,
+    child: ListView.separated(
         padding: const EdgeInsets.all(15),
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        scrollDirection: Axis.horizontal,
         itemCount: snapshot.data["my_items"].length,
+        separatorBuilder: (context, index) => const SizedBox(width: 5),
         itemBuilder: (context, index) {
           final cartList = snapshot.data["my_items"];
-          return InkWell(
-            onTap: (() {}),
-            child: Card(
-              color: CustomColors.blueGrey,
-              child: Column(
-                children: [
-                  const SizedBox(height: 5),
-                  // Text(
-                  //   cartList[index]['name'],
-                  //   style: const TextStyle(fontWeight: FontWeight.bold),
-                  // ),
-                  Image.asset(
-                    cartList[index]['image'],
-                    height: MediaQuery.of(context).size.height * 0.1,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      // переход на героя в новой одежде + уменьшение монеток
-                      Navigator.pushNamed(context, '/gamepage');
-                    },
-                    child: Text(
+          return SizedBox(
+            width: MediaQuery.of(context).size.width * 0.25,
+            child: InkWell(
+              onTap: (() {
+                // примерка новой одежды
+                Navigator.pushNamed(context, '/gamepage');
+              }),
+              child: Card(
+                color: CustomColors.blueGrey,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 5),
+                    // Text(
+                    //   cartList[index]['name'],
+                    //   style: const TextStyle(fontWeight: FontWeight.bold),
+                    // ),
+                    Image.asset(
+                      cartList[index]['image'],
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
+                    Text(
                       'Выбрать',
                       style: buttonStyleMyPurchases(),
                     ),
-                  ),
-                  // SizedBox(
-                  //   width: MediaQuery.of(context).size.width * 0.2,
-                  //   height: MediaQuery.of(context).size.height * 0.035,
-                  //   child:
-                  //   TextButton(
-                  //     style: ButtonStyle(
-                  //       backgroundColor: MaterialStateProperty.all(
-                  //           CustomColors.darkBlueGrey),
-                  //     ),
-                  //     onPressed: () {
-                  //       // переход на героя в новой одежде + уменьшение монеток
-                  //       Navigator.pushNamed(context, '/gamepage');
-                  //     },
-                  //     child: Text(
-                  //       'Выбрать',
-                  //       style: buttonStyleMyPurchases(),
-                  //     ),
-                  //   ),
-                  // )
-                ],
+                  ],
+                ),
               ),
             ),
           );
