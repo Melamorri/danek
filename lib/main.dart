@@ -1,13 +1,12 @@
-import 'package:danek/generated/codegen_loader.g.dart';
 import 'package:danek/pages/choose_heroes.dart';
 import 'package:danek/pages/form_page.dart';
 import 'package:danek/pages/game_page.dart';
-import 'package:danek/pages/activity_page.dart';
 import 'package:danek/pages/menu_page.dart';
 import 'package:danek/pages/setting_page.dart';
 import 'package:danek/pages/shop_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:danek/pages/hero_page_bars.dart';
 // import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
@@ -25,7 +24,6 @@ void main() async {
         ],
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
-        assetLoader: CodegenLoader(),
         child: const MyApp()),
   );
 }
@@ -46,9 +44,9 @@ class MyApp extends StatelessWidget {
           '/formpage': (context) => FormPage(),
           '/chooseheroes': (context) => ChooseHeroes(),
           '/gamepage': (context) => GamePage(),
-          '/activitypage': (context) => ActivityPage(),
           '/shoppage': (context) => ShopPage(),
           '/settingpage': (context) => SettingPage(),
+          '/heropage': (context) => HeroList(),
         });
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:danek/models/activity_button.dart';
 
 class ActivityPage extends StatelessWidget {
   const ActivityPage({super.key});
@@ -19,6 +19,7 @@ class ActivityPage extends StatelessWidget {
         ),
         child: Column(
           children: [
+            Center(child: Text('$value')),
             Center(
               child: Image(image: AssetImage("assets/images/girl.jpg")),
             ),

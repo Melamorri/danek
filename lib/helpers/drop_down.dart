@@ -1,6 +1,8 @@
+import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 // Эта страница создает кнопку выбора языка и вызыввется в страниц
 
@@ -23,8 +25,8 @@ class _DropState extends State<Drop> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 55,
-        width: 175,
+        // height: MediaQuery.of(context).size.height * 0.08,
+        // width: MediaQuery.of(context).size.width * 0.5,
         decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
@@ -42,7 +44,7 @@ class _DropState extends State<Drop> {
             borderRadius: BorderRadius.circular(30),
             dropdownColor: CustomColors.orangeColor,
             hint: Text(
-              ' Language',
+              LocaleKeys.language.tr(),
               style: TextStyle(color: CustomColors.black54Color),
             ),
             iconEnabledColor: CustomColors.orangeColor,
@@ -50,7 +52,7 @@ class _DropState extends State<Drop> {
             isDense: true,
             style: TextStyle(
                 fontFamily: 'RobotoCondensed-Regular',
-                fontSize: 26,
+                fontSize: 20,
                 color: CustomColors.darkBlueColor,
                 fontWeight: FontWeight.bold),
             value: _selectedlanguage,

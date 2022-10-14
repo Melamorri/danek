@@ -67,8 +67,15 @@ flutter:
     - assets/images/menubackground.png
     - assets/images/eatbutton.png
     - assets/images/logotype.png
-    - assets/sounds/fonemusic.wav
-    - assets/sfx/
+    # - assets/sounds/fonemusic.wav
+    # - assets/sfx/
+    - assets/images/bars.png
+    - assets/audio/
+    - assets/images/frog.gif
+    - assets/images/fold_toys.gif
+    - assets/images/eating.gif
+    - assets/images/excercise.gif
+    - assets/images/reeding_books.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -82,9 +89,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: RobotoCondensed-Regular
+    - family: RobotoCondensed
       fonts:
         - asset: assets/fonts/RobotoCondensed-Regular.ttf
+        # - asset: assets/fonts/RobotoCondensed-Bold.ttf
+        # - asset: assets/fonts/RobotoCondensed-Light.ttf
 
     - family: HelloDinaScript
       fonts:
@@ -94,6 +103,14 @@ flutter:
       fonts:
         - asset: assets/fonts/HelloDinaScriptStyle.otf
 
+    - family: LeOslerRoughRegular
+      fonts:
+        - asset: assets/fonts/LeOsler_Rough-Regular.otf
+        # - asset: assets/fonts/LeOsler_Rough-Border-Regular.otf
+
+    - family: SairaExtraCondensed
+      fonts:
+        - asset: assets/fonts/SairaExtraCondensed-Medium.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

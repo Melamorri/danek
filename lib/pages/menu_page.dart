@@ -31,7 +31,7 @@ class MenuPage extends StatelessWidget {
                     IconButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/settingpage');
-                          FlameAudio.play('zvukmonet.wav');
+                          FlameAudio.play('fonemusic.wav', volume: 1);
                         },
                         icon: const Icon(Icons.settings))
                   ],
@@ -61,13 +61,14 @@ class MenuPage extends StatelessWidget {
                             Image(
                               image: AssetImage('assets/images/logotype.png'),
                             ),
+                            SizedBox(height: 4),
                             Text(
                               'Детский развлекательно-познавательный портал',
                               style: TextStyle(
                                   color: CustomColors.whiteColor,
-                                  fontFamily: 'HelloDinaScriptStyle',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16),
+                                  fontFamily: 'LeOslerRoughRegular',
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 12),
                             ),
                           ],
                         ),
