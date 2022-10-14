@@ -1,5 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -7,8 +8,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
+
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  bool? newFormLaunch;
+  bool? newHeroLaunch;
+  @override
+  void initState() {
+    super.initState();
+    loadNewLaunch();
+  }
+
+  loadNewLaunch() async {
+    setState(() {
+      bool formLaunch = UserPreferences().getFormLaunch() ?? false;
+      bool heroLaunch = UserPreferences().getHeroLaunch() ?? false;
+      newFormLaunch = formLaunch;
+      newHeroLaunch = heroLaunch;
+    });
+  }
+
+  deleteInfo() async {
+    await UserPreferences().deleteUserName();
+    await UserPreferences().deleteUserAge();
+    await UserPreferences().deleteFormLaunch();
+    await UserPreferences().deleteHeroLaunch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +60,12 @@ class MenuPage extends StatelessWidget {
                   children: [
                     IconButton(
                         onPressed: () {
+                          deleteInfo();
+                          loadNewLaunch();
+                        },
+                        icon: const Icon(Icons.cancel)),
+                    IconButton(
+                        onPressed: () {
                           Navigator.pushNamed(context, '/settingpage');
                           FlameAudio.play('fonemusic.wav', volume: 1);
                         },
@@ -47,7 +83,13 @@ class MenuPage extends StatelessWidget {
                         borderColor: CustomColors.darkBlueColor,
                         shadowColor: CustomColors.darkBlueColor,
                         onPressed: () {
-                          Navigator.pushNamed(context, '/formpage');
+                          if (newFormLaunch! && newHeroLaunch!) {
+                            Navigator.pushNamed(context, '/gamepage');
+                          } else if (newFormLaunch! && newHeroLaunch == false) {
+                            Navigator.pushNamed(context, '/chooseheroes');
+                          } else if (newFormLaunch! == false) {
+                            Navigator.pushNamed(context, '/formpage');
+                          }
                         },
                         child: Text(
                           LocaleKeys.play.tr().toUpperCase(),

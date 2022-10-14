@@ -1,13 +1,38 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:danek/models/shop_models.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ShopPage extends StatelessWidget {
+class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
+
+  @override
+  State<ShopPage> createState() => _ShopPageState();
+}
+
+class _ShopPageState extends State<ShopPage> {
+  List<String> myPurchases = [];
+  upgradeMyItems() {
+    setState(() {
+      myPurchases;
+      print('upg + $myPurchases');
+    });
+  }
+
+  Future addPurchase(myPurchase) async {
+    await UserPreferences().setMyPurchases(myPurchase);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    myPurchases = UserPreferences().getMyPurchases() ?? [];
+    print('init + $myPurchases');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +58,8 @@ class ShopPage extends StatelessWidget {
             initialData: bloc.shopList,
             stream: bloc.getStream,
             builder: (context, snapshot) {
-              return shopItemsListBuilder(snapshot, context);
+              return shopItemsListBuilder(
+                  snapshot, context, myPurchases, upgradeMyItems, addPurchase);
             },
           ),
         ),
@@ -42,7 +68,8 @@ class ShopPage extends StatelessWidget {
   }
 }
 
-Widget shopItemsListBuilder(snapshot, context) {
+Widget shopItemsListBuilder(
+    snapshot, context, myPurchases, upgradeMyItems, addPurchase) {
   return Column(children: [
     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
     SizedBox(
@@ -56,7 +83,8 @@ Widget shopItemsListBuilder(snapshot, context) {
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               onTap: (() {
-                showAlertDialog(context, shopList, index);
+                showAlertDialog(context, shopList, index, myPurchases,
+                    upgradeMyItems, addPurchase);
               }),
               child: Card(
                 child: Column(
@@ -106,7 +134,8 @@ Widget shopItemsListBuilder(snapshot, context) {
   ]);
 }
 
-showAlertDialog(context, shopList, index) {
+showAlertDialog(
+    context, shopList, index, myPurchases, upgradeMyItems, addPurchase) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
     child: Text(
@@ -126,7 +155,13 @@ showAlertDialog(context, shopList, index) {
     ),
     onPressed: () {
       // функция переодевания героя
-      bloc.addToCart(shopList[index]);
+      // bloc.addToCart(shopList[index]);
+      myPurchases.add(shopList[index].toString());
+      upgradeMyItems();
+      print("onpre + $myPurchases");
+      addPurchase(myPurchases);
+      // var re = bloc.shopList['my_items'];
+      // print(re);
       // Navigator.pushReplacementNamed(
       //   context,
       //   '/mypurchases',

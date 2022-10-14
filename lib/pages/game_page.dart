@@ -1,3 +1,4 @@
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/pages/choose_heroes.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,15 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  String heroImage = '';
+
+  @override
+  void initState() {
+    super.initState();
+    heroImage = UserPreferences().getHero() ?? '';
+    print(heroImage);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +84,7 @@ class _GamePageState extends State<GamePage> {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.60,
-                child: Image.asset("assets/images/girl1.png"),
+                child: Image.asset(heroImage),
               ),
 //героя выбираем из списка и картинка меняется
               //далее  привязать к индексу в shared preferences

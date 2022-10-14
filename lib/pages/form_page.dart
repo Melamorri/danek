@@ -1,5 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,23 @@ class FormPage extends StatefulWidget {
 
 class FormPageState extends State<FormPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? userName;
+  int? userAge;
+  bool? formLaunch;
+
+  Future addUser(userName, userAge, launch) async {
+    await UserPreferences().setUserName(userName);
+    await UserPreferences().setUserAge(userAge);
+    await UserPreferences().setFormLaunch(launch);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    userName = UserPreferences().getUserName() ?? '';
+    userAge = UserPreferences().getUserAge();
+    formLaunch = UserPreferences().getFormLaunch() ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +55,9 @@ class FormPageState extends State<FormPage> {
                   padding: const EdgeInsets.all(80),
                   child: Column(children: [
                     TextFormField(
+                      onChanged: (userName) => setState(() {
+                        this.userName = userName;
+                      }),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return LocaleKeys.enter_name.tr();
@@ -50,6 +71,9 @@ class FormPageState extends State<FormPage> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      onChanged: (userAge) => setState(() {
+                        this.userAge = int.parse(userAge);
+                      }),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return LocaleKeys.enter_age.tr();
@@ -68,7 +92,11 @@ class FormPageState extends State<FormPage> {
                       shadowColor: CustomColors.darkBlueColor,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            formLaunch = true;
+                          });
                           Navigator.pushNamed(context, '/chooseheroes');
+                          addUser(userName, userAge, formLaunch);
                         }
                       },
                       child: Text(

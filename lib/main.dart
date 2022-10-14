@@ -1,7 +1,9 @@
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/pages/choose_heroes.dart';
 import 'package:danek/pages/form_page.dart';
 import 'package:danek/pages/game_page.dart';
 import 'package:danek/pages/menu_page.dart';
+import 'package:danek/pages/my_purchases.dart';
 import 'package:danek/pages/setting_page.dart';
 import 'package:danek/pages/shop_page.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,7 @@ import 'package:easy_localization/easy_localization.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await UserPreferences().init();
 
   runApp(
     EasyLocalization(
@@ -45,6 +48,7 @@ class MyApp extends StatelessWidget {
           '/gamepage': (context) => GamePage(),
           '/shoppage': (context) => ShopPage(),
           '/settingpage': (context) => SettingPage(),
+          '/mypurchases': (context) => MyPurchases(),
         });
   }
 }

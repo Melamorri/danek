@@ -1,5 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/main.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/heroes_model.dart';
@@ -22,7 +23,28 @@ class ChooseHeroes extends StatefulWidget {
   State<ChooseHeroes> createState() => _ChooseHeroesState();
 }
 
-class _ChooseHeroesState extends State<ChooseHeroes> {
+class _ChooseHeroesState extends State<ChooseHeroes>
+    with TickerProviderStateMixin {
+  List<String> heroesImagesList = [
+    'assets/images/girl1.png',
+    'assets/images/boy1.png',
+    'assets/images/bird.png',
+    'assets/images/leo.png'
+  ];
+  String? hero;
+  bool? heroLaunch;
+  Future addHero(imagepath, launch) async {
+    await UserPreferences().setHero(imagepath);
+    await UserPreferences().setHeroLaunch(launch);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    hero = UserPreferences().getHero() ?? '';
+    heroLaunch = UserPreferences().getHeroLaunch() ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -107,9 +129,15 @@ class _ChooseHeroesState extends State<ChooseHeroes> {
                       onPressed: () {
                         final TabController controller =
                             DefaultTabController.of(context)!;
+                        setState(() {
+                          heroLaunch = true;
+                        });
+                        addHero(heroesImagesList[controller.index], heroLaunch);
                         if (!controller.indexIsChanging) {
                           //controller.animateTo(ChooseHeroes.kImages.length - 1);
+
                           Navigator.pushNamed(context, '/gamepage');
+
                           FlameAudio.play('hello.mp3', volume: 10);
                         }
                       },

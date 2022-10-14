@@ -1,13 +1,37 @@
+import 'dart:convert';
+
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
+import 'package:danek/helpers/StringToObject.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:danek/models/shop_models.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class MyPurchases extends StatelessWidget {
+class MyPurchases extends StatefulWidget {
   const MyPurchases({super.key});
+
+  @override
+  State<MyPurchases> createState() => _MyPurchasesState();
+}
+
+class _MyPurchasesState extends State<MyPurchases> {
+  List myPurchase = [];
+  Future addPurchase(myPurchase) async {
+    await UserPreferences().setMyPurchases(myPurchase);
+  }
+
+  deleteInfo() async {
+    await UserPreferences().deleteMyPurcahses();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    myPurchase = UserPreferences().getMyPurchases() ?? [];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +52,29 @@ class MyPurchases extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Мои покупки'),
           centerTitle: true,
+          //техническая кнопка для очистки корзины
+          actions: [
+            IconButton(
+                onPressed: () {
+                  deleteInfo();
+                  setState(() {
+                    myPurchase = [];
+                  });
+                },
+                icon: const Icon(Icons.cancel)),
+          ],
         ),
         body: StreamBuilder(
-          stream: bloc.getStream,
-          initialData: bloc.shopList,
+          // stream: bloc.getStream,
+          initialData: myPurchase,
+          // initialData: bloc.shopList,
           builder: (context, snapshot) {
-            return snapshot.data['my_items'].length > 0
+            return myPurchase.isNotEmpty
                 ? Column(
                     children: [
-                      Expanded(child: checkoutListBuilder(snapshot, context)),
+                      Expanded(
+                          child: checkoutListBuilder(
+                              snapshot, context, myPurchase)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -96,16 +134,18 @@ class MyPurchases extends StatelessWidget {
   }
 }
 
-Widget checkoutListBuilder(snapshot, context) {
+Widget checkoutListBuilder(snapshot, context, myPurchase) {
   return SizedBox(
     height: MediaQuery.of(context).size.height * 0.75,
     child: GridView.builder(
         padding: const EdgeInsets.all(15),
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemCount: snapshot.data["my_items"].length,
+        itemCount: myPurchase.length,
         itemBuilder: (context, index) {
-          final cartList = snapshot.data["my_items"];
+          // final cartList = myPurchase as List;
+          String myPurchaseString = myPurchase.elementAt(index);
+          var myPurchaseMap = StringToObject(myPurchaseString);
           return InkWell(
             onTap: (() {}),
             child: Card(
@@ -113,11 +153,11 @@ Widget checkoutListBuilder(snapshot, context) {
                 children: [
                   const SizedBox(height: 5),
                   Text(
-                    cartList[index]['name'],
+                    myPurchaseMap['name'],
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Image.asset(
-                    cartList[index]['image'],
+                    myPurchaseMap['image'],
                     height: MediaQuery.of(context).size.height * 0.075,
                   ),
                   SizedBox(
