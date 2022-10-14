@@ -13,6 +13,8 @@ class CustomColors {
   static const Color blackColor = Colors.black;
   static const Color black54Color = Colors.black54;
   static const Color yellowColor = Colors.yellow;
-  static const Color lightBlueColor = Color.fromARGB(255, 98, 231, 231);
+  static const Color lightBlueColor = Color(0xFF62E7E7);
   static const Color blueStandartColor = Colors.blue;
+  static const Color blueGrey = Color(0xFFBBE0F2);
+  static const Color darkBlueGrey = Color(0xFF71ACDD);
 }
