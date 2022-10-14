@@ -25,11 +25,12 @@ void main() async {
           Locale('en'),
           Locale('kk'),
           Locale('ky'),
-          Locale('tg')
+          Locale('tg'),
+          Locale('uz')
         ],
         useFallbackTranslations: true,
         path: 'assets/translations',
-        fallbackLocale: const Locale('en'),
+        fallbackLocale: const Locale('ru'),
         assetLoader: CodegenLoader(),
         child: const MyApp()),
   );

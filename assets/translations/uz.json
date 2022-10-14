@@ -1,5 +1,23 @@
-{"shop": "Shop",
-"play": "Play",
-"settings": "Settings",
-"exit" : "Exit"
+{
+    "shop":"Do'kon",
+    "play":"O'ynash",
+    "settings":"Sozlamalar",
+    "exit":"Chiqish",
+    "menu":"Menyu",
+    "language":"Til",
+    "swipe":"Qahramonni tanlang",
+    "name":"Nomi",
+    "age":"Yoshi",
+    "enter_age":"Sizning yoshingizni kiriting",
+    "enter_name":"Ismingizni kiriting",
+    "back":"Orqaga",
+    "cancel":"Bekor qilish",
+    "buy":"Sotib olmoq",
+    "portal":"Bolalar ko'ngilochar va ta'lim portali",
+    "next":"Keyingi",
+    "read_book":"Keling, kitob o'qiymiz",
+    "teeth":"Keling, tishlaringizni yuvaylik",
+    "toys":"Keling, xonangizni tozalaylik",
+    "eat":"Yoqimli ishtaha",
+    "exercise":"Keling, bir nechta mashqlarni bajaramiz"    
 }
