@@ -9,9 +9,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 class ShopPage extends StatelessWidget {
-  const ShopPage({
-    super.key,
-  });
+  const ShopPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +27,14 @@ class ShopPage extends StatelessWidget {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: StreamBuilder(
-            initialData: bloc.shopList,
-            stream: bloc.getStream,
-            builder: (context, snapshot) {
-              return shopItemsListBuilder(snapshot, context);
-            },
+          body: SingleChildScrollView(
+            child: StreamBuilder(
+              initialData: bloc.shopList,
+              stream: bloc.getStream,
+              builder: (context, snapshot) {
+                return shopItemsListBuilder(snapshot, context);
+              },
+            ),
           ),
         ),
       ),
@@ -194,7 +194,8 @@ showAlertDialog(context, shopList, index) {
         children: [
           Image.asset(
             shopList[index]['image'],
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 90,
+            //width: MediaQuery.of(context).size.width * 0.4,
           ),
           Text(
             shopList[index]['price'].toString(),

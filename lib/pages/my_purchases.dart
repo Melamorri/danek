@@ -25,95 +25,97 @@ class MyPurchases extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: StreamBuilder(
-          stream: bloc.getStream,
-          initialData: bloc.shopList,
-          builder: (context, snapshot) {
-            return snapshot.data['my_items'].length > 0
-                ? Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Text('Мои покупки', style: stackTextStyle_1()),
-                            Text('Мои покупки', style: stackTextStyle_2())
+        body: SingleChildScrollView(
+          child: StreamBuilder(
+            stream: bloc.getStream,
+            initialData: bloc.shopList,
+            builder: (context, snapshot) {
+              return snapshot.data['my_items'].length > 0
+                  ? Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Stack(
+                            children: <Widget>[
+                              Text('Мои покупки', style: stackTextStyle_1()),
+                              Text('Мои покупки', style: stackTextStyle_2())
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.22,
+                          child: checkoutListBuildertwo(snapshot, context),
+                        ),
+                        Image.asset(
+                          'assets/images/girl1.png',
+                          height: MediaQuery.of(context).size.height * 0.55,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AnimatedButton(
+                              color: CustomColors.yellowColor,
+                              borderColor: CustomColors.yellowColor,
+                              shadowColor: CustomColors.orangeColor,
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/shoppage');
+                              },
+                              child: Text(
+                                'SHOP',
+                                style: textStyleButton(),
+                              ),
+                            ),
+                            AnimatedButton(
+                              color: CustomColors.pinkColor,
+                              borderColor: CustomColors.darkBlueColor,
+                              shadowColor: CustomColors.darkBlueColor,
+                              onPressed: () {
+                                // герой в новой одежде переходит на свою страницу
+                                Navigator.pushNamed(context, '/heropage');
+                              },
+                              child: Text(
+                                LocaleKeys.play.tr().toUpperCase(),
+                                style: textStyleButton(),
+                              ),
+                            ),
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        child: checkoutListBuildertwo(snapshot, context),
-                      ),
-                      Image.asset(
-                        'assets/images/girl1.png',
-                        height: MediaQuery.of(context).size.height * 0.55,
-                      ),
-                      Row(
+                        const SizedBox(height: 40)
+                      ],
+                    )
+                  : Center(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Stack(
+                            children: [
+                              Text("Ничего нет", style: stackTextStyle_1()),
+                              Text("Ничего нет", style: stackTextStyle_2()),
+                            ],
+                          ),
+                          const SizedBox(height: 50),
+                          Image.asset(
+                            'assets/images/smile.png',
+                            width: 160,
+                          ),
+                          const SizedBox(height: 70),
                           AnimatedButton(
                             color: CustomColors.yellowColor,
                             borderColor: CustomColors.yellowColor,
                             shadowColor: CustomColors.orangeColor,
                             onPressed: () {
-                              Navigator.pushNamed(context, '/shoppage');
-                            },
-                            child: Text(
-                              'SHOP',
-                              style: textStyleButton(),
-                            ),
-                          ),
-                          AnimatedButton(
-                            color: CustomColors.pinkColor,
-                            borderColor: CustomColors.darkBlueColor,
-                            shadowColor: CustomColors.darkBlueColor,
-                            onPressed: () {
-                              // герой в новой одежде переходит на свою страницу
                               Navigator.pushNamed(context, '/heropage');
                             },
                             child: Text(
-                              LocaleKeys.play.tr().toUpperCase(),
+                              LocaleKeys.back.tr().toUpperCase(),
                               style: textStyleButton(),
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 40)
-                    ],
-                  )
-                : Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Stack(
-                          children: [
-                            Text("Ничего нет", style: stackTextStyle_1()),
-                            Text("Ничего нет", style: stackTextStyle_2()),
-                          ],
-                        ),
-                        const SizedBox(height: 50),
-                        Image.asset(
-                          'assets/images/smile.png',
-                          width: 160,
-                        ),
-                        const SizedBox(height: 70),
-                        AnimatedButton(
-                          color: CustomColors.yellowColor,
-                          borderColor: CustomColors.yellowColor,
-                          shadowColor: CustomColors.orangeColor,
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/heropage');
-                          },
-                          child: Text(
-                            LocaleKeys.back.tr().toUpperCase(),
-                            style: textStyleButton(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-          },
+                    );
+            },
+          ),
         ),
       ),
     ));
