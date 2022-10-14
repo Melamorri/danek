@@ -1,6 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
-import 'package:danek/main.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/heroes_model.dart';
 import 'package:danek/models/models.dart';
@@ -121,7 +120,7 @@ class _ChooseHeroesState extends State<ChooseHeroes> {
                             DefaultTabController.of(context)!;
                         if (!controller.indexIsChanging) {
                           //controller.animateTo(ChooseHeroes.kImages.length - 1);
-                          Navigator.pushNamed(context, '/gamepage');
+                          Navigator.pushNamed(context, '/heropage');
                           FlameAudio.play('hello.mp3', volume: 10);
                         }
                       },
