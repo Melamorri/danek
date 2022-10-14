@@ -1,5 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 
 class ActivityList {
   String name;
@@ -62,3 +63,15 @@ List<ActivityList> ativityList = [
 
 // нужно тогда добавить сюда же  стоимость действия,  это переменная cash
 //прописано в helpers/activity_button
+int value = 0;
+void upCoin(int cash) {
+  value = value + cash;
+}
+
+spendCoin(int price) {
+  if (price <= value) {
+    value = value - price;
+  } else {
+    return Container(child: Text('мало монеток!'));
+  }
+}

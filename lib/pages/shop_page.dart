@@ -1,6 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
-import 'package:danek/models/activity_button.dart';
+import 'package:danek/models/activity_list.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:danek/models/shop_models.dart';
@@ -164,7 +164,7 @@ showAlertDialog(context, shopList, index) {
     ),
     onPressed: () {
       // добавить функцию  уменьшения монеток
-
+      spendCoin(shopList.price);
       bloc.addToCart(shopList[index]);
       // Navigator.pushReplacementNamed(
       //   context,

@@ -1,4 +1,3 @@
-import 'package:danek/models/activity_button.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';
@@ -105,6 +104,7 @@ class HeroListState extends State<HeroList> {
                   setState(() {
                     FlameAudio.play(activity.wav);
                     _selectedIndex = index;
+                    upCoin(activity.cash);
                   });
                   Navigator.push(
                       context,
@@ -143,3 +143,8 @@ Widget _addSpace(double space) {
     height: space,
   );
 }
+
+// int value = 0;
+// void upCoin(int cash) {
+//   value = value + cash;
+// }
