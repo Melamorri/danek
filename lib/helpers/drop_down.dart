@@ -13,12 +13,12 @@ class Drop extends StatefulWidget {
 
 class _DropState extends State<Drop> {
   List<String> _language = [
-    ' Русский',
-    ' English',
-    ' Кыргыз',
-    ' қазақ',
-    ' ozbek',
-    ' тоҷикӣ'
+    '🇷🇺 Русский',
+    '🇬🇧 English',
+    '🇰🇬 Кыргыз',
+    '🇰🇿 қазақ',
+    '🇺🇿 ozbek',
+    '🇹🇯 тоҷикӣ'
   ];
   String? _selectedlanguage;
   @override
@@ -56,7 +56,8 @@ class _DropState extends State<Drop> {
                 color: CustomColors.darkBlueColor,
                 fontWeight: FontWeight.bold),
             value: _selectedlanguage,
-            onChanged: (newValue) {
+            onChanged: (newValue) async {
+              await context.setLocale(Locale('ru'));
               setState(() {
                 _selectedlanguage = newValue;
               });

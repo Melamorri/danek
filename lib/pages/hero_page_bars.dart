@@ -66,10 +66,6 @@ class HeroListState extends State<HeroList> {
                   contentPadding: const EdgeInsets.all(1),
                   leading: Container(
                     width: 70,
-                    child: CircleAvatar(
-                      radius: 70.0,
-                      backgroundImage: AssetImage(activity.image),
-                    ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -78,6 +74,10 @@ class HeroListState extends State<HeroList> {
                             : Colors.black12,
                         width: 3.0,
                       ),
+                    ),
+                    child: CircleAvatar(
+                      radius: 70.0,
+                      backgroundImage: AssetImage(activity.image),
                     ),
                   ),
                 ),

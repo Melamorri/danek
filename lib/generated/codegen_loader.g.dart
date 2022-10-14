@@ -21,8 +21,7 @@ class CodegenLoader extends AssetLoader{
   "exit": "Exit",
   "menu": "Menu",
   "language": "Language",
-  "swipe": "Swipe left/right to",
-  "select_character": "select your character",
+  "swipe": "Swipe left/right to\nselect your character",
   "name": "Name",
   "age": "Age",
   "enter_age": "Enter your age",
@@ -57,8 +56,7 @@ static const Map<String,dynamic> ru = {
   "exit": "Выход",
   "menu": "Меню",
   "language": "Язык",
-  "swipe": "Проведите пальцем влево/вправо для",
-  "select_character": "выбора персонажа",
+  "swipe": "Смахни вправо/влево,\nчтобы выбрать персонажа",
   "name": "Имя",
   "age": "Возраст",
   "enter_age": "Введите ваш возраст",
@@ -66,7 +64,13 @@ static const Map<String,dynamic> ru = {
   "back": "Назад",
   "cancel": "Отмена",
   "buy": "Купить",
-  "portal": "Детский развлекательно-познавательный портал"
+  "portal": "Детский развлекательно-познавательный портал",
+  "next": "Далее",
+  "read_book": "Давай почитаем книгу",
+  "teeth": "Чистим зубки",
+  "toys": "Давай уберем игрушки",
+  "eat": "Приятного аппетита!",
+  "exercise": "Делаем зарядку"
 };
 static const Map<String,dynamic> tg = {
   "shop": "Shop",

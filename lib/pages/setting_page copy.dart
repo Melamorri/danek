@@ -1,4 +1,3 @@
-import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/drop_down.dart';
 import 'package:danek/main.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +6,16 @@ import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
 
+  @override
+  _SettingPageState createState() => _SettingPageState();
+}
+
+String? dropdownValue;
+
+class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,12 +28,45 @@ class SettingPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           body: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: SizedBox(
-              height: 550,
-              child: Column(
+            child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Drop(),
+                  Container(
+                      padding: const EdgeInsets.only(
+                          top: 7, bottom: 7, left: 12, right: 12),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50.0),
+                          color: CustomColors.lightBlueColor,
+                          border: Border.all(
+                              color: CustomColors.darkBlueColor, width: 2)),
+                      child: DropdownButton<String>(
+                        value: dropdownValue,
+                        dropdownColor: CustomColors.lightBlueColor,
+                        borderRadius: BorderRadius.circular(20),
+                        hint: const Text('🌐 выбери язык'),
+                        items: <String>[
+                          '🇰🇿 қазақ',
+                          '🇬🇧 English',
+                          '🇷🇺 Русский',
+                          '🇺🇿 ozbek',
+                          '🇰🇬 Кыргыз',
+                          '🇹🇯 тоҷикӣ'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: const TextStyle(fontSize: 23),
+                            ),
+                          );
+                        }).toList(),
+                        icon: const Icon(Icons.arrow_drop_down),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue = newValue!;
+                          });
+                        },
+                      )),
                   ToggleSwitch(
                       minWidth: 82.0,
                       minHeight: 53.0,
@@ -57,14 +96,12 @@ class SettingPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, '/');
                       },
-                      child: Text(LocaleKeys.menu.tr(),
-                          style: const TextStyle(
+                      child: const Text('МЕНЮ',
+                          style: TextStyle(
                               fontFamily: 'RobotoCondensed',
                               fontSize: 26,
                               fontWeight: FontWeight.bold))),
-                ],
-              ),
-            ),
+                ]),
           ),
         ),
       ),

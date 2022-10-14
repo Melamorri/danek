@@ -52,15 +52,15 @@ class _ChooseHeroesState extends State<ChooseHeroes> {
                           fontWeight: FontWeight.w700,
                           fontSize: 40,
                         )),
-                    Text(
-                      LocaleKeys.select_character.tr(),
-                      style: TextStyle(
-                        color: CustomColors.lightBlueColor,
-                        fontFamily: 'HelloDinaScriptStyle',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 40,
-                      ),
-                    ),
+                    // Text(
+                    //   LocaleKeys.select_character.tr(),
+                    //   style: TextStyle(
+                    //     color: CustomColors.lightBlueColor,
+                    //     fontFamily: 'HelloDinaScriptStyle',
+                    //     fontWeight: FontWeight.w700,
+                    //     fontSize: 40,
+                    //   ),
+                    // ),
                     const TabPageSelector(),
                     Expanded(
                       child: TabBarView(
