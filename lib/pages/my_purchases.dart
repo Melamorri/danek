@@ -61,8 +61,10 @@ class _MyPurchasesState extends State<MyPurchases> {
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Stack(
                             children: <Widget>[
-                              Text('Мои покупки', style: stackTextStyle_1()),
-                              Text('Мои покупки', style: stackTextStyle_2())
+                              Text(LocaleKeys.my_purchases.tr(),
+                                  style: stackTextStyle_1()),
+                              Text(LocaleKeys.my_purchases.tr(),
+                                  style: stackTextStyle_2())
                             ],
                           ),
                         ),
@@ -234,7 +236,7 @@ Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
                     // ),
                     Image.asset(myPurchaseMap['image'], height: 70),
                     Text(
-                      'Выбрать',
+                      LocaleKeys.select.tr(),
                       style: buttonStyleMyPurchases(),
                     ),
                   ],

@@ -21,7 +21,7 @@ class CodegenLoader extends AssetLoader{
   "exit": "Exit",
   "menu": "Menu",
   "language": "Language",
-  "swipe": "Swipe left/right to\nselect your character",
+  "select_character": "Select your character",
   "name": "Name",
   "age": "Age",
   "enter_age": "Enter your age",
@@ -35,7 +35,12 @@ class CodegenLoader extends AssetLoader{
   "teeth": "Let's brush your teeth",
   "toys": "Let's clean up your room",
   "eat": "Bon appetit",
-  "exercise": "Let's do some exercise"
+  "exercise": "Let's do some exercise",
+  "select": "Select",
+  "my_purchases": "My purchases",
+  "empty": "Empty",
+  "lets_play": "Let's play!",
+  "nomoney": "Not enough coins"
 };
 static const Map<String,dynamic> kk = {
   "shop": "Дүкен",
@@ -44,7 +49,7 @@ static const Map<String,dynamic> kk = {
   "exit": "Шығу",
   "menu": "Мәзір",
   "language": "Тіл",
-  "swipe": "Таңбаңызды таңдау үшін солға/nоңға сырғытыңыз",
+  "select_character": "Батырды таңдаңыз",
   "name": "Аты",
   "age": "Жасы",
   "enter_age": "Жасыңызды енгізіңіз",
@@ -58,7 +63,12 @@ static const Map<String,dynamic> kk = {
   "teeth": "Тістерді тазалап көрейік",
   "toys": "Бөлмеңді жинап алайық",
   "eat": "Аз болсын!",
-  "exercise": "Біраз жаттығулар жасайық"
+  "exercise": "Біраз жаттығулар жасайық",
+  "select": "Таңдау",
+  "my_purchases": "Менің сатып алуларым",
+  "empty": "Бос",
+  "lets_play": "Кел ойнайық!",
+  "nomoney": "Тиындар жеткіліксіз"
 };
 static const Map<String,dynamic> ky = {
   "shop": "Дүкөн",
@@ -67,7 +77,7 @@ static const Map<String,dynamic> ky = {
   "exit": "Чыгуу",
   "menu": "Меню",
   "language": "Тил",
-  "swipe": "Баатырды танда",
+  "select_character": "Баатырды танда",
   "name": "Аты",
   "age": "Жашы",
   "enter_age": "Жашыңызды киргизиңиз",
@@ -81,7 +91,12 @@ static const Map<String,dynamic> ky = {
   "teeth": "Тишибизди жууйлу",
   "toys": "Келиңиз, бөлмөңүздү тазалап алалы",
   "eat": "Тамагыңыз таттуу болсун",
-  "exercise": "Бир аз көнүгүү жасайлы"
+  "exercise": "Бир аз көнүгүү жасайлы",
+  "select": "Тандоо",
+  "my_purchases": "Менин сатып алууларым",
+  "empty": "Бош",
+  "lets_play": "Кел ойнойлу!",
+  "nomoney": "Монеталар жетишсиз"
 };
 static const Map<String,dynamic> ru = {
   "shop": "Магазин",
@@ -90,7 +105,7 @@ static const Map<String,dynamic> ru = {
   "exit": "Выход",
   "menu": "Меню",
   "language": "Язык",
-  "swipe": "Смахни вправо/влево,\nчтобы выбрать персонажа",
+  "select_character": "Выбери героя",
   "name": "Имя",
   "age": "Возраст",
   "enter_age": "Введите ваш возраст",
@@ -104,30 +119,12 @@ static const Map<String,dynamic> ru = {
   "teeth": "Чистим зубки",
   "toys": "Давай уберем игрушки",
   "eat": "Приятного аппетита!",
-  "exercise": "Делаем зарядку"
-};
-static const Map<String,dynamic> tg = {
-  "shop": "Мағоза",
-  "play": "Бозӣ кардан",
-  "settings": "Танзимотҳо",
-  "exit": "Баромадгоҳ",
-  "menu": "Меню",
-  "language": "Забон",
-  "swipe": "Интихоби қаҳрамон",
-  "name": "Ном",
-  "age": "Синну сол",
-  "enter_age": "Синну соли худро ворид кунед",
-  "enter_name": "Номи худро ворид кунед",
-  "back": "Бозгашт",
-  "cancel": "Бекор кардан",
-  "buy": "Харид",
-  "portal": "Портали фароғатӣ ва таълимӣ барои кӯдакон",
-  "next": "Баъдӣ",
-  "read_book": "Биёед китоб хонем",
-  "teeth": "Биёед дандонҳои худро тоза кунем",
-  "toys": "Тоза кардани ҳуҷраи шумо",
-  "eat": "Нӯши ҷон",
-  "exercise": "Биёед якчанд машқҳоро иҷро кунем"
+  "exercise": "Делаем зарядку",
+  "select": "Выбрать",
+  "my_purchases": "Мои покупки",
+  "empty": "Ничего нет",
+  "lets_play": "Начинай играть!",
+  "nomoney": "Недостаточно монет"
 };
 static const Map<String,dynamic> uz = {
   "shop": "Do'kon",
@@ -136,7 +133,7 @@ static const Map<String,dynamic> uz = {
   "exit": "Chiqish",
   "menu": "Menyu",
   "language": "Til",
-  "swipe": "Qahramonni tanlang",
+  "select_character": "Qahramonni tanlang",
   "name": "Nomi",
   "age": "Yoshi",
   "enter_age": "Sizning yoshingizni kiriting",
@@ -150,7 +147,12 @@ static const Map<String,dynamic> uz = {
   "teeth": "Keling, tishlaringizni yuvaylik",
   "toys": "Keling, xonangizni tozalaylik",
   "eat": "Yoqimli ishtaha",
-  "exercise": "Keling, bir nechta mashqlarni bajaramiz"
+  "exercise": "Keling, bir nechta mashqlarni bajaramiz",
+  "select": "Tanlang",
+  "my_purchases": "Mening xaridlarim",
+  "empty": "Bo'sh",
+  "lets_play": "Keling, o'ynaymiz!",
+  "nomoney": "Tangalar yetarli emas"
 };
-static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "kk": kk, "ky": ky, "ru": ru, "tg": tg, "uz": uz};
+static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "kk": kk, "ky": ky, "ru": ru, "uz": uz};
 }

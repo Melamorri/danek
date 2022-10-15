@@ -7,7 +7,7 @@ abstract class  LocaleKeys {
   static const exit = 'exit';
   static const menu = 'menu';
   static const language = 'language';
-  static const swipe = 'swipe';
+  static const select_character = 'select_character';
   static const name = 'name';
   static const age = 'age';
   static const enter_age = 'enter_age';
@@ -22,5 +22,10 @@ abstract class  LocaleKeys {
   static const toys = 'toys';
   static const eat = 'eat';
   static const exercise = 'exercise';
+  static const select = 'select';
+  static const my_purchases = 'my_purchases';
+  static const empty = 'empty';
+  static const lets_play = 'lets_play';
+  static const nomoney = 'nomoney';
 
 }
