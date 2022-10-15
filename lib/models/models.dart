@@ -59,6 +59,15 @@ TextStyle textStyleAlertDialog() {
   );
 }
 
+TextStyle textStyleNoAlertDialog() {
+  return const TextStyle(
+    color: CustomColors.darkBlueColor,
+    fontFamily: 'RobotoCondensed',
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+  );
+}
+
 TextStyle textStylePriceShop() {
   return const TextStyle(
     color: CustomColors.darkBlueColor,
