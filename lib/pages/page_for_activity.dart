@@ -3,8 +3,9 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
+import 'package:danek/helpers/user_preferences.dart';
 
-class ActivityDetailsScreen extends StatelessWidget {
+class ActivityDetailsScreen extends StatefulWidget {
   final ActivityList activityList;
 
   ActivityDetailsScreen({
@@ -13,25 +14,30 @@ class ActivityDetailsScreen extends StatelessWidget {
   });
 
   @override
+  State<ActivityDetailsScreen> createState() => _ActivityDetailsScreenState();
+}
+
+class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
+  @override
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
     List<int> timelist = [600, 120, 300, 900, 600];
     late int time;
 
     int _chekId() {
-      if (activityList.id == 1) {
+      if (widget.activityList.id == 1) {
         return timelist.elementAt(0);
       }
-      if (activityList.id == 2) {
+      if (widget.activityList.id == 2) {
         return timelist.elementAt(1);
       }
-      if (activityList.id == 3) {
+      if (widget.activityList.id == 3) {
         return timelist.elementAt(2);
       }
-      if (activityList.id == 4) {
+      if (widget.activityList.id == 4) {
         return timelist.elementAt(3);
       }
-      if (activityList.id == 5) {
+      if (widget.activityList.id == 5) {
         return timelist.elementAt(4);
       }
       throw 'Нет нужного элемента';
@@ -87,7 +93,7 @@ class ActivityDetailsScreen extends StatelessWidget {
                         backgroundImage:
                             const AssetImage("assets/images/coin.png"),
                         child: Text(
-                          "$coins",
+                          "$coin",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -97,18 +103,18 @@ class ActivityDetailsScreen extends StatelessWidget {
                 Stack(
                   children: [
                     Text(
-                      activityList.name.toString(),
+                      widget.activityList.name.toString(),
                       style: activityText_1(),
                       //style: Theme.of(context).textTheme.headline6,
                     ),
                     Text(
-                      activityList.name.toString(),
+                      widget.activityList.name.toString(),
                       style: activityText_2(),
                     ),
                   ],
                 ),
                 Image.asset(
-                  activityList.gif.toString(),
+                  widget.activityList.gif.toString(),
                   height: 325.0,
                   width: 325.0,
                 ),
@@ -125,6 +131,9 @@ class ActivityDetailsScreen extends StatelessWidget {
                         NeonCircularTimer(
                             onComplete: () {
                               // сюда по идее функцию обновления монет, но нужен statefulwidget
+                              setState(() {});
+                              upCoin(widget.activityList.cash);
+                              FlameAudio.play('well_done.mp3', volume: 5);
                             },
                             width: 80,
                             controller: controller,

@@ -61,7 +61,7 @@ List<ActivityList> activityList = [
   ),
 ];
 
-int coins = 0;
+int coin = 0;
 void upCoin(int cash) {
-  coins = coins + cash;
+  coin = coin + cash;
 }

@@ -8,7 +8,6 @@ import 'package:danek/models/shop_models.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:danek/helpers/user_preferences.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -103,7 +102,7 @@ Widget shopItemsListBuilder(
                 radius: 30.0,
                 backgroundImage: const AssetImage("assets/images/coin.png"),
                 child: Text(
-                  "$coins",
+                  "$coin",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -197,7 +196,7 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      if (shopList[index]['price'] <= coins) {
+      if (shopList[index]['price'] <= coin) {
         // функция переодевания героя?
         // bloc.addToCart(shopList[index]);
         myPurchases.add(shopList[index].toString());
@@ -217,7 +216,7 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
           (route) => false,
         );
         int price = shopList[index]['price'];
-        coins = coins - price;
+        coin = coin - price;
       } else {
         print('not allowed');
         //добавить оповещение, что монет мало?
