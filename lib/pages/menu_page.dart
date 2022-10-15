@@ -125,7 +125,7 @@ class _MenuPageState extends State<MenuPage> {
                             Navigator.pushNamed(context, '/shoppage');
                           },
                           child: Text(
-                            LocaleKeys.menu.tr().toUpperCase(),
+                            LocaleKeys.shop.tr().toUpperCase(),
                             style: textStyleButton(),
                           ),
                         ),
