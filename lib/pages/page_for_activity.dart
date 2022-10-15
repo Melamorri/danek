@@ -18,12 +18,19 @@ class ActivityDetailsScreen extends StatefulWidget {
 }
 
 class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
-  int amountCoins = 0;
+  int myCoins = 0;
+  upCoin(int cash) {
+    myCoins = myCoins + cash;
+  }
+
+  Future addCoins(int myCoins) async {
+    await UserPreferences().setCoins(myCoins);
+  }
+
   @override
   void initState() {
     super.initState();
-    amountCoins = UserPreferences().getCoins() ?? 0;
-    print('init + $amountCoins');
+    myCoins = UserPreferences().getCoins() ?? 0;
   }
 
   @override
@@ -101,7 +108,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                         backgroundImage:
                             const AssetImage("assets/images/coin.png"),
                         child: Text(
-                          "$amountCoins",
+                          "$myCoins",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -138,7 +145,11 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                             }),
                         NeonCircularTimer(
                             onComplete: () {
-                              // сюда по идее функцию обновления монет, но нужен statefulwidget
+                              upCoin(widget.activityList.cash);
+                              setState(() {
+                                myCoins;
+                              });
+                              addCoins(myCoins);
                             },
                             width: 80,
                             controller: controller,
