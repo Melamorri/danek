@@ -89,7 +89,7 @@ class HeroListState extends State<HeroList> {
             radius: 30.0,
             backgroundImage: const AssetImage("assets/images/coin.png"),
             child: Text(
-              "5",
+              "$coins",
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
@@ -105,9 +105,9 @@ class HeroListState extends State<HeroList> {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.all(1),
-          itemCount: ativityList.length,
+          itemCount: activityList.length,
           itemBuilder: (BuildContext context, int index) {
-            ActivityList activity = ativityList[index];
+            ActivityList activity = activityList[index];
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 1),
               width: MediaQuery.of(context).size.width * 0.3,
@@ -116,12 +116,13 @@ class HeroListState extends State<HeroList> {
                   setState(() {
                     FlameAudio.play(activity.wav);
                     _selectedIndex = index;
+                    upCoin(activity.cash);
                   });
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              ActivityDetailsScreen(ativityList: activity)));
+                              ActivityDetailsScreen(activityList: activity)));
                 },
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(1),
