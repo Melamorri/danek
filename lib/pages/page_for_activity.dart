@@ -88,7 +88,7 @@ class ActivityDetailsScreen extends StatelessWidget {
                         backgroundImage:
                             const AssetImage("assets/images/coin.png"),
                         child: Text(
-                          "$value",
+                          "$coins",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -125,7 +125,7 @@ class ActivityDetailsScreen extends StatelessWidget {
                             }),
                         NeonCircularTimer(
                             onComplete: () {
-                              // upCoin(activityList.cash);
+                              // сюда по идее функцию обновления монет, но нужен statefulwidget
                             },
                             width: 80,
                             controller: controller,

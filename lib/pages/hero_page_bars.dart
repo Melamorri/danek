@@ -89,7 +89,7 @@ class HeroListState extends State<HeroList> {
             radius: 30.0,
             backgroundImage: const AssetImage("assets/images/coin.png"),
             child: Text(
-              "$value",
+              "$coins",
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
@@ -128,10 +128,6 @@ class HeroListState extends State<HeroList> {
                   contentPadding: const EdgeInsets.all(1),
                   leading: Container(
                     width: 70,
-                    child: CircleAvatar(
-                      radius: 70.0,
-                      backgroundImage: AssetImage(activity.image),
-                    ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -140,6 +136,10 @@ class HeroListState extends State<HeroList> {
                             : Colors.black12,
                         width: 3.0,
                       ),
+                    ),
+                    child: CircleAvatar(
+                      radius: 70.0,
+                      backgroundImage: AssetImage(activity.image),
                     ),
                   ),
                 ),

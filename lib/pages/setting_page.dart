@@ -1,9 +1,11 @@
+import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/drop_down.dart';
 import 'package:danek/main.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -26,6 +28,28 @@ class SettingPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Drop(),
+                  ToggleSwitch(
+                      minWidth: 82.0,
+                      minHeight: 53.0,
+                      initialLabelIndex: 0,
+                      cornerRadius: 50.0,
+                      activeFgColor: Colors.white,
+                      inactiveBgColor: Colors.white,
+                      inactiveFgColor: Colors.black,
+                      totalSwitches: 2,
+                      icons: const [
+                        Icons.volume_up_outlined,
+                        Icons.volume_off_outlined,
+                      ],
+                      iconSize: 30.0,
+                      borderColor: const [Colors.black45],
+                      activeBgColors: const [
+                        [Colors.red, Colors.pink],
+                        [Colors.red, Colors.pink]
+                      ],
+                      animate: true,
+                      curve: Curves.bounceInOut,
+                      onToggle: (index) {}),
                   AnimatedButton(
                       color: CustomColors.yellowColor,
                       borderColor: CustomColors.yellowColor,
@@ -33,8 +57,8 @@ class SettingPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, '/');
                       },
-                      child: const Text('МЕНЮ',
-                          style: TextStyle(
+                      child: Text(LocaleKeys.menu.tr(),
+                          style: const TextStyle(
                               fontFamily: 'RobotoCondensed',
                               fontSize: 26,
                               fontWeight: FontWeight.bold))),

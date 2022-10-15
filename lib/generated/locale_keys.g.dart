@@ -8,7 +8,6 @@ abstract class  LocaleKeys {
   static const menu = 'menu';
   static const language = 'language';
   static const swipe = 'swipe';
-  static const select_character = 'select_character';
   static const name = 'name';
   static const age = 'age';
   static const enter_age = 'enter_age';

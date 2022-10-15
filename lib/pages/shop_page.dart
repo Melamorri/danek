@@ -96,7 +96,7 @@ Widget shopItemsListBuilder(
                 radius: 30.0,
                 backgroundImage: const AssetImage("assets/images/coin.png"),
                 child: Text(
-                  "$value",
+                  "$coins",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -190,8 +190,8 @@ showAlertDialog(
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      if (shopList[index]['price'] <= value) {
-        // функция переодевания героя
+      if (shopList[index]['price'] <= coins) {
+        // функция переодевания героя?
         // bloc.addToCart(shopList[index]);
         myPurchases.add(shopList[index].toString());
         upgradeMyItems();
@@ -199,8 +199,6 @@ showAlertDialog(
         addPurchase(myPurchases);
         // var re = bloc.shopList['my_items'];
         // print(re);
-        // добавить функцию  уменьшения монеток
-        // spendCoin(shopList.price);
         bloc.addToCart(shopList[index]);
         // Navigator.pushReplacementNamed(
         //   context,
@@ -212,10 +210,10 @@ showAlertDialog(
           (route) => false,
         );
         int price = shopList[index]['price'];
-        value = value - price;
+        coins = coins - price;
       } else {
         print('not allowed');
-        //добавить оповещение, что монет мало
+        //добавить оповещение, что монет мало?
       }
     },
   );
