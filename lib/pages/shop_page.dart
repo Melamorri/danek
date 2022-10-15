@@ -36,10 +36,6 @@ class _ShopPageState extends State<ShopPage> {
     await UserPreferences().setCoins(myCoins);
   }
 
-  // Future addCoins(int myCoins) async {
-  //   await UserPreferences().setCoins(myCoins);
-  // }
-
   @override
   void initState() {
     super.initState();
