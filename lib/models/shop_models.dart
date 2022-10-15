@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:danek/models/activity_button.dart';
-
 class Shop {
   final cartStreamController = StreamController.broadcast();
 
