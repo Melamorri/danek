@@ -71,7 +71,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                     Container(
                       child: Stack(children: <Widget>[
                         Text(
-                          'Выбери персонажа',
+                          // LocaleKeys.swipe.tr()
+                          'Swipe left/right to\nselect your character',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40,
@@ -83,7 +84,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           ),
                         ),
                         Text(
-                          'Выбери персонажа',
+                          'Swipe left/right to\nselect your character',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40,
@@ -145,6 +146,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                         addHero(heroesImagesList[controller.index], heroLaunch);
                         if (!controller.indexIsChanging) {
                           //controller.animateTo(ChooseHeroes.kImages.length - 1);
+
+                          // Navigator.pushNamed(context, '/gamepage');
 
                           Navigator.pushNamed(context, '/heropage');
                           FlameAudio.play('hello.mp3', volume: 10);

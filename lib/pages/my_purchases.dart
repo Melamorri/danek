@@ -89,7 +89,7 @@ class _MyPurchasesState extends State<MyPurchases> {
                                   Navigator.pushNamed(context, '/shoppage');
                                 },
                                 child: Text(
-                                  'SHOP',
+                                  LocaleKeys.shop.tr().toUpperCase(),
                                   style: textStyleButton(),
                                 ),
                               ),
@@ -146,10 +146,10 @@ class _MyPurchasesState extends State<MyPurchases> {
                           borderColor: CustomColors.yellowColor,
                           shadowColor: CustomColors.orangeColor,
                           onPressed: () {
-                            Navigator.pushNamed(context, '/heropage');
+                            Navigator.pushNamed(context, '/shoppage');
                           },
                           child: Text(
-                            LocaleKeys.back.tr().toUpperCase(),
+                            LocaleKeys.shop.tr().toUpperCase(),
                             style: textStyleButton(),
                           ),
                         ),

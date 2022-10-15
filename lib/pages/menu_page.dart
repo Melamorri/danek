@@ -59,67 +59,19 @@ class _MenuPageState extends State<MenuPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      AnimatedButton(
-                        color: CustomColors.pinkColor,
-                        borderColor: CustomColors.darkBlueColor,
-                        shadowColor: CustomColors.darkBlueColor,
-                        onPressed: () {
-                          if (newFormLaunch! && newHeroLaunch!) {
-                            Navigator.pushNamed(context, '/heropage');
-                          } else if (newFormLaunch! && newHeroLaunch == false) {
-                            Navigator.pushNamed(context, '/chooseheroes');
-                          } else if (newFormLaunch! == false) {
-                            Navigator.pushNamed(context, '/formpage');
-                          }
-                        },
-                        child: Text(
-                          LocaleKeys.play.tr().toUpperCase(),
-                          style: textStyleButton(),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 207,
-                        child: Column(
-                          children: [
-                            const Image(
-                              image: AssetImage('assets/images/logotype.png'),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              LocaleKeys.portal.tr(),
-                              style: TextStyle(
-                                  color: CustomColors.whiteColor,
-                                  fontFamily: 'LeOslerRoughRegular',
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ),
-                      AnimatedButton(
-                        color: CustomColors.yellowColor,
-                        borderColor: CustomColors.yellowColor,
-                        shadowColor: CustomColors.orangeColor,
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/shoppage');
-                        },
-                        child: Text(
-                          LocaleKeys.menu.tr().toUpperCase(),
-                          style: textStyleButton(),
-                        ),
-                      ),
-                      AnimatedButton(
-                        color: CustomColors.lightBlueColor,
-                        borderColor: CustomColors.darkBlueColor,
-                        shadowColor: CustomColors.darkBlueColor,
-                        onPressed: () {
-                          SystemNavigator.pop();
-                        },
-                        child: Text(
-                          LocaleKeys.exit.tr().toUpperCase(),
-                          style: textStyleButton(),
-                        ),
-                      ),
+                      // техническая кнопка для обнуления
+                      IconButton(
+                          onPressed: () {
+                            deleteInfo();
+                            loadNewLaunch();
+                          },
+                          icon: const Icon(Icons.cancel)),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/settingpage');
+                            FlameAudio.play('fonemusic.wav', volume: 1);
+                          },
+                          icon: const Icon(Icons.settings))
                     ],
                   ),
                   SizedBox(
@@ -150,13 +102,13 @@ class _MenuPageState extends State<MenuPage> {
                         SizedBox(
                           height: 207,
                           child: Column(
-                            children: const [
-                              Image(
+                            children: [
+                              const Image(
                                 image: AssetImage('assets/images/logotype.png'),
                               ),
                               SizedBox(height: 4),
                               Text(
-                                'Детский развлекательно-познавательный портал',
+                                LocaleKeys.portal.tr(),
                                 style: TextStyle(
                                     color: CustomColors.whiteColor,
                                     fontFamily: 'LeOslerRoughRegular',

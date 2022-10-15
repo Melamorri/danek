@@ -1,4 +1,5 @@
 import 'package:danek/helpers/user_preferences.dart';
+import 'package:danek/models/activity_button.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';
@@ -89,7 +90,7 @@ class HeroListState extends State<HeroList> {
             radius: 30.0,
             backgroundImage: const AssetImage("assets/images/coin.png"),
             child: Text(
-              "5",
+              "$value",
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),

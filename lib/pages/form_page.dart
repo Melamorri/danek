@@ -3,6 +3,7 @@ import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -94,6 +95,7 @@ class FormPageState extends State<FormPage> {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
                             formLaunch = true;
+                            FlameAudio.play('i_danaya.mp3');
                           });
                           Navigator.pushNamed(context, '/chooseheroes');
                           addUser(userName, userAge, formLaunch);
