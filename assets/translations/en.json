@@ -5,7 +5,7 @@
     "exit":"Exit",
     "menu":"Menu",
     "language":"Language",
-    "swipe":"Swipe left/right to\nselect your character",    
+    "select_character":"Select your character",    
     "name":"Name",
     "age":"Age",
     "enter_age":"Enter your age",
@@ -19,5 +19,6 @@
     "teeth":"Let's brush your teeth",
     "toys":"Let's clean up your room",
     "eat":"Bon appetit",
-    "exercise":"Let's do some exercise"
+    "exercise":"Let's do some exercise",
+    "select":"Select"
 }
