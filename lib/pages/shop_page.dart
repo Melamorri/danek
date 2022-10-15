@@ -190,26 +190,33 @@ showAlertDialog(
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      // функция переодевания героя
-      // bloc.addToCart(shopList[index]);
-      myPurchases.add(shopList[index].toString());
-      upgradeMyItems();
-      print("onpre + $myPurchases");
-      addPurchase(myPurchases);
-      // var re = bloc.shopList['my_items'];
-      // print(re);
-      // добавить функцию  уменьшения монеток
-      spendCoin(shopList.price);
-      bloc.addToCart(shopList[index]);
-      // Navigator.pushReplacementNamed(
-      //   context,
-      //   '/mypurchases',
-      // );
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/mypurchases',
-        (route) => false,
-      );
+      if (shopList[index]['price'] <= value) {
+        // функция переодевания героя
+        // bloc.addToCart(shopList[index]);
+        myPurchases.add(shopList[index].toString());
+        upgradeMyItems();
+        print("onpre + $myPurchases");
+        addPurchase(myPurchases);
+        // var re = bloc.shopList['my_items'];
+        // print(re);
+        // добавить функцию  уменьшения монеток
+        // spendCoin(shopList.price);
+        bloc.addToCart(shopList[index]);
+        // Navigator.pushReplacementNamed(
+        //   context,
+        //   '/mypurchases',
+        // );
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/mypurchases',
+          (route) => false,
+        );
+        int price = shopList[index]['price'];
+        value = value - price;
+      } else {
+        print('not allowed');
+        //добавить оповещение, что монет мало
+      }
     },
   );
 
