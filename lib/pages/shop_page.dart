@@ -41,7 +41,6 @@ class _ShopPageState extends State<ShopPage> {
     super.initState();
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
-    print('init + $myPurchases');
     formLaunch = UserPreferences().getFormLaunch() ?? false;
   }
 
