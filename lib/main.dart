@@ -25,10 +25,10 @@ void main() async {
           Locale('en'),
           Locale('kk'),
           Locale('ky'),
-          Locale('tg'),
           Locale('uz')
         ],
-        useFallbackTranslations: true,
+        // useFallbackTranslations: true,
+        // startLocale: const Locale('ru'),
         path: 'assets/translations',
         fallbackLocale: const Locale('ru'),
         assetLoader: CodegenLoader(),
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
-        locale: context.fallbackLocale,
+        locale: context.locale,
         // title: '',
         routes: {
           '/': (context) => MenuPage(),
