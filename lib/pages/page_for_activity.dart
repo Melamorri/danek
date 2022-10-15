@@ -1,3 +1,4 @@
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,14 @@ class ActivityDetailsScreen extends StatefulWidget {
 }
 
 class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
+  int amountCoins = 0;
+  @override
+  void initState() {
+    super.initState();
+    amountCoins = UserPreferences().getCoins() ?? 0;
+    print('init + $amountCoins');
+  }
+
   @override
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
@@ -62,7 +71,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              if (activityList != null) ...[
+              if (widget.activityList != null) ...[
                 const SizedBox(height: 10),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -93,7 +102,8 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                         backgroundImage:
                             const AssetImage("assets/images/coin.png"),
                         child: Text(
-                          "$coin",
+                          // "$coin",
+                          "$amountCoins",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -130,9 +140,9 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                             }),
                         NeonCircularTimer(
                             onComplete: () {
-                              // сюда по идее функцию обновления монет, но нужен statefulwidget
                               setState(() {});
-                              upCoin(widget.activityList.cash);
+                              // upCoin(widget.activityList.cash);
+
                               FlameAudio.play('well_done.mp3', volume: 5);
                             },
                             width: 80,
