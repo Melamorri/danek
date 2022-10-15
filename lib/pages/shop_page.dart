@@ -19,6 +19,7 @@ class ShopPage extends StatefulWidget {
 
 @override
 State<ShopPage> createState() => _ShopPageState();
+bool? formLaunch;
 
 class _ShopPageState extends State<ShopPage> {
   List<String> myPurchases = [];
@@ -44,6 +45,8 @@ class _ShopPageState extends State<ShopPage> {
     super.initState();
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
+    print('init + $myPurchases');
+    formLaunch = UserPreferences().getFormLaunch() ?? false;
   }
 
   @override
@@ -88,11 +91,13 @@ Widget shopItemsListBuilder(
           children: [
             Stack(
               children: [
-                Text("Магазин", style: stackTextStyle_1()),
-                Text("Магазин", style: stackTextStyle_2()),
+                Text(LocaleKeys.shop.tr().toUpperCase(),
+                    style: stackTextStyle_1()),
+                Text(LocaleKeys.shop.tr().toUpperCase(),
+                    style: stackTextStyle_2()),
               ],
             ),
-            SizedBox(width: MediaQuery.of(context).size.width * 0.15),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.2),
             InkWell(
               enableFeedback: false,
               onTap: () {
@@ -123,7 +128,7 @@ Widget shopItemsListBuilder(
             return InkWell(
               onTap: (() {
                 showAlertDialog(context, shopList, index, myPurchases, myCoins,
-                    upgradeMyItems, addPurchase);
+                    upgradeMyItems, addPurchase, formLaunch);
               }),
               child: Card(
                 color: CustomColors.blueGrey,
@@ -176,7 +181,7 @@ Widget shopItemsListBuilder(
 }
 
 showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
-    addPurchase) {
+    addPurchase, formLaunch) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -223,6 +228,21 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
       }
     },
   );
+  Widget noButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      LocaleKeys.play.tr(),
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/formpage',
+        (route) => false,
+      );
+    },
+  );
 
   AlertDialog alert = AlertDialog(
     shape: const RoundedRectangleBorder(
@@ -237,10 +257,12 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     // ),
     content: Wrap(children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             shopList[index]['image'],
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 100,
+            //width: MediaQuery.of(context).size.width * 0.4,
           ),
           Text(
             shopList[index]['price'].toString(),
@@ -259,17 +281,47 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
       cancelButton,
     ],
   );
+  AlertDialog noAlert = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: Text(
+      'Начинай играть!',
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/smile_hello.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [
+      noButton,
+    ],
+  );
 
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return Theme(
-          data: ThemeData(
-            dialogTheme: const DialogTheme(
-              backgroundColor: CustomColors.blueGrey,
-            ),
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
           ),
-          child: alert);
+        ),
+        child: formLaunch ? alert : noAlert,
+      );
     },
   );
 }
