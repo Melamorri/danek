@@ -69,7 +69,6 @@ class _MenuPageState extends State<MenuPage> {
                       IconButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/settingpage');
-                            FlameAudio.play('fonemusic.wav', volume: 1);
                           },
                           icon: const Icon(Icons.settings))
                     ],

@@ -60,13 +60,15 @@ class _ShopPageState extends State<ShopPage> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: StreamBuilder(
-            initialData: bloc.shopList,
-            stream: bloc.getStream,
-            builder: (context, snapshot) {
-              return shopItemsListBuilder(snapshot, context, myPurchases,
-                  myCoins, upgradeMyItems, addPurchase);
-            },
+          body: SingleChildScrollView(
+            child: StreamBuilder(
+              initialData: bloc.shopList,
+              stream: bloc.getStream,
+              builder: (context, snapshot) {
+                return shopItemsListBuilder(snapshot, context, myPurchases,
+                    myCoins, upgradeMyItems, addPurchase);
+              },
+            ),
           ),
         ),
       ),
@@ -122,8 +124,10 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               onTap: (() {
-                showAlertDialog(context, shopList, index, myPurchases, myCoins,
-                    upgradeMyItems, addPurchase, formLaunch);
+                (formLaunch == true) & (myCoins < shopList[index]['price'])
+                    ? showAlertDialog2(context, formLaunch)
+                    : showAlertDialog(context, shopList, index, myPurchases,
+                        myCoins, upgradeMyItems, addPurchase, formLaunch);
               }),
               child: Card(
                 color: CustomColors.blueGrey,
@@ -165,7 +169,7 @@ Widget shopItemsListBuilder(
       borderColor: CustomColors.yellowColor,
       shadowColor: CustomColors.orangeColor,
       onPressed: () {
-        Navigator.pushNamed(context, '/');
+        Navigator.pushNamed(context, '/heropage');
       },
       child: Text(
         LocaleKeys.back.tr().toUpperCase(),
@@ -173,6 +177,66 @@ Widget shopItemsListBuilder(
       ),
     ),
   ]);
+}
+
+showAlertDialog2(context, formLaunch) {
+  Widget playButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      LocaleKeys.play.tr(),
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/heropage',
+        (route) => false,
+      );
+    },
+  );
+  AlertDialog noCachAlert = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: const Text(
+      'Монет не достаточно!',
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/smile_hello.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [
+      playButton,
+    ],
+  );
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Theme(
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
+          ),
+        ),
+        child: noCachAlert,
+      );
+    },
+  );
 }
 
 showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
@@ -192,6 +256,9 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
+      // (myCoins < shopList[index]['price'])
+      //     ? 'Монет не достаточно'
+      //     :
       LocaleKeys.buy.tr(),
       style: buttonStyleAlertDialog(),
     ),
@@ -217,12 +284,10 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
           '/mypurchases',
           (route) => false,
         );
-      } else {
-        print('not allowed');
-        //добавить оповещение, что монет мало?
-      }
+      } else {}
     },
   );
+
   Widget noButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -284,7 +349,7 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     ),
     titleTextStyle: textStyleNoAlertDialog(),
     actionsAlignment: MainAxisAlignment.center,
-    title: Text(
+    title: const Text(
       'Начинай играть!',
       textAlign: TextAlign.center,
     ),

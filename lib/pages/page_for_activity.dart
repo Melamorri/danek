@@ -21,6 +21,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   int myCoins = 0;
   upCoin(int cash) {
     myCoins = myCoins + cash;
+    FlameAudio.play('well_done.mp3');
   }
 
   Future addCoins(int myCoins) async {
@@ -128,13 +129,11 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                     ),
                   ],
                 ),
-                Image.asset(
-                  widget.activityList.gif.toString(),
-                  height: 325.0,
-                  width: 325.0,
-                ),
+                Image.asset(widget.activityList.gif.toString(),
+                    height: 325, width: 325),
                 Padding(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 5, bottom: 20),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [

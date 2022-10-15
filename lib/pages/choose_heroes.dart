@@ -72,7 +72,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                       child: Stack(children: <Widget>[
                         Text(
                           // LocaleKeys.swipe.tr()
-                          'Swipe left/right to\nselect your character',
+                          'Выбери персонаж',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40,
@@ -84,7 +84,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           ),
                         ),
                         Text(
-                          'Swipe left/right to\nselect your character',
+                          'Выбери персонаж',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40,
@@ -154,7 +154,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                         }
                       },
                       child: Text(
-                        'SELECT',
+                        'ВЫБРАТЬ',
                         style: textStyleButton(),
                       ),
                     ),
@@ -172,7 +172,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                         }
                       },
                       child: Text(
-                        'BACK',
+                        LocaleKeys.back.tr().toUpperCase(),
                         style: textStyleButton(),
                       ),
                     ),
