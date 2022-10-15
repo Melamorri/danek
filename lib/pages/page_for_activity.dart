@@ -22,6 +22,8 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   upCoin(int cash) {
     myCoins = myCoins + cash;
     FlameAudio.play('well_done.mp3');
+    Future.delayed(
+        const Duration(seconds: 2), () => FlameAudio.play('zvukmonet.wav'));
   }
 
   Future addCoins(int myCoins) async {
@@ -38,6 +40,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
     List<int> timelist = [600, 60, 420, 300, 300];
+
     late int time;
 
     int _chekId() {
