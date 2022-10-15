@@ -203,8 +203,8 @@ showAlertDialog2(context, formLaunch) {
     ),
     titleTextStyle: textStyleNoAlertDialog(),
     actionsAlignment: MainAxisAlignment.center,
-    title: const Text(
-      'Монет не достаточно!',
+    title: Text(
+      LocaleKeys.nomoney.tr(),
       textAlign: TextAlign.center,
     ),
     content: Wrap(children: [
@@ -349,8 +349,8 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     ),
     titleTextStyle: textStyleNoAlertDialog(),
     actionsAlignment: MainAxisAlignment.center,
-    title: const Text(
-      'Начинай играть!',
+    title: Text(
+      LocaleKeys.lets_play.tr(),
       textAlign: TextAlign.center,
     ),
     content: Wrap(children: [
