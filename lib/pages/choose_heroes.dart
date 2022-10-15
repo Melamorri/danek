@@ -71,8 +71,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                     Container(
                       child: Stack(children: <Widget>[
                         Text(
-                          // LocaleKeys.swipe.tr()
-                          'Swipe left/right to\nselect your character',
+                          LocaleKeys.swipe.tr(),
+                          // 'Swipe left/right to\nselect your character',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40,
@@ -84,7 +84,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           ),
                         ),
                         Text(
-                          'Swipe left/right to\nselect your character',
+                          LocaleKeys.swipe.tr(),
+                          // 'Swipe left/right to\nselect your character',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 40,
