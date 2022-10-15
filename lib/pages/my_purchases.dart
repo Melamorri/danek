@@ -1,16 +1,40 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
+import 'package:danek/helpers/StringToObject.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:danek/models/shop_models.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class MyPurchases extends StatelessWidget {
+class MyPurchases extends StatefulWidget {
   const MyPurchases({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<MyPurchases> createState() => _MyPurchasesState();
+}
+
+class _MyPurchasesState extends State<MyPurchases> {
+  List myPurchase = [];
+  String heroImage = '';
+  Future addPurchase(myPurchase) async {
+    await UserPreferences().setMyPurchases(myPurchase);
+  }
+
+  deleteInfo() async {
+    await UserPreferences().deleteMyPurcahses();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    myPurchase = UserPreferences().getMyPurchases() ?? [];
+    heroImage = UserPreferences().getHero() ?? '';
+  }
+
+  @override
+  build(BuildContext context) {
     return SafeArea(
         child: Container(
       // height: MediaQuery.of(context).size.height,
@@ -44,7 +68,8 @@ class MyPurchases extends StatelessWidget {
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.22,
-                          child: checkoutListBuildertwo(snapshot, context),
+                          child: checkoutListBuildertwo(
+                              snapshot, context, myPurchase),
                         ),
                         Image.asset(
                           'assets/images/girl1.png',
@@ -111,6 +136,15 @@ class MyPurchases extends StatelessWidget {
                               style: textStyleButton(),
                             ),
                           ),
+                          //техническа кнопка для обнуления магазина
+                          IconButton(
+                              onPressed: () {
+                                deleteInfo();
+                                setState(() {
+                                  myPurchase = [];
+                                });
+                              },
+                              icon: const Icon(Icons.cancel)),
                         ],
                       ),
                     );
@@ -165,16 +199,17 @@ class MyPurchases extends StatelessWidget {
 //   );
 // }
 
-Widget checkoutListBuildertwo(snapshot, context) {
+Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
   return SizedBox(
     //height: MediaQuery.of(context).size.height * 0.25,
     child: ListView.separated(
         padding: const EdgeInsets.all(15),
         scrollDirection: Axis.horizontal,
-        itemCount: snapshot.data["my_items"].length,
+        itemCount: myPurchase.length,
         separatorBuilder: (context, index) => const SizedBox(width: 5),
         itemBuilder: (context, index) {
-          final cartList = snapshot.data["my_items"];
+          String myPurchaseString = myPurchase.elementAt(index);
+          var myPurchaseMap = StringToObject(myPurchaseString);
           return SizedBox(
             width: MediaQuery.of(context).size.width * 0.28,
             child: InkWell(
@@ -192,7 +227,7 @@ Widget checkoutListBuildertwo(snapshot, context) {
                     //   style: const TextStyle(fontWeight: FontWeight.bold),
                     // ),
                     Image.asset(
-                      cartList[index]['image'],
+                      myPurchaseMap['image'],
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Text(
