@@ -1,3 +1,4 @@
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,14 @@ class ActivityDetailsScreen extends StatefulWidget {
 }
 
 class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
+  int amountCoins = 0;
+  @override
+  void initState() {
+    super.initState();
+    amountCoins = UserPreferences().getCoins() ?? 0;
+    print('init + $amountCoins');
+  }
+
   @override
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
@@ -92,7 +101,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                         backgroundImage:
                             const AssetImage("assets/images/coin.png"),
                         child: Text(
-                          "$coins",
+                          "$amountCoins",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
