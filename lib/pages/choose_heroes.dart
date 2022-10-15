@@ -75,7 +75,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           // 'Swipe left/right to\nselect your character',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 40,
+                            fontSize: 36,
                             fontFamily: 'LeOslerRoughRegular',
                             foreground: Paint()
                               ..style = PaintingStyle.stroke
@@ -88,7 +88,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           // 'Swipe left/right to\nselect your character',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 40,
+                            fontSize: 36,
                             color: CustomColors.darkBlueColor,
                             fontFamily: 'LeOslerRoughRegular',
                           ),
