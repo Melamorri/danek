@@ -1,5 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 
 class ActivityList {
   String name;
@@ -19,7 +20,7 @@ class ActivityList {
   });
 }
 
-List<ActivityList> ativityList = [
+List<ActivityList> activityList = [
   ActivityList(
     id: 1,
     name: LocaleKeys.read_book.tr(),
@@ -60,5 +61,7 @@ List<ActivityList> ativityList = [
   ),
 ];
 
-// нужно тогда добавить сюда же  стоимость действия,  это переменная cash
-//прописано в helpers/activity_button
+int coins = 0;
+void upCoin(int cash) {
+  coins = coins + cash;
+}

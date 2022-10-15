@@ -1,13 +1,14 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
-import 'package:danek/models/activity_button.dart';
+import 'package:danek/models/activity_list.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:danek/models/shop_models.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:danek/helpers/user_preferences.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -102,7 +103,7 @@ Widget shopItemsListBuilder(
                 radius: 30.0,
                 backgroundImage: const AssetImage("assets/images/coin.png"),
                 child: Text(
-                  "$value",
+                  "$coins",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -196,23 +197,31 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      // функция переодевания героя
-      myPurchases.add(shopList[index].toString());
-      upgradeMyItems();
-      print("onpre + $myPurchases");
-      addPurchase(myPurchases);
-
-      // var re = bloc.shopList['my_items'];
-      // print(re);
-      // добавить функцию  уменьшения монеток
-
-      //bloc.addToCart(shopList[index]);
-
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/mypurchases',
-        (route) => false,
-      );
+      if (shopList[index]['price'] <= coins) {
+        // функция переодевания героя?
+        // bloc.addToCart(shopList[index]);
+        myPurchases.add(shopList[index].toString());
+        upgradeMyItems();
+        print("onpre + $myPurchases");
+        addPurchase(myPurchases);
+        // var re = bloc.shopList['my_items'];
+        // print(re);
+        bloc.addToCart(shopList[index]);
+        // Navigator.pushReplacementNamed(
+        //   context,
+        //   '/mypurchases',
+        // );
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/mypurchases',
+          (route) => false,
+        );
+        int price = shopList[index]['price'];
+        coins = coins - price;
+      } else {
+        print('not allowed');
+        //добавить оповещение, что монет мало?
+      }
     },
   );
   Widget noButton = TextButton(

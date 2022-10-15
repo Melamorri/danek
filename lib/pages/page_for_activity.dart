@@ -3,14 +3,13 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
-import 'package:danek/models/activity_button.dart';
 
 class ActivityDetailsScreen extends StatelessWidget {
-  final ActivityList ativityList;
+  final ActivityList activityList;
 
-  const ActivityDetailsScreen({
+  ActivityDetailsScreen({
     super.key,
-    required this.ativityList,
+    required this.activityList,
   });
 
   @override
@@ -20,19 +19,19 @@ class ActivityDetailsScreen extends StatelessWidget {
     late int time;
 
     int _chekId() {
-      if (ativityList.id == 1) {
+      if (activityList.id == 1) {
         return timelist.elementAt(0);
       }
-      if (ativityList.id == 2) {
+      if (activityList.id == 2) {
         return timelist.elementAt(1);
       }
-      if (ativityList.id == 3) {
+      if (activityList.id == 3) {
         return timelist.elementAt(2);
       }
-      if (ativityList.id == 4) {
+      if (activityList.id == 4) {
         return timelist.elementAt(3);
       }
-      if (ativityList.id == 5) {
+      if (activityList.id == 5) {
         return timelist.elementAt(4);
       }
       throw 'Нет нужного элемента';
@@ -51,13 +50,13 @@ class ActivityDetailsScreen extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              if (ativityList != null) ...[
+              if (activityList != null) ...[
                 const SizedBox(height: 10),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -88,7 +87,7 @@ class ActivityDetailsScreen extends StatelessWidget {
                         backgroundImage:
                             const AssetImage("assets/images/coin.png"),
                         child: Text(
-                          "$value",
+                          "$coins",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -98,22 +97,23 @@ class ActivityDetailsScreen extends StatelessWidget {
                 Stack(
                   children: [
                     Text(
-                      ativityList.name.toString(),
+                      activityList.name.toString(),
                       style: activityText_1(),
                       //style: Theme.of(context).textTheme.headline6,
                     ),
                     Text(
-                      ativityList.name.toString(),
+                      activityList.name.toString(),
                       style: activityText_2(),
                     ),
                   ],
                 ),
-                Image.asset(ativityList.gif.toString(),
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    width: MediaQuery.of(context).size.width * 0.8),
+                Image.asset(
+                  activityList.gif.toString(),
+                  height: 325.0,
+                  width: 325.0,
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, bottom: 40, top: 5),
+                  padding: const EdgeInsets.all(30),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -124,7 +124,7 @@ class ActivityDetailsScreen extends StatelessWidget {
                             }),
                         NeonCircularTimer(
                             onComplete: () {
-                              // controller.restart();
+                              // сюда по идее функцию обновления монет, но нужен statefulwidget
                             },
                             width: 80,
                             controller: controller,
