@@ -20,5 +20,9 @@
     "toys":"Let's clean up your room",
     "eat":"Bon appetit",
     "exercise":"Let's do some exercise",
-    "select":"Select"
+    "select":"Select",
+    "my_purchases":"My purchases",
+    "empty":"Empty",
+    "lets_play":"Let's play!",
+    "nomoney":"Not enough coins"
 }

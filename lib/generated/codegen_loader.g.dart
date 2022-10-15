@@ -36,7 +36,11 @@ class CodegenLoader extends AssetLoader{
   "toys": "Let's clean up your room",
   "eat": "Bon appetit",
   "exercise": "Let's do some exercise",
-  "select": "Select"
+  "select": "Select",
+  "my_purchases": "My purchases",
+  "empty": "Empty",
+  "lets_play": "Let's play!",
+  "nomoney": "Not enough coins"
 };
 static const Map<String,dynamic> kk = {
   "shop": "Дүкен",
@@ -60,7 +64,11 @@ static const Map<String,dynamic> kk = {
   "toys": "Бөлмеңді жинап алайық",
   "eat": "Аз болсын!",
   "exercise": "Біраз жаттығулар жасайық",
-  "select": "Таңдау"
+  "select": "Таңдау",
+  "my_purchases": "Менің сатып алуларым",
+  "empty": "Бос",
+  "lets_play": "Кел ойнайық!",
+  "nomoney": "Тиындар жеткіліксіз"
 };
 static const Map<String,dynamic> ky = {
   "shop": "Дүкөн",
@@ -84,7 +92,11 @@ static const Map<String,dynamic> ky = {
   "toys": "Келиңиз, бөлмөңүздү тазалап алалы",
   "eat": "Тамагыңыз таттуу болсун",
   "exercise": "Бир аз көнүгүү жасайлы",
-  "select": "Тандоо"
+  "select": "Тандоо",
+  "my_purchases": "Менин сатып алууларым",
+  "empty": "Бош",
+  "lets_play": "Кел ойнойлу!",
+  "nomoney": "Монеталар жетишсиз"
 };
 static const Map<String,dynamic> ru = {
   "shop": "Магазин",
@@ -108,7 +120,11 @@ static const Map<String,dynamic> ru = {
   "toys": "Давай уберем игрушки",
   "eat": "Приятного аппетита!",
   "exercise": "Делаем зарядку",
-  "select": "Выбрать"
+  "select": "Выбрать",
+  "my_purchases": "Мои покупки",
+  "empty": "Ничего нет",
+  "lets_play": "Начинай играть!",
+  "nomoney": "Недостаточно монет"
 };
 static const Map<String,dynamic> uz = {
   "shop": "Do'kon",
@@ -132,7 +148,11 @@ static const Map<String,dynamic> uz = {
   "toys": "Keling, xonangizni tozalaylik",
   "eat": "Yoqimli ishtaha",
   "exercise": "Keling, bir nechta mashqlarni bajaramiz",
-  "select": "Tanlang"
+  "select": "Tanlang",
+  "my_purchases": "Mening xaridlarim",
+  "empty": "Bo'sh",
+  "lets_play": "Keling, o'ynaymiz!",
+  "nomoney": "Tangalar yetarli emas"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "kk": kk, "ky": ky, "ru": ru, "uz": uz};
 }

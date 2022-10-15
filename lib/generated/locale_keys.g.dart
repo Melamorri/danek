@@ -23,5 +23,9 @@ abstract class  LocaleKeys {
   static const eat = 'eat';
   static const exercise = 'exercise';
   static const select = 'select';
+  static const my_purchases = 'my_purchases';
+  static const empty = 'empty';
+  static const lets_play = 'lets_play';
+  static const nomoney = 'nomoney';
 
 }
