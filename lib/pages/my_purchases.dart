@@ -54,67 +54,73 @@ class _MyPurchasesState extends State<MyPurchases> {
           initialData: myPurchase,
           builder: (context, snapshot) {
             return myPurchase.isNotEmpty
-                ? Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Text('Мои покупки', style: stackTextStyle_1()),
-                            Text('Мои покупки', style: stackTextStyle_2())
-                          ],
+                ? SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Stack(
+                            children: <Widget>[
+                              Text('Мои покупки', style: stackTextStyle_1()),
+                              Text('Мои покупки', style: stackTextStyle_2())
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        child: checkoutListBuildertwo(
-                            snapshot, context, myPurchase),
-                      ),
-                      Image.asset(
-                        heroImage,
-                        height: MediaQuery.of(context).size.height * 0.55,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AnimatedButton(
-                            color: CustomColors.yellowColor,
-                            borderColor: CustomColors.yellowColor,
-                            shadowColor: CustomColors.orangeColor,
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/shoppage');
-                            },
-                            child: Text(
-                              'SHOP',
-                              style: textStyleButton(),
-                            ),
+                        SizedBox(
+                          height: 145,
+                          //height: MediaQuery.of(context).size.height * 0.2,
+                          child: checkoutListBuildertwo(
+                              snapshot, context, myPurchase),
+                        ),
+                        Image.asset(
+                          heroImage,
+                          height: MediaQuery.of(context).size.height * 0.55,
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AnimatedButton(
+                                color: CustomColors.yellowColor,
+                                borderColor: CustomColors.yellowColor,
+                                shadowColor: CustomColors.orangeColor,
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/shoppage');
+                                },
+                                child: Text(
+                                  LocaleKeys.shop.tr().toUpperCase(),
+                                  style: textStyleButton(),
+                                ),
+                              ),
+                              AnimatedButton(
+                                color: CustomColors.pinkColor,
+                                borderColor: CustomColors.darkBlueColor,
+                                shadowColor: CustomColors.darkBlueColor,
+                                onPressed: () {
+                                  // герой в новой одежде переходит на свою страницу
+                                  Navigator.pushNamed(context, '/heropage');
+                                },
+                                child: Text(
+                                  LocaleKeys.play.tr().toUpperCase(),
+                                  style: textStyleButton(),
+                                ),
+                              ),
+                              //техническа кнопка для обнуления магазина
+                              IconButton(
+                                  onPressed: () {
+                                    deleteInfo();
+                                    setState(() {
+                                      myPurchase = [];
+                                    });
+                                  },
+                                  icon: const Icon(Icons.cancel)),
+                            ],
                           ),
-                          AnimatedButton(
-                            color: CustomColors.pinkColor,
-                            borderColor: CustomColors.darkBlueColor,
-                            shadowColor: CustomColors.darkBlueColor,
-                            onPressed: () {
-                              // герой в новой одежде переходит на свою страницу
-                              Navigator.pushNamed(context, '/heropage');
-                            },
-                            child: Text(
-                              LocaleKeys.play.tr().toUpperCase(),
-                              style: textStyleButton(),
-                            ),
-                          ),
-                          //техническа кнопка для обнуления магазина
-                          IconButton(
-                              onPressed: () {
-                                deleteInfo();
-                                setState(() {
-                                  myPurchase = [];
-                                });
-                              },
-                              icon: const Icon(Icons.cancel)),
-                        ],
-                      ),
-                      const SizedBox(height: 40)
-                    ],
+                        ),
+                        //const SizedBox(height: 40)
+                      ],
+                    ),
                   )
                 : Center(
                     child: Column(
@@ -126,21 +132,24 @@ class _MyPurchasesState extends State<MyPurchases> {
                             Text("Ничего нет", style: stackTextStyle_2()),
                           ],
                         ),
-                        const SizedBox(height: 50),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1,
+                        ),
                         Image.asset(
                           'assets/images/smile.png',
                           width: 160,
                         ),
-                        const SizedBox(height: 70),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.1),
                         AnimatedButton(
                           color: CustomColors.yellowColor,
                           borderColor: CustomColors.yellowColor,
                           shadowColor: CustomColors.orangeColor,
                           onPressed: () {
-                            Navigator.pushNamed(context, '/heropage');
+                            Navigator.pushNamed(context, '/shoppage');
                           },
                           child: Text(
-                            LocaleKeys.back.tr().toUpperCase(),
+                            LocaleKeys.shop.tr().toUpperCase(),
                             style: textStyleButton(),
                           ),
                         ),
@@ -199,7 +208,6 @@ class _MyPurchasesState extends State<MyPurchases> {
 
 Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
   return SizedBox(
-    //height: MediaQuery.of(context).size.height * 0.25,
     child: ListView.separated(
         padding: const EdgeInsets.all(15),
         scrollDirection: Axis.horizontal,
@@ -209,7 +217,7 @@ Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
           String myPurchaseString = myPurchase.elementAt(index);
           var myPurchaseMap = StringToObject(myPurchaseString);
           return SizedBox(
-            width: MediaQuery.of(context).size.width * 0.28,
+            width: 110,
             child: InkWell(
               onTap: (() {
                 // примерка новой одежды
@@ -224,10 +232,7 @@ Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
                     //   cartList[index]['name'],
                     //   style: const TextStyle(fontWeight: FontWeight.bold),
                     // ),
-                    Image.asset(
-                      myPurchaseMap['image'],
-                      height: MediaQuery.of(context).size.height * 0.1,
-                    ),
+                    Image.asset(myPurchaseMap['image'], height: 70),
                     Text(
                       'Выбрать',
                       style: buttonStyleMyPurchases(),

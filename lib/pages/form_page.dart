@@ -3,6 +3,7 @@ import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -54,6 +55,7 @@ class FormPageState extends State<FormPage> {
                 child: Container(
                   padding: const EdgeInsets.all(80),
                   child: Column(children: [
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     TextFormField(
                       onChanged: (userName) => setState(() {
                         this.userName = userName;
@@ -85,7 +87,7 @@ class FormPageState extends State<FormPage> {
                       decoration: inputDecoration(LocaleKeys.age.tr()),
                       style: textStyleInput(),
                     ),
-                    const SizedBox(height: 100),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                     AnimatedButton(
                       color: CustomColors.lightBlueColor,
                       borderColor: CustomColors.darkBlueColor,
@@ -94,6 +96,7 @@ class FormPageState extends State<FormPage> {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
                             formLaunch = true;
+                            FlameAudio.play('i_danaya.mp3');
                           });
                           Navigator.pushNamed(context, '/chooseheroes');
                           addUser(userName, userAge, formLaunch);
@@ -104,6 +107,20 @@ class FormPageState extends State<FormPage> {
                         style: textStyleButton(),
                       ),
                     ),
+                    SizedBox(height: 20),
+                    AnimatedButton(
+                      color: CustomColors.redColor,
+                      borderColor: CustomColors.darkBlueColor,
+                      shadowColor: CustomColors.darkBlueColor,
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/');
+                      },
+                      child: Text(
+                        LocaleKeys.back.tr().toUpperCase(),
+                        style: textStyleButton(),
+                      ),
+                    ),
+                    SizedBox(height: 20),
                   ]),
                 ),
               ),

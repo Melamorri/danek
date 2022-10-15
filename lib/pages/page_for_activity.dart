@@ -1,38 +1,59 @@
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
-import 'package:danek/models/activity_button.dart';
 
-class ActivityDetailsScreen extends StatelessWidget {
-  final ActivityList ativityList;
+class ActivityDetailsScreen extends StatefulWidget {
+  final ActivityList activityList;
 
-  const ActivityDetailsScreen({
+  ActivityDetailsScreen({
     super.key,
-    required this.ativityList,
+    required this.activityList,
   });
+
+  @override
+  State<ActivityDetailsScreen> createState() => _ActivityDetailsScreenState();
+}
+
+class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
+  int myCoins = 0;
+  upCoin(int cash) {
+    myCoins = myCoins + cash;
+    FlameAudio.play('well_done.mp3');
+  }
+
+  Future addCoins(int myCoins) async {
+    await UserPreferences().setCoins(myCoins);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    myCoins = UserPreferences().getCoins() ?? 0;
+  }
 
   @override
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
-    List<int> timelist = [600, 120, 300, 900, 600];
+    List<int> timelist = [600, 60, 420, 300, 300];
     late int time;
 
     int _chekId() {
-      if (ativityList.id == 1) {
+      if (widget.activityList.id == 1) {
         return timelist.elementAt(0);
       }
-      if (ativityList.id == 2) {
+      if (widget.activityList.id == 2) {
         return timelist.elementAt(1);
       }
-      if (ativityList.id == 3) {
+      if (widget.activityList.id == 3) {
         return timelist.elementAt(2);
       }
-      if (ativityList.id == 4) {
+      if (widget.activityList.id == 4) {
         return timelist.elementAt(3);
       }
-      if (ativityList.id == 5) {
+      if (widget.activityList.id == 5) {
         return timelist.elementAt(4);
       }
       throw 'Нет нужного элемента';
@@ -57,7 +78,7 @@ class ActivityDetailsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              if (ativityList != null) ...[
+              if (widget.activityList != null) ...[
                 const SizedBox(height: 10),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -88,7 +109,7 @@ class ActivityDetailsScreen extends StatelessWidget {
                         backgroundImage:
                             const AssetImage("assets/images/coin.png"),
                         child: Text(
-                          "$value",
+                          "$myCoins",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -98,23 +119,21 @@ class ActivityDetailsScreen extends StatelessWidget {
                 Stack(
                   children: [
                     Text(
-                      ativityList.name.toString(),
+                      widget.activityList.name.toString(),
                       style: activityText_1(),
                       //style: Theme.of(context).textTheme.headline6,
                     ),
                     Text(
-                      ativityList.name.toString(),
+                      widget.activityList.name.toString(),
                       style: activityText_2(),
                     ),
                   ],
                 ),
-                Image.asset(
-                  ativityList.gif.toString(),
-                  height: 325.0,
-                  width: 325.0,
-                ),
+                Image.asset(widget.activityList.gif.toString(),
+                    height: 325, width: 325),
                 Padding(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 5, bottom: 20),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -125,7 +144,11 @@ class ActivityDetailsScreen extends StatelessWidget {
                             }),
                         NeonCircularTimer(
                             onComplete: () {
-                              // controller.restart();
+                              upCoin(widget.activityList.cash);
+                              setState(() {
+                                myCoins;
+                              });
+                              addCoins(myCoins);
                             },
                             width: 80,
                             controller: controller,

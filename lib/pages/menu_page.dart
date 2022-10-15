@@ -53,97 +53,99 @@ class _MenuPageState extends State<MenuPage> {
           backgroundColor: Colors.transparent,
           body: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    // техническая кнопка для обнуления
-                    IconButton(
-                        onPressed: () {
-                          deleteInfo();
-                          loadNewLaunch();
-                        },
-                        icon: const Icon(Icons.cancel)),
-                    IconButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/settingpage');
-                          FlameAudio.play('fonemusic.wav', volume: 1);
-                        },
-                        icon: const Icon(Icons.settings))
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 6 * 5,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      AnimatedButton(
-                        color: CustomColors.pinkColor,
-                        borderColor: CustomColors.darkBlueColor,
-                        shadowColor: CustomColors.darkBlueColor,
-                        onPressed: () {
-                          if (newFormLaunch! && newHeroLaunch!) {
-                            Navigator.pushNamed(context, '/heropage');
-                          } else if (newFormLaunch! && newHeroLaunch == false) {
-                            Navigator.pushNamed(context, '/chooseheroes');
-                          } else if (newFormLaunch! == false) {
-                            Navigator.pushNamed(context, '/formpage');
-                          }
-                        },
-                        child: Text(
-                          LocaleKeys.play.tr().toUpperCase(),
-                          style: textStyleButton(),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 207,
-                        child: Column(
-                          children: [
-                            const Image(
-                              image: AssetImage('assets/images/logotype.png'),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              LocaleKeys.portal.tr(),
-                              style: TextStyle(
-                                  color: CustomColors.whiteColor,
-                                  fontFamily: 'LeOslerRoughRegular',
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ),
-                      AnimatedButton(
-                        color: CustomColors.yellowColor,
-                        borderColor: CustomColors.yellowColor,
-                        shadowColor: CustomColors.orangeColor,
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/shoppage');
-                        },
-                        child: Text(
-                          LocaleKeys.shop.tr().toUpperCase(),
-                          style: textStyleButton(),
-                        ),
-                      ),
-                      AnimatedButton(
-                        color: CustomColors.lightBlueColor,
-                        borderColor: CustomColors.darkBlueColor,
-                        shadowColor: CustomColors.darkBlueColor,
-                        onPressed: () {
-                          SystemNavigator.pop();
-                        },
-                        child: Text(
-                          LocaleKeys.exit.tr().toUpperCase(),
-                          style: textStyleButton(),
-                        ),
-                      ),
+                      // техническая кнопка для обнуления
+                      IconButton(
+                          onPressed: () {
+                            deleteInfo();
+                            loadNewLaunch();
+                          },
+                          icon: const Icon(Icons.cancel)),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/settingpage');
+                          },
+                          icon: const Icon(Icons.settings))
                     ],
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 6 * 5,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        AnimatedButton(
+                          color: CustomColors.pinkColor,
+                          borderColor: CustomColors.darkBlueColor,
+                          shadowColor: CustomColors.darkBlueColor,
+                          onPressed: () {
+                            if (newFormLaunch! && newHeroLaunch!) {
+                              Navigator.pushNamed(context, '/heropage');
+                            } else if (newFormLaunch! &&
+                                newHeroLaunch == false) {
+                              Navigator.pushNamed(context, '/chooseheroes');
+                            } else if (newFormLaunch! == false) {
+                              Navigator.pushNamed(context, '/formpage');
+                            }
+                          },
+                          child: Text(
+                            LocaleKeys.play.tr().toUpperCase(),
+                            style: textStyleButton(),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 207,
+                          child: Column(
+                            children: [
+                              const Image(
+                                image: AssetImage('assets/images/logotype.png'),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                LocaleKeys.portal.tr(),
+                                style: TextStyle(
+                                    color: CustomColors.whiteColor,
+                                    fontFamily: 'LeOslerRoughRegular',
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ),
+                        AnimatedButton(
+                          color: CustomColors.yellowColor,
+                          borderColor: CustomColors.yellowColor,
+                          shadowColor: CustomColors.orangeColor,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/shoppage');
+                          },
+                          child: Text(
+                            LocaleKeys.menu.tr().toUpperCase(),
+                            style: textStyleButton(),
+                          ),
+                        ),
+                        AnimatedButton(
+                          color: CustomColors.lightBlueColor,
+                          borderColor: CustomColors.darkBlueColor,
+                          shadowColor: CustomColors.darkBlueColor,
+                          onPressed: () {
+                            SystemNavigator.pop();
+                          },
+                          child: Text(
+                            LocaleKeys.exit.tr().toUpperCase(),
+                            style: textStyleButton(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

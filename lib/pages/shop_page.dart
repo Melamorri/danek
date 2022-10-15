@@ -1,13 +1,14 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
-import 'package:danek/models/activity_button.dart';
+import 'package:danek/models/activity_list.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:danek/models/shop_models.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:danek/helpers/user_preferences.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -18,25 +19,29 @@ class ShopPage extends StatefulWidget {
 
 @override
 State<ShopPage> createState() => _ShopPageState();
+bool? formLaunch;
 
 class _ShopPageState extends State<ShopPage> {
   List<String> myPurchases = [];
+  int myCoins = 0;
   upgradeMyItems() {
     setState(() {
       myPurchases;
-      print('upg + $myPurchases');
+      myCoins;
     });
   }
 
-  Future addPurchase(myPurchase) async {
+  Future addPurchase(myPurchase, int myCoins) async {
     await UserPreferences().setMyPurchases(myPurchase);
+    await UserPreferences().setCoins(myCoins);
   }
 
   @override
   void initState() {
     super.initState();
     myPurchases = UserPreferences().getMyPurchases() ?? [];
-    print('init + $myPurchases');
+    myCoins = UserPreferences().getCoins() ?? 0;
+    formLaunch = UserPreferences().getFormLaunch() ?? false;
   }
 
   @override
@@ -55,13 +60,15 @@ class _ShopPageState extends State<ShopPage> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: StreamBuilder(
-            initialData: bloc.shopList,
-            stream: bloc.getStream,
-            builder: (context, snapshot) {
-              return shopItemsListBuilder(
-                  snapshot, context, myPurchases, upgradeMyItems, addPurchase);
-            },
+          body: SingleChildScrollView(
+            child: StreamBuilder(
+              initialData: bloc.shopList,
+              stream: bloc.getStream,
+              builder: (context, snapshot) {
+                return shopItemsListBuilder(snapshot, context, myPurchases,
+                    myCoins, upgradeMyItems, addPurchase);
+              },
+            ),
           ),
         ),
       ),
@@ -70,7 +77,7 @@ class _ShopPageState extends State<ShopPage> {
 }
 
 Widget shopItemsListBuilder(
-    snapshot, context, myPurchases, upgradeMyItems, addPurchase) {
+    snapshot, context, myPurchases, myCoins, upgradeMyItems, addPurchase) {
   return Column(children: [
     Padding(
       padding: const EdgeInsets.only(top: 20.0),
@@ -81,11 +88,13 @@ Widget shopItemsListBuilder(
           children: [
             Stack(
               children: [
-                Text("Магазин", style: stackTextStyle_1()),
-                Text("Магазин", style: stackTextStyle_2()),
+                Text(LocaleKeys.shop.tr().toUpperCase(),
+                    style: stackTextStyle_1()),
+                Text(LocaleKeys.shop.tr().toUpperCase(),
+                    style: stackTextStyle_2()),
               ],
             ),
-            SizedBox(width: MediaQuery.of(context).size.width * 0.15),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.2),
             InkWell(
               enableFeedback: false,
               onTap: () {
@@ -95,7 +104,7 @@ Widget shopItemsListBuilder(
                 radius: 30.0,
                 backgroundImage: const AssetImage("assets/images/coin.png"),
                 child: Text(
-                  "$value",
+                  "$myCoins",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -115,8 +124,10 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               onTap: (() {
-                showAlertDialog(context, shopList, index, myPurchases,
-                    upgradeMyItems, addPurchase);
+                (formLaunch == true) & (myCoins < shopList[index]['price'])
+                    ? showAlertDialog2(context, formLaunch)
+                    : showAlertDialog(context, shopList, index, myPurchases,
+                        myCoins, upgradeMyItems, addPurchase, formLaunch);
               }),
               child: Card(
                 color: CustomColors.blueGrey,
@@ -158,7 +169,7 @@ Widget shopItemsListBuilder(
       borderColor: CustomColors.yellowColor,
       shadowColor: CustomColors.orangeColor,
       onPressed: () {
-        Navigator.pushNamed(context, '/');
+        Navigator.pushNamed(context, '/heropage');
       },
       child: Text(
         LocaleKeys.back.tr().toUpperCase(),
@@ -168,8 +179,68 @@ Widget shopItemsListBuilder(
   ]);
 }
 
-showAlertDialog(
-    context, shopList, index, myPurchases, upgradeMyItems, addPurchase) {
+showAlertDialog2(context, formLaunch) {
+  Widget playButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      LocaleKeys.play.tr(),
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/heropage',
+        (route) => false,
+      );
+    },
+  );
+  AlertDialog noCachAlert = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: const Text(
+      'Монет не достаточно!',
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/smile_hello.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [
+      playButton,
+    ],
+  );
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Theme(
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
+          ),
+        ),
+        child: noCachAlert,
+      );
+    },
+  );
+}
+
+showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
+    addPurchase, formLaunch) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -185,28 +256,49 @@ showAlertDialog(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
+      // (myCoins < shopList[index]['price'])
+      //     ? 'Монет не достаточно'
+      //     :
       LocaleKeys.buy.tr(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      // функция переодевания героя
-      // bloc.addToCart(shopList[index]);
-      myPurchases.add(shopList[index].toString());
-      upgradeMyItems();
-      print("onpre + $myPurchases");
-      addPurchase(myPurchases);
-      // var re = bloc.shopList['my_items'];
-      // print(re);
-      // добавить функцию  уменьшения монеток
+      if (shopList[index]['price'] <= myCoins) {
+        // функция переодевания героя?
+        // bloc.addToCart(shopList[index]);
+        int price = shopList[index]['price'];
+        myCoins = myCoins - price;
+        myPurchases.add(shopList[index].toString());
+        upgradeMyItems();
+        addPurchase(myPurchases, myCoins);
 
-      bloc.addToCart(shopList[index]);
-      // Navigator.pushReplacementNamed(
-      //   context,
-      //   '/mypurchases',
-      // );
+        // var re = bloc.shopList['my_items'];
+        // print(re);
+        bloc.addToCart(shopList[index]);
+        // Navigator.pushReplacementNamed(
+        //   context,
+        //   '/mypurchases',
+        // );
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/mypurchases',
+          (route) => false,
+        );
+      } else {}
+    },
+  );
+
+  Widget noButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      LocaleKeys.play.tr(),
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
       Navigator.pushNamedAndRemoveUntil(
         context,
-        '/mypurchases',
+        '/formpage',
         (route) => false,
       );
     },
@@ -225,10 +317,12 @@ showAlertDialog(
     // ),
     content: Wrap(children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             shopList[index]['image'],
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: 100,
+            //width: MediaQuery.of(context).size.width * 0.4,
           ),
           Text(
             shopList[index]['price'].toString(),
@@ -247,17 +341,47 @@ showAlertDialog(
       cancelButton,
     ],
   );
+  AlertDialog noAlert = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: const Text(
+      'Начинай играть!',
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/smile_hello.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [
+      noButton,
+    ],
+  );
 
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return Theme(
-          data: ThemeData(
-            dialogTheme: const DialogTheme(
-              backgroundColor: CustomColors.blueGrey,
-            ),
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
           ),
-          child: alert);
+        ),
+        child: formLaunch ? alert : noAlert,
+      );
     },
   );
 }
