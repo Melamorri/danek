@@ -22,22 +22,28 @@ State<ShopPage> createState() => _ShopPageState();
 
 class _ShopPageState extends State<ShopPage> {
   List<String> myPurchases = [];
+  int myCoins = 0;
   upgradeMyItems() {
     setState(() {
       myPurchases;
-      print('upg + $myPurchases');
+      myCoins;
     });
   }
 
-  Future addPurchase(myPurchase) async {
+  Future addPurchase(myPurchase, int myCoins) async {
     await UserPreferences().setMyPurchases(myPurchase);
+    await UserPreferences().setCoins(myCoins);
   }
+
+  // Future addCoins(int myCoins) async {
+  //   await UserPreferences().setCoins(myCoins);
+  // }
 
   @override
   void initState() {
     super.initState();
     myPurchases = UserPreferences().getMyPurchases() ?? [];
-    print('init + $myPurchases');
+    myCoins = UserPreferences().getCoins() ?? 0;
   }
 
   @override
@@ -60,8 +66,8 @@ class _ShopPageState extends State<ShopPage> {
             initialData: bloc.shopList,
             stream: bloc.getStream,
             builder: (context, snapshot) {
-              return shopItemsListBuilder(
-                  snapshot, context, myPurchases, upgradeMyItems, addPurchase);
+              return shopItemsListBuilder(snapshot, context, myPurchases,
+                  myCoins, upgradeMyItems, addPurchase);
             },
           ),
         ),
@@ -71,7 +77,7 @@ class _ShopPageState extends State<ShopPage> {
 }
 
 Widget shopItemsListBuilder(
-    snapshot, context, myPurchases, upgradeMyItems, addPurchase) {
+    snapshot, context, myPurchases, myCoins, upgradeMyItems, addPurchase) {
   return Column(children: [
     Padding(
       padding: const EdgeInsets.only(top: 20.0),
@@ -96,7 +102,7 @@ Widget shopItemsListBuilder(
                 radius: 30.0,
                 backgroundImage: const AssetImage("assets/images/coin.png"),
                 child: Text(
-                  "$coins",
+                  "$myCoins",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -116,7 +122,7 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               onTap: (() {
-                showAlertDialog(context, shopList, index, myPurchases,
+                showAlertDialog(context, shopList, index, myPurchases, myCoins,
                     upgradeMyItems, addPurchase);
               }),
               child: Card(
@@ -169,8 +175,8 @@ Widget shopItemsListBuilder(
   ]);
 }
 
-showAlertDialog(
-    context, shopList, index, myPurchases, upgradeMyItems, addPurchase) {
+showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
+    addPurchase) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -190,13 +196,15 @@ showAlertDialog(
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      if (shopList[index]['price'] <= coins) {
+      if (shopList[index]['price'] <= myCoins) {
         // функция переодевания героя?
         // bloc.addToCart(shopList[index]);
+        int price = shopList[index]['price'];
+        myCoins = myCoins - price;
         myPurchases.add(shopList[index].toString());
         upgradeMyItems();
-        print("onpre + $myPurchases");
-        addPurchase(myPurchases);
+        addPurchase(myPurchases, myCoins);
+
         // var re = bloc.shopList['my_items'];
         // print(re);
         bloc.addToCart(shopList[index]);
@@ -209,8 +217,6 @@ showAlertDialog(
           '/mypurchases',
           (route) => false,
         );
-        int price = shopList[index]['price'];
-        coins = coins - price;
       } else {
         print('not allowed');
         //добавить оповещение, что монет мало?
