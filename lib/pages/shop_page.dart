@@ -23,23 +23,24 @@ bool? formLaunch;
 
 class _ShopPageState extends State<ShopPage> {
   List<String> myPurchases = [];
-
+  int myCoins = 0;
   upgradeMyItems() {
     setState(() {
       myPurchases;
-      print('upg + $myPurchases');
+      myCoins;
     });
   }
 
-  Future addPurchase(myPurchase) async {
+  Future addPurchase(myPurchase, int myCoins) async {
     await UserPreferences().setMyPurchases(myPurchase);
+    await UserPreferences().setCoins(myCoins);
   }
 
   @override
   void initState() {
     super.initState();
     myPurchases = UserPreferences().getMyPurchases() ?? [];
-    print('init + $myPurchases');
+    myCoins = UserPreferences().getCoins() ?? 0;
     formLaunch = UserPreferences().getFormLaunch() ?? false;
   }
 
@@ -59,15 +60,13 @@ class _ShopPageState extends State<ShopPage> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: StreamBuilder(
-              initialData: bloc.shopList,
-              stream: bloc.getStream,
-              builder: (context, snapshot) {
-                return shopItemsListBuilder(snapshot, context, myPurchases,
-                    upgradeMyItems, addPurchase);
-              },
-            ),
+          body: StreamBuilder(
+            initialData: bloc.shopList,
+            stream: bloc.getStream,
+            builder: (context, snapshot) {
+              return shopItemsListBuilder(snapshot, context, myPurchases,
+                  myCoins, upgradeMyItems, addPurchase);
+            },
           ),
         ),
       ),
@@ -76,7 +75,7 @@ class _ShopPageState extends State<ShopPage> {
 }
 
 Widget shopItemsListBuilder(
-    snapshot, context, myPurchases, upgradeMyItems, addPurchase) {
+    snapshot, context, myPurchases, myCoins, upgradeMyItems, addPurchase) {
   return Column(children: [
     Padding(
       padding: const EdgeInsets.only(top: 20.0),
@@ -103,7 +102,7 @@ Widget shopItemsListBuilder(
                 radius: 30.0,
                 backgroundImage: const AssetImage("assets/images/coin.png"),
                 child: Text(
-                  "$coins",
+                  "$myCoins",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -123,7 +122,7 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               onTap: (() {
-                showAlertDialog(context, shopList, index, myPurchases,
+                showAlertDialog(context, shopList, index, myPurchases, myCoins,
                     upgradeMyItems, addPurchase, formLaunch);
               }),
               child: Card(
@@ -176,7 +175,7 @@ Widget shopItemsListBuilder(
   ]);
 }
 
-showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
+showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     addPurchase, formLaunch) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(
@@ -197,13 +196,15 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      if (shopList[index]['price'] <= coins) {
+      if (shopList[index]['price'] <= myCoins) {
         // функция переодевания героя?
         // bloc.addToCart(shopList[index]);
+        int price = shopList[index]['price'];
+        myCoins = myCoins - price;
         myPurchases.add(shopList[index].toString());
         upgradeMyItems();
-        print("onpre + $myPurchases");
-        addPurchase(myPurchases);
+        addPurchase(myPurchases, myCoins);
+
         // var re = bloc.shopList['my_items'];
         // print(re);
         bloc.addToCart(shopList[index]);
@@ -216,8 +217,6 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
           '/mypurchases',
           (route) => false,
         );
-        int price = shopList[index]['price'];
-        coins = coins - price;
       } else {
         print('not allowed');
         //добавить оповещение, что монет мало?

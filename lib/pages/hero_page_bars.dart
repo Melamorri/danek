@@ -15,15 +15,21 @@ class HeroList extends StatefulWidget {
 class HeroListState extends State<HeroList> {
   int _selectedIndex = -1;
   String heroImage = '';
-  int? amountCoins;
+  int myCoins = 0;
+
+  upCoin(int cash) {
+    myCoins = myCoins + cash;
+  }
+
+  Future addCoins(int myCoins) async {
+    await UserPreferences().setCoins(myCoins);
+  }
 
   @override
   void initState() {
     super.initState();
     heroImage = UserPreferences().getHero() ?? '';
-    amountCoins = UserPreferences().getCoins();
-    print(heroImage);
-    print(amountCoins);
+    myCoins = UserPreferences().getCoins() ?? 0;
   }
 
   @override
@@ -42,7 +48,7 @@ class HeroListState extends State<HeroList> {
           child: Column(
             children: [
               _addSpace(30),
-              _addHorizontalListForAppBar(),
+              _addHorizontalListForAppBar(myCoins),
               // _addSpace(10),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.75,
@@ -57,7 +63,7 @@ class HeroListState extends State<HeroList> {
     );
   }
 
-  Widget _addHorizontalListForAppBar() {
+  Widget _addHorizontalListForAppBar(amountCoins) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -90,7 +96,7 @@ class HeroListState extends State<HeroList> {
             radius: 30.0,
             backgroundImage: const AssetImage("assets/images/coin.png"),
             child: Text(
-              "$coins",
+              "$amountCoins",
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
@@ -117,8 +123,11 @@ class HeroListState extends State<HeroList> {
                   setState(() {
                     FlameAudio.play(activity.wav);
                     _selectedIndex = index;
-                    upCoin(activity.cash);
+                    upCoin(
+                      activity.cash,
+                    );
                   });
+                  addCoins(myCoins);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
