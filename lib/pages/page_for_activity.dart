@@ -19,18 +19,29 @@ class ActivityDetailsScreen extends StatefulWidget {
 }
 
 class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
-  int amountCoins = 0;
+  int myCoins = 0;
+  upCoin(int cash) {
+    myCoins = myCoins + cash;
+    FlameAudio.play('well_done.mp3');
+    Future.delayed(
+        const Duration(seconds: 2), () => FlameAudio.play('zvukmonet.wav'));
+  }
+
+  Future addCoins(int myCoins) async {
+    await UserPreferences().setCoins(myCoins);
+  }
+
   @override
   void initState() {
     super.initState();
-    amountCoins = UserPreferences().getCoins() ?? 0;
-    print('init + $amountCoins');
+    myCoins = UserPreferences().getCoins() ?? 0;
   }
 
   @override
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
-    List<int> timelist = [600, 120, 300, 900, 600];
+    List<int> timelist = [600, 60, 420, 300, 300];
+
     late int time;
 
     int _chekId() {
@@ -102,8 +113,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                         backgroundImage:
                             const AssetImage("assets/images/coin.png"),
                         child: Text(
-                          // "$coin",
-                          "$amountCoins",
+                          "$myCoins",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -123,13 +133,11 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                     ),
                   ],
                 ),
-                Image.asset(
-                  widget.activityList.gif.toString(),
-                  height: 325.0,
-                  width: 325.0,
-                ),
+                Image.asset(widget.activityList.gif.toString(),
+                    height: 325, width: 325),
                 Padding(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 5, bottom: 20),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -140,10 +148,11 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                             }),
                         NeonCircularTimer(
                             onComplete: () {
-                              setState(() {});
-                              // upCoin(widget.activityList.cash);
-
-                              FlameAudio.play('well_done.mp3', volume: 5);
+                              upCoin(widget.activityList.cash);
+                              setState(() {
+                                myCoins;
+                              });
+                              addCoins(myCoins);
                             },
                             width: 80,
                             controller: controller,

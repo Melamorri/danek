@@ -1,15 +1,22 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/drop_down.dart';
 import 'package:danek/main.dart';
+import 'package:danek/models/models.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
+class SettingPage extends StatefulWidget {
+  SettingPage({super.key});
 
+  @override
+  State<SettingPage> createState() => _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,17 +58,20 @@ class SettingPage extends StatelessWidget {
                       curve: Curves.bounceInOut,
                       onToggle: (index) {}),
                   AnimatedButton(
-                      color: CustomColors.yellowColor,
-                      borderColor: CustomColors.yellowColor,
-                      shadowColor: CustomColors.orangeColor,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/');
-                      },
-                      child: Text(LocaleKeys.menu.tr(),
-                          style: const TextStyle(
-                              fontFamily: 'RobotoCondensed',
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold))),
+                    color: CustomColors.yellowColor,
+                    borderColor: CustomColors.yellowColor,
+                    shadowColor: CustomColors.orangeColor,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/');
+                    },
+                    child: Text(
+                      LocaleKeys.menu.tr().toUpperCase(),
+                      style: const TextStyle(
+                          fontFamily: 'RobotoCondensed',
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -4,6 +4,7 @@ import 'package:danek/pages/form_page.dart';
 import 'package:danek/pages/menu_page.dart';
 import 'package:danek/pages/setting_page.dart';
 import 'package:danek/pages/shop_page.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:danek/generated/codegen_loader.g.dart';
@@ -15,6 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await UserPreferences().init();
+  //FlameAudio.playLongAudio('fonemusic.wav');
 
   runApp(
     EasyLocalization(
@@ -23,10 +25,10 @@ void main() async {
           Locale('en'),
           Locale('kk'),
           Locale('ky'),
-          Locale('tg'),
           Locale('uz')
         ],
-        useFallbackTranslations: true,
+        // useFallbackTranslations: true,
+        // startLocale: const Locale('ru'),
         path: 'assets/translations',
         fallbackLocale: const Locale('ru'),
         assetLoader: CodegenLoader(),
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
-        locale: context.fallbackLocale,
+        locale: context.locale,
         // title: '',
         routes: {
           '/': (context) => MenuPage(),

@@ -15,12 +15,6 @@ class HeroListState extends State<HeroList> {
   int _selectedIndex = -1;
   String heroImage = '';
 
-  get myCoins => null;
-
-  Future addCoins(myCoins) async {
-    await UserPreferences().setCoins(myCoins);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -120,11 +114,7 @@ class HeroListState extends State<HeroList> {
                   setState(() {
                     FlameAudio.play(activity.wav);
                     _selectedIndex = index;
-                    //   upCoin(
-                    //     activity.cash,
-                    //   );
                   });
-                  addCoins(myCoins);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
