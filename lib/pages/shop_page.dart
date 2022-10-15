@@ -123,8 +123,15 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               onTap: (() {
-                showAlertDialog(context, shopList, index, myPurchases,
-                    upgradeMyItems, addPurchase, formLaunch);
+                showAlertDialog(
+                  context,
+                  shopList,
+                  index,
+                  myPurchases,
+                  upgradeMyItems,
+                  addPurchase,
+                  formLaunch,
+                );
               }),
               child: Card(
                 color: CustomColors.blueGrey,
@@ -198,7 +205,6 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
     ),
     onPressed: () {
       if (shopList[index]['price'] <= coins) {
-        // функция переодевания героя?
         // bloc.addToCart(shopList[index]);
         myPurchases.add(shopList[index].toString());
         upgradeMyItems();
@@ -219,11 +225,11 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
         int price = shopList[index]['price'];
         coins = coins - price;
       } else {
-        print('not allowed');
         //добавить оповещение, что монет мало?
       }
     },
   );
+
   Widget noButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -285,7 +291,7 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
     ),
     titleTextStyle: textStyleNoAlertDialog(),
     actionsAlignment: MainAxisAlignment.center,
-    title: Text(
+    title: const Text(
       'Начинай играть!',
       textAlign: TextAlign.center,
     ),
@@ -306,6 +312,25 @@ showAlertDialog(context, shopList, index, myPurchases, upgradeMyItems,
       noButton,
     ],
   );
+  AlertDialog alert5 =
+      AlertDialog(content: Center(child: Text("Second Alert Dialog")));
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                  content: StatefulBuilder(
+                      builder: (BuildContext context, StateSetter setState) {
+                    return Text('kjc kxdjfv');
+                  }),
+                ));
+      },
+      child: null,
+    );
+  }
 
   showDialog(
     context: context,

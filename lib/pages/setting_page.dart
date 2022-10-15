@@ -1,14 +1,29 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/drop_down.dart';
 import 'package:danek/main.dart';
+import 'package:danek/models/models.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
+class SettingPage extends StatefulWidget {
+  SettingPage({super.key});
+
+  @override
+  State<SettingPage> createState() => _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
+  bool isplaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    //initPlayer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +64,26 @@ class SettingPage extends StatelessWidget {
                       ],
                       animate: true,
                       curve: Curves.bounceInOut,
-                      onToggle: (index) {}),
+                      onToggle: (value) {
+                        FlameAudio.bgm.stop();
+                        value != value;
+                      }),
+                  //   if (!playingmuzik) {
+                  //     switch (value) {
+                  //       case 1:
+                  //         FlameAudio.play('fonemusic.wav');
+                  //         playingmuzik = true;
+                  //         break;
+                  //       case 2:
+                  //         FlameAudio.play('masha.wav');
+                  //         playingmuzik = true;
+                  //         break;
+                  //     }
+                  //   } else {
+                  //     FlameAudio.bgm.stop();
+                  //     playingmuzik = false;
+                  //   }
+
                   AnimatedButton(
                       color: CustomColors.yellowColor,
                       borderColor: CustomColors.yellowColor,
