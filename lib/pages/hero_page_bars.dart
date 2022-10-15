@@ -1,4 +1,4 @@
-import 'package:danek/models/activity_button.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';
@@ -89,7 +89,7 @@ class HeroListState extends State<HeroList> {
             radius: 30.0,
             backgroundImage: const AssetImage("assets/images/coin.png"),
             child: Text(
-              "5",
+              "$value",
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
@@ -105,9 +105,9 @@ class HeroListState extends State<HeroList> {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.all(1),
-          itemCount: ativityList.length,
+          itemCount: activityList.length,
           itemBuilder: (BuildContext context, int index) {
-            ActivityList activity = ativityList[index];
+            ActivityList activity = activityList[index];
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 1),
               width: MediaQuery.of(context).size.width * 0.3,
@@ -122,7 +122,7 @@ class HeroListState extends State<HeroList> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              ActivityDetailsScreen(ativityList: activity)));
+                              ActivityDetailsScreen(activityList: activity)));
                 },
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(1),
@@ -155,8 +155,3 @@ Widget _addSpace(double space) {
     height: space,
   );
 }
-
-// int value = 0;
-// void upCoin(int cash) {
-//   value = value + cash;
-// }

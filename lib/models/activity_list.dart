@@ -20,7 +20,7 @@ class ActivityList {
   });
 }
 
-List<ActivityList> ativityList = [
+List<ActivityList> activityList = [
   ActivityList(
     id: 1,
     name: LocaleKeys.read_book.tr(),
@@ -61,17 +61,7 @@ List<ActivityList> ativityList = [
   ),
 ];
 
-// нужно тогда добавить сюда же  стоимость действия,  это переменная cash
-//прописано в helpers/activity_button
 int value = 0;
 void upCoin(int cash) {
   value = value + cash;
-}
-
-spendCoin(int price) {
-  if (price <= value) {
-    value = value - price;
-  } else {
-    return Container(child: Text('мало монеток!'));
-  }
 }
