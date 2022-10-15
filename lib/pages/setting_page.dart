@@ -17,14 +17,6 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  bool isplaying = false;
-
-  @override
-  void initState() {
-    super.initState();
-    //initPlayer();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -64,38 +56,22 @@ class _SettingPageState extends State<SettingPage> {
                       ],
                       animate: true,
                       curve: Curves.bounceInOut,
-                      onToggle: (value) {
-                        FlameAudio.bgm.stop();
-                        value != value;
-                      }),
-                  //   if (!playingmuzik) {
-                  //     switch (value) {
-                  //       case 1:
-                  //         FlameAudio.play('fonemusic.wav');
-                  //         playingmuzik = true;
-                  //         break;
-                  //       case 2:
-                  //         FlameAudio.play('masha.wav');
-                  //         playingmuzik = true;
-                  //         break;
-                  //     }
-                  //   } else {
-                  //     FlameAudio.bgm.stop();
-                  //     playingmuzik = false;
-                  //   }
-
+                      onToggle: (index) {}),
                   AnimatedButton(
-                      color: CustomColors.yellowColor,
-                      borderColor: CustomColors.yellowColor,
-                      shadowColor: CustomColors.orangeColor,
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/');
-                      },
-                      child: Text(LocaleKeys.menu.tr(),
-                          style: const TextStyle(
-                              fontFamily: 'RobotoCondensed',
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold))),
+                    color: CustomColors.yellowColor,
+                    borderColor: CustomColors.yellowColor,
+                    shadowColor: CustomColors.orangeColor,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/');
+                    },
+                    child: Text(
+                      LocaleKeys.menu.tr().toUpperCase(),
+                      style: const TextStyle(
+                          fontFamily: 'RobotoCondensed',
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -18,7 +18,6 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   bool? newFormLaunch;
   bool? newHeroLaunch;
-  late String muzik;
   @override
   void initState() {
     super.initState();
@@ -70,7 +69,6 @@ class _MenuPageState extends State<MenuPage> {
                       IconButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/settingpage');
-                            // FlameAudio.play('fonemusic.wav', volume: 1);
                           },
                           icon: const Icon(Icons.settings))
                     ],

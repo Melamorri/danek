@@ -16,8 +16,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await UserPreferences().init();
-  FlameAudio.bgm.initialize();
   FlameAudio.playLongAudio('fonemusic.wav');
+
   runApp(
     EasyLocalization(
         supportedLocales: const [
