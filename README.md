@@ -1,16 +1,69 @@
 # danek
 
-A new Flutter project.
+## Приложение для ребенка
 
-## Getting Started
+### decsription
+#### помощь ребенку в выполнении ежедневных действий:
+#### - чистка зубов
+#### - чтение
+#### - зарядка
+#### - еда
+#### - прибирание игрушек
 
-This project is a starting point for a Flutter application.
+#### каждое действие имеет таймер выполения
+#### после выполнения действия - начисляются монетки
 
-A few resources to get you started if this is your first Flutter project:
+### Stack
+#### Android Studio, Flutter, Dart, Gradle, Github, Trello, Figma
+<a href="https://www.jetbrains.com/idea/">
+    <img src="https://techcrunch.com/wp-content/uploads/2017/02/android-studio-logo.png" width="85" height="40"  alt="Android Studio"/>
+</a>
+<a href="https://www.jetbrains.com/idea/">
+    <img src="https://static.wikia.nocookie.net/logo-timeline/images/c/cf/4B4A9751-D2BF-4A93-BDCC-CDCA5326B65F.png" width="85" height="40"  alt="Flutter"/>
+</a>
+<a href="https://www.jetbrains.com/idea/">
+    <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-ar21.svg" width="85" height="40"  alt="Dart"/>
+</a>
+<a href="https://www.jetbrains.com/idea/">
+    <img src="https://starchenkov.pro/qa-guru/img/skills/Gradle.svg" width="40" height="40"  alt="Gradle"/>
+</a>
+<a href="https://www.jetbrains.com/idea/">
+    <img src="https://starchenkov.pro/qa-guru/img/skills/Github.svg" width="40" height="40"  alt="Github"/>
+</a>
+<a href="https://www.jetbrains.com/idea/">
+    <img src="https://1000logos.net/wp-content/uploads/2021/05/Trello-logo-768x432.png" width="85" height="40"  alt="Trello"/>
+</a>
+<a href="https://www.jetbrains.com/idea/">
+    <img src="https://cdn.dribbble.com/users/3061686/screenshots/17599145/media/4d00ad57610b9f50bb00cc5a68654986.png?compress=1&resize=1200x900&vertical=top" width="85" height="45"  alt="Figma"/>
+</a>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### screenshots
+#### вместе с выбранным героем ребенок может перейти на экран с нужной активностью
+<a href="https://www.jetbrains.com/idea/">
+<img src="https://github.com/977605/12/blob/master/assets/images/screen_with_girl.jpg" width="100" height="155"  alt="Hero"/>
+</a>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### - чистка зубов
+<a href="https://www.jetbrains.com/idea/">
+<img src="https://github.com/977605/12/blob/master/assets/images/screen_with_frog.jpg" width="100" height="155"  alt="Hero"/>
+</a>
+
+#### - чтение
+<a href="https://www.jetbrains.com/idea/">
+<img src="https://github.com/977605/12/blob/master/assets/images/screen_with_book.jpg" width="100" height="155"  alt="Hero"/>
+</a>
+
+#### - зарядка
+<a href="https://www.jetbrains.com/idea/">
+<img src="https://github.com/977605/12/blob/master/assets/images/screen_with_excercise.jpg" width="100" height="155"  alt="Hero"/>
+</a>
+
+#### - еда
+<a href="https://www.jetbrains.com/idea/">
+<img src="https://github.com/977605/12/blob/master/assets/images/screen_with_eating.jpg" width="100" height="155"  alt="Hero"/>
+</a>
+
+#### - прибирание игрушек
+<a href="https://www.jetbrains.com/idea/">
+<img src="https://github.com/977605/12/blob/master/assets/images/screen_with_toy.jpg" width="100" height="155"  alt="Hero"/>
+</a>
