@@ -30,11 +30,16 @@ class Shop {
         'id': 5
       },
     ],
-    'my_items': []
+    'my_items': [],
+    'items_id': []
   };
 
   void addToCart(item) {
     shopList['my_items'].add(item);
+  }
+
+  void addToListId(item) {
+    shopList['items_id'].add(item);
   }
 }
 
