@@ -60,13 +60,15 @@ class _ShopPageState extends State<ShopPage> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: StreamBuilder(
-            initialData: bloc.shopList,
-            stream: bloc.getStream,
-            builder: (context, snapshot) {
-              return shopItemsListBuilder(snapshot, context, myPurchases,
-                  myCoins, upgradeMyItems, addPurchase);
-            },
+          body: SingleChildScrollView(
+            child: StreamBuilder(
+              initialData: bloc.shopList,
+              stream: bloc.getStream,
+              builder: (context, snapshot) {
+                return shopItemsListBuilder(snapshot, context, myPurchases,
+                    myCoins, upgradeMyItems, addPurchase);
+              },
+            ),
           ),
         ),
       ),
@@ -122,8 +124,8 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               onTap: (() {
-                ((myCoins < shopList[index]['price']) && (formLaunch = true))
-                    ? showAlertDialog2(context)
+                (formLaunch == true) & (myCoins < shopList[index]['price'])
+                    ? showAlertDialog2(context, formLaunch)
                     : showAlertDialog(context, shopList, index, myPurchases,
                         myCoins, upgradeMyItems, addPurchase, formLaunch);
               }),
@@ -177,7 +179,7 @@ Widget shopItemsListBuilder(
   ]);
 }
 
-showAlertDialog2(context) {
+showAlertDialog2(context, formLaunch) {
   Widget playButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
