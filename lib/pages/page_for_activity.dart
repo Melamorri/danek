@@ -3,7 +3,6 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
-import 'package:danek/pages/hero_page_bars.dart';
 
 class ActivityDetailsScreen extends StatelessWidget {
   final ActivityList activityList;
