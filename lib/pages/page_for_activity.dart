@@ -51,11 +51,11 @@ class ActivityDetailsScreen extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               if (ativityList != null) ...[
                 const SizedBox(height: 10),
@@ -108,13 +108,12 @@ class ActivityDetailsScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Image.asset(
-                  ativityList.gif.toString(),
-                  height: 325.0,
-                  width: 325.0,
-                ),
+                Image.asset(ativityList.gif.toString(),
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.8),
                 Padding(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, bottom: 40, top: 5),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [

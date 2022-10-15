@@ -21,6 +21,7 @@ State<ShopPage> createState() => _ShopPageState();
 
 class _ShopPageState extends State<ShopPage> {
   List<String> myPurchases = [];
+
   upgradeMyItems() {
     setState(() {
       myPurchases;
@@ -117,8 +118,14 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               onTap: (() {
-                showAlertDialog(context, shopList, index, myPurchases,
-                    upgradeMyItems, addPurchase);
+                showAlertDialog(
+                  context,
+                  shopList,
+                  index,
+                  myPurchases,
+                  upgradeMyItems,
+                  addPurchase,
+                );
               }),
               child: Card(
                 color: CustomColors.blueGrey,
@@ -197,6 +204,7 @@ showAlertDialog(
       upgradeMyItems();
       print("onpre + $myPurchases");
       addPurchase(myPurchases);
+
       // var re = bloc.shopList['my_items'];
       // print(re);
       // добавить функцию  уменьшения монеток
@@ -227,10 +235,11 @@ showAlertDialog(
     // ),
     content: Wrap(children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             shopList[index]['image'],
-            width: 90,
+            width: 100,
             //width: MediaQuery.of(context).size.width * 0.4,
           ),
           Text(
