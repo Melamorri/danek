@@ -1,5 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/drop_down.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/main.dart';
 import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -17,6 +18,37 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  String? userName;
+  int? userAge;
+  String? hero;
+  bool? formLaunch;
+  bool? newHeroLaunch;
+  List<String> myPurchases = [];
+  int myCoins = 0;
+
+  deleteInfo() async {
+    // await UserPreferences().deleteUserName();
+    // await UserPreferences().deleteUserAge();
+    // await UserPreferences().deleteMyPurcahses();
+    // await UserPreferences().deleteCoins();
+    // await UserPreferences().deleteHero();
+    // await UserPreferences().deleteFormLaunch();
+    // await UserPreferences().deleteHeroLaunch();
+    await UserPreferences().clearData();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    userName = UserPreferences().getUserName() ?? '';
+    userAge = UserPreferences().getUserAge();
+    hero = UserPreferences().getHero() ?? '';
+    formLaunch = UserPreferences().getFormLaunch() ?? false;
+    newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    myPurchases = UserPreferences().getMyPurchases() ?? [];
+    myCoins = UserPreferences().getCoins() ?? 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,7 +62,7 @@ class _SettingPageState extends State<SettingPage> {
           body: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: SizedBox(
-              height: 550,
+              //height: 550,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -72,12 +104,172 @@ class _SettingPageState extends State<SettingPage> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          floatingActionButton: FloatingActionButton(
+            elevation: 0,
+            backgroundColor: Colors.red,
+            shape: RoundedRectangleBorder(
+                side: const BorderSide(width: 2, color: CustomColors.blueGrey),
+                borderRadius: BorderRadius.circular(100)),
+            onPressed: () {
+              allDeleteShowAlertDialog(context, deleteInfo);
+            },
+            child: const Icon(Icons.delete_forever),
           ),
         ),
       ),
     );
   }
+}
+
+allDeleteShowAlertDialog(context, deleteInfo) {
+  Widget yesButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'ДА',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      allDeleteShowAlertDialog2(context, deleteInfo);
+    },
+  );
+  Widget noButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'НЕТ',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.of(context).pop();
+      // Navigator.pushNamedAndRemoveUntil(
+      //   context,
+      //   '/settingPage',
+      //   (route) => true,
+      // );
+    },
+  );
+  AlertDialog allDelete = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: Text(
+      'Точно хочешь начать игру сначала?',
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/smile_qw.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [yesButton, noButton],
+  );
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Theme(
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
+          ),
+        ),
+        child: allDelete,
+      );
+    },
+  );
+}
+
+// Всплывающее окно "Ты уверен"
+allDeleteShowAlertDialog2(context, deleteInfo) {
+  Widget yesButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'ДА',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      deleteInfo();
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/',
+        (route) => false,
+      );
+      // Сброс настроек
+    },
+  );
+  Widget noButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'НЕТ',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SettingPage()));
+    },
+    // Navigator.pushNamed(
+    //   context,
+    //   '/settingPage',
+    // );
+  );
+  AlertDialog allDelete = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: Text(
+      'Ты уверен?',
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/znak.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [yesButton, noButton],
+  );
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Theme(
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
+          ),
+        ),
+        child: allDelete,
+      );
+    },
+  );
 }

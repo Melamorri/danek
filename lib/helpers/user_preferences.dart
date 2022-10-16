@@ -44,11 +44,12 @@ class UserPreferences {
   bool? getFormLaunch() => _preferences?.getBool(_keyFormLaunch);
   bool? getHeroLaunch() => _preferences?.getBool(_keyHeroLaunch);
 
-  Future<bool>? deleteUserName() => _preferences?.remove(_keyUserName);
-  Future<bool>? deleteUserAge() => _preferences?.remove(_keyUserAge);
-  Future<bool>? deleteHero() => _preferences?.remove(_keyHero);
-  Future<bool>? deleteCoins() => _preferences?.remove(_keyCoins);
-  Future<bool>? deleteMyPurcahses() => _preferences?.remove(_keyMyPurchases);
-  Future<bool>? deleteFormLaunch() => _preferences?.remove(_keyFormLaunch);
-  Future<bool>? deleteHeroLaunch() => _preferences?.remove(_keyHeroLaunch);
+  // Future<bool>? deleteUserName() => _preferences?.remove(_keyUserName);
+  // Future<bool>? deleteUserAge() => _preferences?.remove(_keyUserAge);
+  // Future<bool>? deleteHero() => _preferences?.remove(_keyHero);
+  // Future<bool>? deleteCoins() => _preferences?.remove(_keyCoins);
+  // Future<bool>? deleteMyPurcahses() => _preferences?.remove(_keyMyPurchases);
+  // Future<bool>? deleteFormLaunch() => _preferences?.remove(_keyFormLaunch);
+  // Future<bool>? deleteHeroLaunch() => _preferences?.remove(_keyHeroLaunch);
+  Future<bool>? clearData() => _preferences?.clear();
 }

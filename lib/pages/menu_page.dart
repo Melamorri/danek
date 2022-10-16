@@ -19,26 +19,12 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   bool? newFormLaunch;
   bool? newHeroLaunch;
+
   @override
   void initState() {
     super.initState();
-    loadNewLaunch();
-  }
-
-  loadNewLaunch() async {
-    setState(() {
-      bool formLaunch = UserPreferences().getFormLaunch() ?? false;
-      bool heroLaunch = UserPreferences().getHeroLaunch() ?? false;
-      newFormLaunch = formLaunch;
-      newHeroLaunch = heroLaunch;
-    });
-  }
-
-  deleteInfo() async {
-    await UserPreferences().deleteUserName();
-    await UserPreferences().deleteUserAge();
-    await UserPreferences().deleteFormLaunch();
-    await UserPreferences().deleteHeroLaunch();
+    newFormLaunch = UserPreferences().getFormLaunch() ?? false;
+    newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
   }
 
   @override
@@ -60,13 +46,6 @@ class _MenuPageState extends State<MenuPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      // техническая кнопка для обнуления
-                      IconButton(
-                          onPressed: () {
-                            deleteInfo();
-                            loadNewLaunch();
-                          },
-                          icon: const Icon(Icons.cancel)),
                       IconButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/settingpage');

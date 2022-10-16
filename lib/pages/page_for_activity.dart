@@ -27,6 +27,8 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
     FlameAudio.play('well_done.mp3');
     Future.delayed(
         const Duration(seconds: 2), () => FlameAudio.play('zvukmonet.wav'));
+    // Future.delayed(const Duration(seconds: 2),
+    //     () => Image.asset('assets/images/coins.gif'));
   }
 
   Future addCoins(int myCoins) async {
@@ -133,6 +135,8 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
                       widget.activityList.name.toString(),
                       style: activityText_2(),
                     ),
+
+                    //Image.asset('assets/images/coins.gif'),
                   ],
                 ),
                 Image.asset(widget.activityList.gif.toString(),

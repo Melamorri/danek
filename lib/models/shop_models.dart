@@ -52,6 +52,7 @@ class Shop {
 
   void addToCart(item) {
     shopList['my_items'].add(item);
+    shopList['shop_items'].remove(item);
   }
 
   void addToListId(item) {

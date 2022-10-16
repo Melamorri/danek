@@ -113,6 +113,7 @@ Widget shopItemsListBuilder(
         ),
       ),
     ),
+    // Список элементов магазина
     SizedBox(
       height: MediaQuery.of(context).size.height * 0.75,
       child: GridView.builder(
@@ -123,6 +124,7 @@ Widget shopItemsListBuilder(
           itemBuilder: (contextsnapshot, index) {
             final shopList = snapshot.data["shop_items"];
             return InkWell(
+              // если монет не достаточно
               onTap: (() {
                 (formLaunch == true) & (myCoins < shopList[index]['price'])
                     ? showAlertDialog2(context, formLaunch)
@@ -169,7 +171,9 @@ Widget shopItemsListBuilder(
       borderColor: CustomColors.yellowColor,
       shadowColor: CustomColors.orangeColor,
       onPressed: () {
-        Navigator.pushNamed(context, '/heropage');
+        (formLaunch == true)
+            ? Navigator.pushNamed(context, '/heropage')
+            : Navigator.pushNamed(context, '/');
       },
       child: Text(
         LocaleKeys.back.tr().toUpperCase(),
@@ -179,6 +183,7 @@ Widget shopItemsListBuilder(
   ]);
 }
 
+// Всплывающее окно "монет не достаточно"
 showAlertDialog2(context, formLaunch) {
   Widget playButton = TextButton(
     style: ButtonStyle(
@@ -239,6 +244,7 @@ showAlertDialog2(context, formLaunch) {
   );
 }
 
+// Всплывающее окно купить/отмена
 showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     addPurchase, formLaunch) {
   Widget cancelButton = TextButton(
@@ -265,8 +271,6 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     onPressed: () {
       // if (shopList[index]['price'] <= coin) {
       if (shopList[index]['price'] <= myCoins) {
-        // функция переодевания героя?
-        // bloc.addToCart(shopList[index]);
         int price = shopList[index]['price'];
         myCoins = myCoins - price;
         myPurchases.add(shopList[index].toString());
@@ -342,6 +346,8 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
       cancelButton,
     ],
   );
+
+  //Если попал в магазин не рарегистрированный "Начинай играть!"
   AlertDialog noAlert = AlertDialog(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
