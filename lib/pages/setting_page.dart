@@ -20,23 +20,33 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   String? userName;
   int? userAge;
+  String? hero;
   bool? formLaunch;
   bool? newHeroLaunch;
   List<String> myPurchases = [];
   int myCoins = 0;
 
-  // Future addUser(userName, userAge, formLaunch, newHeroLaunch, myPurchases, myCoins) async {
-  //   await UserPreferences().setUserName(userName);
-  //   await UserPreferences().setUserAge(userAge);
-  //   await UserPreferences().setFormLaunch(formLaunch);
-  // }
   deleteInfo() async {
-    await UserPreferences().deleteUserName();
-    await UserPreferences().deleteUserAge();
-    await UserPreferences().deleteMyPurcahses();
-    await UserPreferences().deleteCoins();
-    await UserPreferences().deleteFormLaunch();
-    await UserPreferences().deleteHeroLaunch();
+    // await UserPreferences().deleteUserName();
+    // await UserPreferences().deleteUserAge();
+    // await UserPreferences().deleteMyPurcahses();
+    // await UserPreferences().deleteCoins();
+    // await UserPreferences().deleteHero();
+    // await UserPreferences().deleteFormLaunch();
+    // await UserPreferences().deleteHeroLaunch();
+    await UserPreferences().clearData();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    userName = UserPreferences().getUserName() ?? '';
+    userAge = UserPreferences().getUserAge();
+    hero = UserPreferences().getHero() ?? '';
+    formLaunch = UserPreferences().getFormLaunch() ?? false;
+    newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    myPurchases = UserPreferences().getMyPurchases() ?? [];
+    myCoins = UserPreferences().getCoins() ?? 0;
   }
 
   @override
@@ -107,7 +117,7 @@ class _SettingPageState extends State<SettingPage> {
                 side: const BorderSide(width: 2, color: CustomColors.blueGrey),
                 borderRadius: BorderRadius.circular(100)),
             onPressed: () {
-              allDeleteShowAlertDialog(context);
+              allDeleteShowAlertDialog(context, deleteInfo);
             },
             child: const Icon(Icons.delete_forever),
           ),
@@ -117,7 +127,7 @@ class _SettingPageState extends State<SettingPage> {
   }
 }
 
-allDeleteShowAlertDialog(context) {
+allDeleteShowAlertDialog(context, deleteInfo) {
   Widget yesButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -126,7 +136,7 @@ allDeleteShowAlertDialog(context) {
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      allDeleteShowAlertDialog2(context);
+      allDeleteShowAlertDialog2(context, deleteInfo);
     },
   );
   Widget noButton = TextButton(
@@ -137,22 +147,12 @@ allDeleteShowAlertDialog(context) {
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/',
-        (route) => false,
-      );
-    },
-  );
-  Widget cancelButton = TextButton(
-    style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
-    child: Text(
-      'НЕТ',
-      style: buttonStyleAlertDialog(),
-    ),
-    onPressed: () {
-      // Сброс настроек
+      Navigator.of(context).pop();
+      // Navigator.pushNamedAndRemoveUntil(
+      //   context,
+      //   '/settingPage',
+      //   (route) => true,
+      // );
     },
   );
   AlertDialog allDelete = AlertDialog(
@@ -198,7 +198,7 @@ allDeleteShowAlertDialog(context) {
 }
 
 // Всплывающее окно "Ты уверен"
-allDeleteShowAlertDialog2(context) {
+allDeleteShowAlertDialog2(context, deleteInfo) {
   Widget yesButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -207,6 +207,7 @@ allDeleteShowAlertDialog2(context) {
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
+      deleteInfo();
       Navigator.pushNamedAndRemoveUntil(
         context,
         '/',
@@ -214,6 +215,22 @@ allDeleteShowAlertDialog2(context) {
       );
       // Сброс настроек
     },
+  );
+  Widget noButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'НЕТ',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SettingPage()));
+    },
+    // Navigator.pushNamed(
+    //   context,
+    //   '/settingPage',
+    // );
   );
   AlertDialog allDelete = AlertDialog(
     shape: const RoundedRectangleBorder(
@@ -240,9 +257,7 @@ allDeleteShowAlertDialog2(context) {
         ],
       ),
     ]),
-    actions: [
-      yesButton,
-    ],
+    actions: [yesButton, noButton],
   );
   showDialog(
     context: context,

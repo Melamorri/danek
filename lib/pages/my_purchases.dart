@@ -22,10 +22,6 @@ class _MyPurchasesState extends State<MyPurchases> {
     await UserPreferences().setMyPurchases(myPurchase);
   }
 
-  deleteInfo() async {
-    await UserPreferences().deleteMyPurcahses();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -108,15 +104,6 @@ class _MyPurchasesState extends State<MyPurchases> {
                                   style: textStyleButton(),
                                 ),
                               ),
-                              //техническа кнопка для обнуления магазина
-                              IconButton(
-                                  onPressed: () {
-                                    deleteInfo();
-                                    setState(() {
-                                      myPurchase = [];
-                                    });
-                                  },
-                                  icon: const Icon(Icons.cancel)),
                             ],
                           ),
                         ),
