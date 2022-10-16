@@ -61,7 +61,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: DefaultTabController(
-            length: kImages.length,
+            length: heroesImagesList.length,
             child: Builder(
               builder: (BuildContext context) => Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -145,8 +145,6 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                         addHero(heroesImagesList[controller.index], heroLaunch);
                         if (!controller.indexIsChanging) {
                           //controller.animateTo(ChooseHeroes.kImages.length - 1);
-
-                          // Navigator.pushNamed(context, '/gamepage');
 
                           Navigator.pushNamed(context, '/heropage');
                           FlameAudio.play('hello.mp3', volume: 10);
