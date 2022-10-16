@@ -30,7 +30,7 @@ class _SettingPageState extends State<SettingPage> {
           body: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: SizedBox(
-              height: 550,
+              //height: 550,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -72,12 +72,81 @@ class _SettingPageState extends State<SettingPage> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          floatingActionButton: FloatingActionButton(
+            elevation: 0,
+            backgroundColor: Colors.red,
+            shape: RoundedRectangleBorder(
+                side: const BorderSide(width: 2, color: CustomColors.blueGrey),
+                borderRadius: BorderRadius.circular(100)),
+            onPressed: () {
+              allDeleteShowAlertDialog(context);
+            },
+            child: const Icon(Icons.delete_forever),
           ),
         ),
       ),
     );
   }
+}
+
+allDeleteShowAlertDialog(context) {
+  Widget playButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'ДА',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      // Сброс настроек
+    },
+  );
+  AlertDialog allDelete = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: Text(
+      'Точно хочешь начать игру сначала?',
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/smile_qw.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [
+      playButton,
+    ],
+  );
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Theme(
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
+          ),
+        ),
+        child: allDelete,
+      );
+    },
+  );
 }
