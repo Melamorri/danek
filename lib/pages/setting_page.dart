@@ -1,5 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/drop_down.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/main.dart';
 import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -17,6 +18,27 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  String? userName;
+  int? userAge;
+  bool? formLaunch;
+  bool? newHeroLaunch;
+  List<String> myPurchases = [];
+  int myCoins = 0;
+
+  // Future addUser(userName, userAge, formLaunch, newHeroLaunch, myPurchases, myCoins) async {
+  //   await UserPreferences().setUserName(userName);
+  //   await UserPreferences().setUserAge(userAge);
+  //   await UserPreferences().setFormLaunch(formLaunch);
+  // }
+  deleteInfo() async {
+    await UserPreferences().deleteUserName();
+    await UserPreferences().deleteUserAge();
+    await UserPreferences().deleteMyPurcahses();
+    await UserPreferences().deleteCoins();
+    await UserPreferences().deleteFormLaunch();
+    await UserPreferences().deleteHeroLaunch();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -107,6 +129,17 @@ allDeleteShowAlertDialog(context) {
       // Сброс настроек
     },
   );
+  Widget cancelButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'НЕТ',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      // Сброс настроек
+    },
+  );
   AlertDialog allDelete = AlertDialog(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
@@ -132,9 +165,7 @@ allDeleteShowAlertDialog(context) {
         ],
       ),
     ]),
-    actions: [
-      playButton,
-    ],
+    actions: [playButton, cancelButton],
   );
   showDialog(
     context: context,
