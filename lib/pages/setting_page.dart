@@ -1,4 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/drop_down.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/main.dart';
@@ -25,6 +26,11 @@ class _SettingPageState extends State<SettingPage> {
   bool? newHeroLaunch;
   List<String> myPurchases = [];
   int myCoins = 0;
+  bool? foneticMusic;
+
+  Future changeFoneticMusic(foneticMusic) async {
+    await UserPreferences().setFoneticMusic(foneticMusic);
+  }
 
   deleteInfo() async {
     // await UserPreferences().deleteUserName();
@@ -47,6 +53,8 @@ class _SettingPageState extends State<SettingPage> {
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+    // checkMusic(foneticMusic);
   }
 
   @override
@@ -88,7 +96,39 @@ class _SettingPageState extends State<SettingPage> {
                       ],
                       animate: true,
                       curve: Curves.bounceInOut,
-                      onToggle: (index) {}),
+                      onToggle: (index) {
+                        print(index);
+                        print(foneticMusic);
+                        switch (index) {
+                          case 0:
+                            setState(() {
+                              foneticMusic = true;
+                              print('state + $foneticMusic');
+                            });
+                            checkMusic(foneticMusic);
+                            break;
+                          case 1:
+                            setState(() {
+                              foneticMusic = false;
+                              print('state + $foneticMusic');
+                            });
+                            checkMusic(foneticMusic);
+                        }
+                      }),
+                  // if (index == 0) {
+                  //   setState(() {
+                  //     foneticMusic = true;
+                  //     print('state + $foneticMusic');
+                  //   });
+                  //   checkMusic(foneticMusic);
+                  // } else if (index == 1) {
+                  //   setState(() {
+                  //     foneticMusic == false;
+                  //     print('state + $foneticMusic');
+                  //   });
+                  //   checkMusic(foneticMusic);
+                  // }
+
                   AnimatedButton(
                     color: CustomColors.yellowColor,
                     borderColor: CustomColors.yellowColor,
