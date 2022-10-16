@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
 import 'package:danek/helpers/user_preferences.dart';
+import 'package:danek/models/days_in_row.dart';
 
 class ActivityDetailsScreen extends StatefulWidget {
   final ActivityList activityList;
@@ -20,6 +21,7 @@ class ActivityDetailsScreen extends StatefulWidget {
 
 class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   int myCoins = 0;
+
   upCoin(int cash) {
     myCoins = myCoins + cash;
     FlameAudio.play('well_done.mp3');
