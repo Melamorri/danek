@@ -54,10 +54,6 @@ class Shop {
     shopList['my_items'].add(item);
     shopList['shop_items'].remove(item);
   }
-
-  void addToListId(item) {
-    shopList['items_id'].add(item);
-  }
 }
 
 final bloc = Shop();
