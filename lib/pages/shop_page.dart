@@ -171,7 +171,9 @@ Widget shopItemsListBuilder(
       borderColor: CustomColors.yellowColor,
       shadowColor: CustomColors.orangeColor,
       onPressed: () {
-        Navigator.pushNamed(context, '/heropage');
+        (formLaunch == true)
+            ? Navigator.pushNamed(context, '/heropage')
+            : Navigator.pushNamed(context, '/');
       },
       child: Text(
         LocaleKeys.back.tr().toUpperCase(),
