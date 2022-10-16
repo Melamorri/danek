@@ -96,7 +96,7 @@ class _SettingPageState extends State<SettingPage> {
 }
 
 allDeleteShowAlertDialog(context) {
-  Widget playButton = TextButton(
+  Widget yesButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
@@ -104,7 +104,22 @@ allDeleteShowAlertDialog(context) {
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      // Сброс настроек
+      allDeleteShowAlertDialog2(context);
+    },
+  );
+  Widget noButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'НЕТ',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/',
+        (route) => false,
+      );
     },
   );
   AlertDialog allDelete = AlertDialog(
@@ -132,8 +147,68 @@ allDeleteShowAlertDialog(context) {
         ],
       ),
     ]),
+    actions: [yesButton, noButton],
+  );
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Theme(
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
+          ),
+        ),
+        child: allDelete,
+      );
+    },
+  );
+}
+
+// Всплывающее окно "Ты уверен"
+allDeleteShowAlertDialog2(context) {
+  Widget yesButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'ДА',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/',
+        (route) => false,
+      );
+      // Сброс настроек
+    },
+  );
+  AlertDialog allDelete = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: Text(
+      'Ты уверен?',
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/znak.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
     actions: [
-      playButton,
+      yesButton,
     ],
   );
   showDialog(
