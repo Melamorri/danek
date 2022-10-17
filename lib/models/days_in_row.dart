@@ -17,7 +17,6 @@ void getExtraCoinsForDays() {
   DateTime loadLastTime() {
     return (DateTime.parse(
         "2022-10-15")); //<-- alter this date to see code change
-    // это дата предыдущего непрерывного входа,
   }
 
 // This sets new login date

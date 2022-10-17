@@ -72,7 +72,7 @@ class _MenuPageState extends State<MenuPage> {
                             } else if (newFormLaunch! == false) {
                               Navigator.pushNamed(context, '/formpage');
                             }
-                            getExtraCoinsForDays();
+                            // getExtraCoinsForDays();
                           },
                           child: Text(
                             LocaleKeys.play.tr().toUpperCase(),
