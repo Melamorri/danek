@@ -1,3 +1,4 @@
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/pages/choose_heroes.dart';
 import 'package:danek/pages/form_page.dart';
@@ -16,7 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await UserPreferences().init();
-  //FlameAudio.playLongAudio('fonemusic.wav');
+  // FlameAudio.playLongAudio('fonemusic.wav');
 
   runApp(
     EasyLocalization(
@@ -36,8 +37,22 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool foneticMusic = true;
+
+  @override
+  void initState() {
+    super.initState();
+    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+    checkMusic(foneticMusic);
+  }
 
   @override
   build(BuildContext context) {
