@@ -125,11 +125,15 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               // если монет не достаточно
+
               onTap: (() {
-                (formLaunch == true) & (myCoins < shopList[index]['price'])
-                    ? showAlertDialog2(context, formLaunch)
-                    : showAlertDialog(context, shopList, index, myPurchases,
-                        myCoins, upgradeMyItems, addPurchase, formLaunch);
+                if ((formLaunch == true) &
+                    (myCoins < shopList[index]['price'])) {
+                  showAlertDialog2(context, formLaunch);
+                } else {
+                  showAlertDialog(context, shopList, index, myPurchases,
+                      myCoins, upgradeMyItems, addPurchase, formLaunch);
+                }
               }),
               child: Card(
                 color: CustomColors.blueGrey,
@@ -391,3 +395,63 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     },
   );
 }
+
+// showAlertDialog3(context, formLaunch) {
+//   Widget playButton = TextButton(
+//     style: ButtonStyle(
+//         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+//     child: Text(
+//       'Назад',
+//       style: buttonStyleAlertDialog(),
+//     ),
+//     onPressed: () {
+//       Navigator.pushNamedAndRemoveUntil(
+//         context,
+//         '/shoppage',
+//         (route) => false,
+//       );
+//     },
+//   );
+//   AlertDialog noCachAlert = AlertDialog(
+//     shape: const RoundedRectangleBorder(
+//       borderRadius: BorderRadius.all(
+//         Radius.circular(20.0),
+//       ),
+//     ),
+//     titleTextStyle: textStyleNoAlertDialog(),
+//     actionsAlignment: MainAxisAlignment.center,
+//     title: Text(
+//       'Уже есть',
+//       textAlign: TextAlign.center,
+//     ),
+//     content: Wrap(children: [
+//       Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Image.asset(
+//             'assets/images/smile_hello.png',
+//             width: 140,
+//             //width: MediaQuery.of(context).size.width * 0.4,
+//           ),
+//           const SizedBox(width: 10),
+//         ],
+//       ),
+//     ]),
+//     actions: [
+//       playButton,
+//     ],
+//   );
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Theme(
+//         data: ThemeData(
+//           dialogTheme: const DialogTheme(
+//             backgroundColor: CustomColors.blueGrey,
+//           ),
+//         ),
+//         child: noCachAlert,
+//       );
+//     },
+//   );
+// }

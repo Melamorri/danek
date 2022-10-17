@@ -53,11 +53,48 @@ class Shop {
   void addToCart(item) {
     shopList['my_items'].add(item);
     shopList['shop_items'].remove(item);
+    cartStreamController.sink.add(shopList);
+    // if (shopList['my_items']['id'].toString() ==
+    //     shopList['shop_items']['id'].toString()) {
+    //   print('есть');
+    // }
   }
 
   void addToListId(item) {
     shopList['items_id'].add(item);
   }
+
+  void dispose() {
+    cartStreamController.close(); // close our StreamController
+  }
+
+  void compare(item) {
+    if (!shopList['my_items']['id'].toString().contains(item)) {
+      shopList['shop_items']['id'].add();
+      print('Добавили');
+    } else {
+      print('Уже есть');
+    }
+  }
+
+  List filterList(List list, {bool removeAllOccurrences = false}) {
+    final List my_items = [];
+    final List shop_items = [];
+
+    return shop_items;
+  }
+
+  // _mapEquals(Map<String, int> map1, Map<String, int> map2) {
+  //   if (map1.keys.length != map2.keys.length) return false;
+
+  //   for (String k in map1.keys) {
+  //     if (!map2.containsKey(k)) return false;
+  //     if (map1[k] != map2[k]) return false;
+  //     print('Добавили');
+  //   }
+
+  //   return true;
+  // }
 }
 
 final bloc = Shop();

@@ -37,9 +37,9 @@ class _MenuPageState extends State<MenuPage> {
                 fit: BoxFit.cover)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
+          body: SingleChildScrollView(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
                   Row(
