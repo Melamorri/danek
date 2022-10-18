@@ -1,4 +1,5 @@
 import 'package:danek/helpers/user_preferences.dart';
+import 'package:danek/models/models.dart';
 
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +41,12 @@ class HeroListState extends State<HeroList> {
           child: Column(
             children: [
               _addSpace(30),
+              settings(),
               _addHorizontalListForAppBar(myCoins),
-              // _addSpace(10),
+              _addSpace(10),
+
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.75,
+                height: MediaQuery.of(context).size.height * 0.65,
                 child: Image.asset(heroImage),
               ),
               // _addSpace(10),
@@ -94,6 +97,20 @@ class HeroListState extends State<HeroList> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget settings() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/settingpage');
+            },
+            icon: const Icon(Icons.settings)),
+      ),
     );
   }
 

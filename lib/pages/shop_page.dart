@@ -125,15 +125,11 @@ Widget shopItemsListBuilder(
             final shopList = snapshot.data["shop_items"];
             return InkWell(
               // если монет не достаточно
-
               onTap: (() {
-                if ((formLaunch == true) &
-                    (myCoins < shopList[index]['price'])) {
-                  showAlertDialog2(context, formLaunch);
-                } else {
-                  showAlertDialog(context, shopList, index, myPurchases,
-                      myCoins, upgradeMyItems, addPurchase, formLaunch);
-                }
+                (formLaunch == true) & (myCoins < shopList[index]['price'])
+                    ? showAlertDialog2(context, formLaunch)
+                    : showAlertDialog(context, shopList, index, myPurchases,
+                        myCoins, upgradeMyItems, addPurchase, formLaunch);
               }),
               child: Card(
                 color: CustomColors.blueGrey,
@@ -266,9 +262,6 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      // (myCoins < shopList[index]['price'])
-      //     ? 'Монет не достаточно'
-      //     :
       LocaleKeys.buy.tr(),
       style: buttonStyleAlertDialog(),
     ),
@@ -283,10 +276,7 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
         // var re = bloc.shopList['my_items'];
         // print(re);
         bloc.addToCart(shopList[index]);
-        // Navigator.pushReplacementNamed(
-        //   context,
-        //   '/mypurchases',
-        // );
+
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/mypurchases',
@@ -350,7 +340,7 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     ],
   );
 
-  //Если попал в магазин не рарегистрированный "Начинай играть!"
+  //Если попал в магазин не зарегистрированный "Начинай играть!"
   AlertDialog noAlert = AlertDialog(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
@@ -395,7 +385,7 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
     },
   );
 }
-
+// Всплывающее окно "Уже сть!"
 // showAlertDialog3(context, formLaunch) {
 //   Widget playButton = TextButton(
 //     style: ButtonStyle(
@@ -421,7 +411,7 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
 //     titleTextStyle: textStyleNoAlertDialog(),
 //     actionsAlignment: MainAxisAlignment.center,
 //     title: Text(
-//       'Уже есть',
+//       'Уже есть!',
 //       textAlign: TextAlign.center,
 //     ),
 //     content: Wrap(children: [
