@@ -153,8 +153,24 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           Tab(
                             child: InkWell(
                               onTap: () {
-                                checkMusic('i_chik.mp3', foneticMusic);
-                                // FlameAudio.play('i_chik.mp3');
+                                if (context.locale == const Locale('ru')) {
+                                  checkMusic('i_chik.mp3', foneticMusic);
+                                } else if (context.locale ==
+                                    const Locale('ky')) {
+                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  // checkMusic('i_chik_ky.mp3', foneticMusic);
+                                } else if (context.locale ==
+                                    const Locale('kk')) {
+                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  // checkMusic('i_chik_kk.mp3', foneticMusic);
+                                } else if (context.locale ==
+                                    const Locale('uz')) {
+                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  // checkMusic('i_chik_uz.mp3', foneticMusic);
+                                } else {
+                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  // checkMusic('i_chik_en.mp3', foneticMusic);
+                                }
                               },
                               child: Image.asset('assets/images/bird.png'),
                             ),
@@ -162,8 +178,24 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           Tab(
                             child: InkWell(
                               onTap: () {
-                                checkMusic('i_bec.mp3', foneticMusic);
-                                // FlameAudio.play('i_bec.mp3');
+                                if (context.locale == const Locale('ru')) {
+                                  checkMusic('i_bec.mp3', foneticMusic);
+                                } else if (context.locale ==
+                                    const Locale('ky')) {
+                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  // checkMusic('i_bec_ky.mp3', foneticMusic);
+                                } else if (context.locale ==
+                                    const Locale('kk')) {
+                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  // checkMusic('i_bec_kk.mp3', foneticMusic);
+                                } else if (context.locale ==
+                                    const Locale('uz')) {
+                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  // checkMusic('i_bec_uz.mp3', foneticMusic);
+                                } else {
+                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  // checkMusic('i_bec_en.mp3', foneticMusic);
+                                }
                               },
                               child: Image.asset('assets/images/leo.png'),
                             ),
@@ -186,8 +218,20 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           //controller.animateTo(ChooseHeroes.kImages.length - 1);
 
                           Navigator.pushNamed(context, '/heropage');
-                          checkMusic('hello.mp3', foneticMusic);
-                          // FlameAudio.play('hello.mp3', volume: 10);
+                          if (context.locale == const Locale('ru')) {
+                            checkMusic('hello.mp3', foneticMusic);
+                          } else if (context.locale == const Locale('ky')) {
+                            checkMusic('salam.mp3', foneticMusic);
+                          } else if (context.locale == const Locale('kk')) {
+                            checkMusic('hello.mp3', foneticMusic);
+                            // checkMusic('hello_kk.mp3', foneticMusic);
+                          } else if (context.locale == const Locale('uz')) {
+                            checkMusic('hello.mp3', foneticMusic);
+                            // checkMusic('hello_uz.mp3', foneticMusic);
+                          } else {
+                            checkMusic('hello.mp3', foneticMusic);
+                            // checkMusic('hello_en.mp3', foneticMusic);
+                          }
                         }
                       },
                       child: Text(
