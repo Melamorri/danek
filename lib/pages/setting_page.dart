@@ -1,5 +1,7 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/drop_down.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/main.dart';
 import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -17,6 +19,47 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  String? userName;
+  int? userAge;
+  String? hero;
+  bool? formLaunch;
+  bool? newHeroLaunch;
+  List<String> myPurchases = [];
+  int myCoins = 0;
+  bool? foneticMusic;
+
+  Future changeFoneticMusic(foneticMusic) async {
+    await UserPreferences().setFoneticMusic(foneticMusic);
+  }
+
+  deleteInfo() async {
+    // await UserPreferences().deleteUserName();
+    // await UserPreferences().deleteUserAge();
+    // await UserPreferences().deleteMyPurcahses();
+    // await UserPreferences().deleteCoins();
+    // await UserPreferences().deleteHero();
+    // await UserPreferences().deleteFormLaunch();
+    // await UserPreferences().deleteHeroLaunch();
+    await UserPreferences().clearData();
+  }
+
+  changeHeroInfo() async {
+    await UserPreferences().deleteHero();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    userName = UserPreferences().getUserName() ?? '';
+    userAge = UserPreferences().getUserAge();
+    hero = UserPreferences().getHero() ?? '';
+    formLaunch = UserPreferences().getFormLaunch() ?? false;
+    newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    myPurchases = UserPreferences().getMyPurchases() ?? [];
+    myCoins = UserPreferences().getCoins() ?? 0;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -56,38 +99,96 @@ class _SettingPageState extends State<SettingPage> {
                       ],
                       animate: true,
                       curve: Curves.bounceInOut,
-                      onToggle: (index) {}),
+                      onToggle: (index) {
+                        switch (index) {
+                          case 0:
+                            setState(() {
+                              foneticMusic = true;
+                              print('state + $foneticMusic');
+                            });
+                            changeFoneticMusic(foneticMusic);
+                            checkFoneMusic(foneticMusic);
+
+                            break;
+                          case 1:
+                            setState(() {
+                              foneticMusic = false;
+                              print('state + $foneticMusic');
+                            });
+
+                            checkFoneMusic(foneticMusic);
+                            changeFoneticMusic(foneticMusic);
+                        }
+                      }),
+                  (formLaunch == true)
+                      ? AnimatedButton(
+                          color: CustomColors.yellowColor,
+                          borderColor: CustomColors.yellowColor,
+                          shadowColor: CustomColors.orangeColor,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/chooseheroes');
+                          },
+                          child: Text(
+                            'Сменить героя',
+                            style: const TextStyle(
+                                fontFamily: 'RobotoCondensed',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                   AnimatedButton(
                     color: CustomColors.yellowColor,
                     borderColor: CustomColors.yellowColor,
                     shadowColor: CustomColors.orangeColor,
                     onPressed: () {
-                      Navigator.pushNamed(context, '/');
+                      (formLaunch == true)
+                          ? Navigator.pushNamed(context, '/heropage')
+                          : Navigator.pushNamed(context, '/');
                     },
                     child: Text(
-                      LocaleKeys.menu.tr().toUpperCase(),
-                      style: const TextStyle(
-                          fontFamily: 'RobotoCondensed',
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold),
+                      LocaleKeys.back.tr().toUpperCase(),
+                      style: textStyleButton(),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            elevation: 0,
-            backgroundColor: Colors.red,
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 2, color: CustomColors.blueGrey),
-                borderRadius: BorderRadius.circular(100)),
-            onPressed: () {
-              allDeleteShowAlertDialog(context);
-            },
-            child: const Icon(Icons.delete_forever),
+          floatingActionButton: (formLaunch == true)
+              ? FloatingActionButton(
+                  elevation: 0,
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                          width: 2, color: CustomColors.blueGrey),
+                      borderRadius: BorderRadius.circular(100)),
+                  onPressed: () {
+                    allDeleteShowAlertDialog(context, deleteInfo);
+                  },
+                  child: const Icon(Icons.delete_forever),
+                )
+              : null,
+        ),
+      ),
+    );
+  }
+
+  Widget changeHero() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: TextButton(
+          onPressed: () {
+            changeHeroInfo();
+            Navigator.pushNamed(context, '/chooseheroes');
+          },
+          child: Text(
+            "Сменить героя",
+            style: buttonStyleAlertDialog(),
           ),
         ),
       ),
@@ -95,7 +196,7 @@ class _SettingPageState extends State<SettingPage> {
   }
 }
 
-allDeleteShowAlertDialog(context) {
+allDeleteShowAlertDialog(context, deleteInfo) {
   Widget yesButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -104,7 +205,7 @@ allDeleteShowAlertDialog(context) {
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      allDeleteShowAlertDialog2(context);
+      allDeleteShowAlertDialog2(context, deleteInfo);
     },
   );
   Widget noButton = TextButton(
@@ -115,11 +216,12 @@ allDeleteShowAlertDialog(context) {
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/',
-        (route) => false,
-      );
+      Navigator.of(context).pop();
+      // Navigator.pushNamedAndRemoveUntil(
+      //   context,
+      //   '/settingPage',
+      //   (route) => true,
+      // );
     },
   );
   AlertDialog allDelete = AlertDialog(
@@ -165,7 +267,7 @@ allDeleteShowAlertDialog(context) {
 }
 
 // Всплывающее окно "Ты уверен"
-allDeleteShowAlertDialog2(context) {
+allDeleteShowAlertDialog2(context, deleteInfo) {
   Widget yesButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -174,6 +276,7 @@ allDeleteShowAlertDialog2(context) {
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
+      deleteInfo();
       Navigator.pushNamedAndRemoveUntil(
         context,
         '/',
@@ -181,6 +284,22 @@ allDeleteShowAlertDialog2(context) {
       );
       // Сброс настроек
     },
+  );
+  Widget noButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      'НЕТ',
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SettingPage()));
+    },
+    // Navigator.pushNamed(
+    //   context,
+    //   '/settingPage',
+    // );
   );
   AlertDialog allDelete = AlertDialog(
     shape: const RoundedRectangleBorder(
@@ -207,9 +326,7 @@ allDeleteShowAlertDialog2(context) {
         ],
       ),
     ]),
-    actions: [
-      yesButton,
-    ],
+    actions: [yesButton, noButton],
   );
   showDialog(
     context: context,

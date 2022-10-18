@@ -18,19 +18,17 @@ class MyPurchases extends StatefulWidget {
 class _MyPurchasesState extends State<MyPurchases> {
   List myPurchase = [];
   String heroImage = '';
-  Future addPurchase(myPurchase) async {
-    await UserPreferences().setMyPurchases(myPurchase);
-  }
-
-  deleteInfo() async {
-    await UserPreferences().deleteMyPurcahses();
-  }
+  // Future addPurchase(myPurchase) async {
+  //   await UserPreferences().setMyPurchases(myPurchase);
+  // }
 
   @override
   void initState() {
     super.initState();
     myPurchase = UserPreferences().getMyPurchases() ?? [];
     heroImage = UserPreferences().getHero() ?? '';
+    print(myPurchase);
+    print(bloc.getStream);
   }
 
   @override
@@ -108,15 +106,6 @@ class _MyPurchasesState extends State<MyPurchases> {
                                   style: textStyleButton(),
                                 ),
                               ),
-                              //техническа кнопка для обнуления магазина
-                              IconButton(
-                                  onPressed: () {
-                                    deleteInfo();
-                                    setState(() {
-                                      myPurchase = [];
-                                    });
-                                  },
-                                  icon: const Icon(Icons.cancel)),
                             ],
                           ),
                         ),

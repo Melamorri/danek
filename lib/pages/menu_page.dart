@@ -1,4 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
@@ -18,26 +19,16 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   bool? newFormLaunch;
   bool? newHeroLaunch;
+  bool foneMusic = true;
+
   @override
   void initState() {
     super.initState();
-    loadNewLaunch();
-  }
 
-  loadNewLaunch() async {
-    setState(() {
-      bool formLaunch = UserPreferences().getFormLaunch() ?? false;
-      bool heroLaunch = UserPreferences().getHeroLaunch() ?? false;
-      newFormLaunch = formLaunch;
-      newHeroLaunch = heroLaunch;
-    });
-  }
-
-  deleteInfo() async {
-    await UserPreferences().deleteUserName();
-    await UserPreferences().deleteUserAge();
-    await UserPreferences().deleteFormLaunch();
-    await UserPreferences().deleteHeroLaunch();
+    newFormLaunch = UserPreferences().getFormLaunch() ?? false;
+    newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    foneMusic = UserPreferences().getFoneticMusic() ?? true;
+    checkFoneMusic(foneMusic);
   }
 
   @override
@@ -51,21 +42,14 @@ class _MenuPageState extends State<MenuPage> {
                 fit: BoxFit.cover)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
+          body: SingleChildScrollView(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      // техническая кнопка для обнуления
-                      IconButton(
-                          onPressed: () {
-                            deleteInfo();
-                            loadNewLaunch();
-                          },
-                          icon: const Icon(Icons.cancel)),
                       IconButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/settingpage');
