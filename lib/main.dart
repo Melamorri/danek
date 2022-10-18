@@ -19,6 +19,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await UserPreferences().init();
   // FlameAudio.playLongAudio('fonemusic.wav');
+  // FlameAudio.bgm.play('fonemusic.wav');
 
   // только вертикальная ориентация
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,13 +51,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool foneticMusic = true;
+  // AudioPlayer bgMusic;
+  // checkMusic(foneticMusic) {
+  //   if (foneticMusic) {
+  //     bgMusic.homeBGM.setVolume(.50);
+  //   } else {
+  //     bgMusic.homeBGM.setVolume(0);
+  //   }
+  // }
 
   @override
   void initState() {
     super.initState();
-    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
-    checkMusic(foneticMusic);
+
+    // bgMusic = AudioPlayer();
+    // bgMusic = (FlameAudio.loopLongAudio('fonemusic.wav', volume: .50)) as Audio;
+    // checkMusic(foneticMusic);
   }
 
   @override

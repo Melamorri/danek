@@ -1,4 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
@@ -18,12 +19,16 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   bool? newFormLaunch;
   bool? newHeroLaunch;
+  bool foneMusic = true;
 
   @override
   void initState() {
     super.initState();
+    FlameAudio.bgm.initialize();
     newFormLaunch = UserPreferences().getFormLaunch() ?? false;
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    foneMusic = UserPreferences().getFoneticMusic() ?? true;
+    checkFoneMusic(foneMusic);
   }
 
   @override

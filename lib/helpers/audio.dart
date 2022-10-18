@@ -1,13 +1,17 @@
-import 'package:flame_audio/bgm.dart';
 import 'package:flame_audio/flame_audio.dart';
 
-checkMusic(foneticMusic) async {
-  if (foneticMusic) {
-    FlameAudio.audioCache.load('fonemusic.wav');
-    // await FlameAudio.playLongAudio('fonemusic.wav');
+checkFoneMusic(foneMusic) {
+  if (foneMusic == true) {
+    FlameAudio.bgm.play('fonemusic.wav', volume: .2);
   } else {
-    // late final Bgm bgm = Bgm(audioCache: );
+    FlameAudio.bgm.dispose();
+  }
+}
 
-    await FlameAudio.bgm.stop();
+checkMusic(musicFile, foneMusic) {
+  if (foneMusic == true) {
+    FlameAudio.play(musicFile, volume: 10);
+  } else {
+    return;
   }
 }

@@ -18,15 +18,17 @@ class MyPurchases extends StatefulWidget {
 class _MyPurchasesState extends State<MyPurchases> {
   List myPurchase = [];
   String heroImage = '';
-  Future addPurchase(myPurchase) async {
-    await UserPreferences().setMyPurchases(myPurchase);
-  }
+  // Future addPurchase(myPurchase) async {
+  //   await UserPreferences().setMyPurchases(myPurchase);
+  // }
 
   @override
   void initState() {
     super.initState();
     myPurchase = UserPreferences().getMyPurchases() ?? [];
     heroImage = UserPreferences().getHero() ?? '';
+    print(myPurchase);
+    print(bloc.getStream);
   }
 
   @override

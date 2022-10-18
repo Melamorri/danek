@@ -58,6 +58,7 @@ class _SettingPageState extends State<SettingPage> {
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
     foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+
     // checkMusic(foneticMusic);
   }
 
@@ -110,14 +111,19 @@ class _SettingPageState extends State<SettingPage> {
                               foneticMusic = true;
                               print('state + $foneticMusic');
                             });
-                            checkMusic(foneticMusic);
+                            changeFoneticMusic(foneticMusic);
+                            checkFoneMusic(foneticMusic);
+                            // FlameAudio.bgm.play('fonemusic.wav');
                             break;
                           case 1:
                             setState(() {
                               foneticMusic = false;
                               print('state + $foneticMusic');
+                              // bgMusic.homeBGM.setVolume(0);
                             });
-                            checkMusic(foneticMusic);
+                            // FlameAudio.bgm.dispose();
+                            checkFoneMusic(foneticMusic);
+                            changeFoneticMusic(foneticMusic);
                         }
                       }),
                   // if (index == 0) {

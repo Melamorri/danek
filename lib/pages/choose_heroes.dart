@@ -1,4 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/main.dart';
@@ -33,6 +34,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
   ];
   String? hero;
   bool? heroLaunch;
+  bool? foneticMusic;
   Future addHero(imagepath, launch) async {
     await UserPreferences().setHero(imagepath);
     await UserPreferences().setHeroLaunch(launch);
@@ -43,6 +45,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
     super.initState();
     hero = UserPreferences().getHero() ?? '';
     heroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
   }
 
   @override
@@ -97,21 +100,41 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                     Expanded(
                       child: TabBarView(
                         children: [
-                          GestureDetector(
-                            onTap: () => FlameAudio.play('i_danaya.mp3'),
-                            child: Image.asset('assets/images/girl1.png'),
+                          Tab(
+                            child: InkWell(
+                              onTap: () {
+                                checkMusic('i_danaya.mp3', foneticMusic);
+                                // FlameAudio.play('i_danaya.mp3');
+                              },
+                              child: Image.asset('assets/images/girl1.png'),
+                            ),
                           ),
-                          GestureDetector(
-                            onTap: () => FlameAudio.play('i_deniz.mp3'),
-                            child: Image.asset('assets/images/boy1.png'),
+                          Tab(
+                            child: InkWell(
+                              onTap: () {
+                                checkMusic('i_deniz.mp3', foneticMusic);
+                                // FlameAudio.play('i_deniz.mp3');
+                              },
+                              child: Image.asset('assets/images/boy1.png'),
+                            ),
                           ),
-                          GestureDetector(
-                            onTap: () => FlameAudio.play('i_chik.mp3'),
-                            child: Image.asset('assets/images/bird.png'),
+                          Tab(
+                            child: InkWell(
+                              onTap: () {
+                                checkMusic('i_chik.mp3', foneticMusic);
+                                // FlameAudio.play('i_chik.mp3');
+                              },
+                              child: Image.asset('assets/images/bird.png'),
+                            ),
                           ),
-                          GestureDetector(
-                            onTap: () => FlameAudio.play('i_bec.mp3'),
-                            child: Image.asset('assets/images/leo.png'),
+                          Tab(
+                            child: InkWell(
+                              onTap: () {
+                                checkMusic('i_bec.mp3', foneticMusic);
+                                // FlameAudio.play('i_bec.mp3');
+                              },
+                              child: Image.asset('assets/images/leo.png'),
+                            ),
                           ),
                         ],
                       ),
@@ -131,7 +154,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           //controller.animateTo(ChooseHeroes.kImages.length - 1);
 
                           Navigator.pushNamed(context, '/heropage');
-                          FlameAudio.play('hello.mp3', volume: 10);
+                          checkMusic('hello.mp3', foneticMusic);
+                          // FlameAudio.play('hello.mp3', volume: 10);
                         }
                       },
                       child: Text(

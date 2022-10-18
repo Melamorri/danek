@@ -1,4 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/StringToObject.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/activity_list.dart';
@@ -23,17 +24,32 @@ bool? formLaunch;
 
 class _ShopPageState extends State<ShopPage> {
   List<String> myPurchases = [];
+
+  List<String> shopList = List<String>.from(
+      bloc.shopList['shop_items'].map((element) => element.toString()));
   int myCoins = 0;
+  // String myPurchaseString = myPurchases.elementAt(index);
+  //         var myPurchaseMap = StringToObject(myPurchaseString);
   upgradeMyItems() {
     setState(() {
       myPurchases;
       myCoins;
+      shopList;
     });
   }
 
-  Future addPurchase(myPurchase, int myCoins) async {
+  qwe() {
+    List<String> shopList =
+        List<String>.from(bloc.shopList['shop_items'].map((element) {
+      return element.toString();
+    }));
+    print(shopList is List);
+  }
+
+  Future addPurchase(myPurchase, int myCoins, shopList) async {
     await UserPreferences().setMyPurchases(myPurchase);
     await UserPreferences().setCoins(myCoins);
+    await UserPreferences().setShopList(shopList);
   }
 
   @override
@@ -42,6 +58,10 @@ class _ShopPageState extends State<ShopPage> {
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
     formLaunch = UserPreferences().getFormLaunch() ?? false;
+    shopList = UserPreferences().getShopList() ?? shopList;
+    qwe();
+
+    print(bloc.shopList['shop_items'] is List);
   }
 
   @override
@@ -62,11 +82,11 @@ class _ShopPageState extends State<ShopPage> {
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
             child: StreamBuilder(
-              initialData: bloc.shopList,
+              initialData: shopList,
               stream: bloc.getStream,
               builder: (context, snapshot) {
                 return shopItemsListBuilder(snapshot, context, myPurchases,
-                    myCoins, upgradeMyItems, addPurchase);
+                    myCoins, upgradeMyItems, addPurchase, shopList);
               },
             ),
           ),
@@ -76,8 +96,8 @@ class _ShopPageState extends State<ShopPage> {
   }
 }
 
-Widget shopItemsListBuilder(
-    snapshot, context, myPurchases, myCoins, upgradeMyItems, addPurchase) {
+Widget shopItemsListBuilder(snapshot, context, myPurchases, myCoins,
+    upgradeMyItems, addPurchase, shopList) {
   return Column(children: [
     Padding(
       padding: const EdgeInsets.only(top: 20.0),
@@ -118,18 +138,34 @@ Widget shopItemsListBuilder(
       height: MediaQuery.of(context).size.height * 0.75,
       child: GridView.builder(
           padding: const EdgeInsets.all(15),
-          itemCount: snapshot.data["shop_items"].length,
+          itemCount: shopList.length,
+          // snapshot.data["shop_items"].length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3),
           itemBuilder: (contextsnapshot, index) {
-            final shopList = snapshot.data["shop_items"];
+            // final shopList = snapshot.data["shop_items"];
+            // List myShop = StringToObject(shopList);
+            var myshop = StringToObject1(shopList);
+            String myShopList = shopList.elementAt(index);
+            var myShopListMap = StringToObject(myShopList);
             return InkWell(
               // если монет не достаточно
               onTap: (() {
-                (formLaunch == true) & (myCoins < shopList[index]['price'])
+                print(shopList);
+                print(myshop);
+                print(myShopListMap);
+                (formLaunch == true) & (myCoins < myShopListMap['price'])
                     ? showAlertDialog2(context, formLaunch)
-                    : showAlertDialog(context, shopList, index, myPurchases,
-                        myCoins, upgradeMyItems, addPurchase, formLaunch);
+                    : showAlertDialog(
+                        context,
+                        index,
+                        shopList,
+                        myPurchases,
+                        myCoins,
+                        upgradeMyItems,
+                        addPurchase,
+                        formLaunch,
+                        myShopListMap);
               }),
               child: Card(
                 color: CustomColors.blueGrey,
@@ -142,14 +178,14 @@ Widget shopItemsListBuilder(
                     //   style: const TextStyle(fontWeight: FontWeight.bold),
                     // ),
                     Image.asset(
-                      shopList[index]['image'],
+                      myShopListMap['image'],
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          shopList[index]['price'].toString(),
+                          myShopListMap['price'].toString(),
                           style: textStylePriceShop(),
                         ),
                         const SizedBox(width: 5),
@@ -245,8 +281,8 @@ showAlertDialog2(context, formLaunch) {
 }
 
 // Всплывающее окно купить/отмена
-showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
-    addPurchase, formLaunch) {
+showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
+    addPurchase, formLaunch, myShopListMap) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -266,17 +302,21 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      if (shopList[index]['price'] <= myCoins) {
-        int price = shopList[index]['price'];
+      if (myShopListMap['price'] <= myCoins) {
+        int price = myShopListMap['price'];
         myCoins = myCoins - price;
-        myPurchases.add(shopList[index].toString());
+        myPurchases.add(myShopListMap.toString());
+        shopList.remove(myShopListMap);
         upgradeMyItems();
-        addPurchase(myPurchases, myCoins);
+        addPurchase(myPurchases, myCoins, shopList);
 
         // var re = bloc.shopList['my_items'];
         // print(re);
-        bloc.addToCart(shopList[index]);
-
+        // bloc.addToCart(myShopListMap);
+        // Navigator.pushReplacementNamed(
+        //   context,
+        //   '/mypurchases',
+        // );
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/mypurchases',
@@ -318,12 +358,12 @@ showAlertDialog(context, shopList, index, myPurchases, myCoins, upgradeMyItems,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            shopList[index]['image'],
+            myShopListMap['image'],
             width: 100,
             //width: MediaQuery.of(context).size.width * 0.4,
           ),
           Text(
-            shopList[index]['price'].toString(),
+            myShopListMap['price'].toString(),
             style: textStyleAlertDialog(),
           ),
           const SizedBox(width: 10),
