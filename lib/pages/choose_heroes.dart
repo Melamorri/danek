@@ -1,4 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/main.dart';
@@ -33,6 +34,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
   ];
   String? hero;
   bool? heroLaunch;
+  bool? foneticMusic;
   Future addHero(imagepath, launch) async {
     await UserPreferences().setHero(imagepath);
     await UserPreferences().setHeroLaunch(launch);
@@ -43,6 +45,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
     super.initState();
     hero = UserPreferences().getHero() ?? '';
     heroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
   }
 
   @override
@@ -100,7 +103,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           Tab(
                             child: InkWell(
                               onTap: () {
-                                FlameAudio.play('i_danaya.mp3');
+                                checkMusic('i_danaya.mp3', foneticMusic);
+                                // FlameAudio.play('i_danaya.mp3');
                               },
                               child: Image.asset('assets/images/girl1.png'),
                             ),
@@ -108,7 +112,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           Tab(
                             child: InkWell(
                               onTap: () {
-                                FlameAudio.play('i_deniz.mp3');
+                                checkMusic('i_deniz.mp3', foneticMusic);
+                                // FlameAudio.play('i_deniz.mp3');
                               },
                               child: Image.asset('assets/images/boy1.png'),
                             ),
@@ -116,7 +121,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           Tab(
                             child: InkWell(
                               onTap: () {
-                                FlameAudio.play('i_chik.mp3');
+                                checkMusic('i_chik.mp3', foneticMusic);
+                                // FlameAudio.play('i_chik.mp3');
                               },
                               child: Image.asset('assets/images/bird.png'),
                             ),
@@ -124,7 +130,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           Tab(
                             child: InkWell(
                               onTap: () {
-                                FlameAudio.play('i_bec.mp3');
+                                checkMusic('i_bec.mp3', foneticMusic);
+                                // FlameAudio.play('i_bec.mp3');
                               },
                               child: Image.asset('assets/images/leo.png'),
                             ),
@@ -149,7 +156,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           // Navigator.pushNamed(context, '/gamepage');
 
                           Navigator.pushNamed(context, '/heropage');
-                          FlameAudio.play('hello.mp3', volume: 10);
+                          checkMusic('hello.mp3', foneticMusic);
+                          // FlameAudio.play('hello.mp3', volume: 10);
                         }
                       },
                       child: Text(

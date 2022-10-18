@@ -12,6 +12,7 @@ class UserPreferences {
   final _keyFormLaunch = 'formLaunch';
   final _keyHeroLaunch = 'heroLaunch';
   final _keyFoneticMusic = 'foneticMusic';
+  final _keyShopList = 'shopList';
 
   Future init() async => _preferences = await SharedPreferences.getInstance();
 
@@ -25,6 +26,8 @@ class UserPreferences {
       await _preferences?.setInt(_keyCoins, coins);
   Future setMyPurchases(List<String> mypurchases) async =>
       await _preferences?.setStringList(_keyMyPurchases, mypurchases);
+  Future setShopList(List<String> shopList) async =>
+      await _preferences?.setStringList(_keyShopList, shopList);
   // Future setMyPurchases(String mypurchases) async =>
   //     await _preferences?.setString(_keyMyPurchases, mypurchases);
   Future setLanguage(String language) async =>
@@ -47,6 +50,7 @@ class UserPreferences {
   bool? getFormLaunch() => _preferences?.getBool(_keyFormLaunch);
   bool? getHeroLaunch() => _preferences?.getBool(_keyHeroLaunch);
   bool? getFoneticMusic() => _preferences?.getBool(_keyFoneticMusic);
+  List<String>? getShopList() => _preferences?.getStringList(_keyShopList);
 
   // Future<bool>? deleteUserName() => _preferences?.remove(_keyUserName);
   // Future<bool>? deleteUserAge() => _preferences?.remove(_keyUserAge);

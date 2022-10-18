@@ -11,6 +11,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:danek/generated/codegen_loader.g.dart';
 import 'package:danek/pages/hero_page_bars.dart';
 import 'package:danek/pages/my_purchases.dart';
+import 'package:audioplayers/audioplayers.dart';
+
 // import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
@@ -18,6 +20,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   await UserPreferences().init();
   // FlameAudio.playLongAudio('fonemusic.wav');
+  // FlameAudio.bgm.play('fonemusic.wav');
 
   runApp(
     EasyLocalization(
@@ -45,13 +48,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool foneticMusic = true;
+  // AudioPlayer bgMusic;
+  // checkMusic(foneticMusic) {
+  //   if (foneticMusic) {
+  //     bgMusic.homeBGM.setVolume(.50);
+  //   } else {
+  //     bgMusic.homeBGM.setVolume(0);
+  //   }
+  // }
 
   @override
   void initState() {
     super.initState();
-    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
-    checkMusic(foneticMusic);
+
+    // bgMusic = AudioPlayer();
+    // bgMusic = (FlameAudio.loopLongAudio('fonemusic.wav', volume: .50)) as Audio;
+    // checkMusic(foneticMusic);
   }
 
   @override
