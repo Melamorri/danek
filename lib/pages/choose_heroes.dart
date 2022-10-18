@@ -17,7 +17,7 @@ class ChooseHeroes extends StatefulWidget {
   //   Image.asset('assets/images/girl1.png'),
   //   Image.asset('assets/images/boy1.png'),
   //   Image.asset('assets/images/bird.png'),
-  //   Image.asset('assets/images/leo.png'a),
+  //   Image.asset('assets/images/leo.png'),
   // ];
 
   @override
@@ -103,29 +103,25 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           Tab(
                             child: InkWell(
                               onTap: () {
-<<<<<<< HEAD
-                                if (context.locale == const Locale('ru')) {
-                                  FlameAudio.play('i_danaya.mp3');
-                                } else if (context.locale ==
-                                    const Locale('ky')) {
-                                  FlameAudio.play('i_danaya.mp3');
-                                  // FlameAudio.play('i_danaya_ky.mp3');
-                                } else if (context.locale ==
-                                    const Locale('kk')) {
-                                  FlameAudio.play('i_danaya.mp3');
-                                  // FlameAudio.play('i_danaya_kk.mp3');
-                                } else if (context.locale ==
-                                    const Locale('uz')) {
-                                  FlameAudio.play('i_danaya.mp3');
-                                  // FlameAudio.play('i_danaya_uz.mp3');
-                                } else {
-                                  FlameAudio.play('i_danaya.mp3');
-                                  // FlameAudio.play('i_danaya_en.mp3');
-                                }
-=======
                                 checkMusic('i_danaya.mp3', foneticMusic);
-                                // FlameAudio.play('i_danaya.mp3');
->>>>>>> d2c18a7421ac7154c901667825b44acc88fa1214
+                                // if (context.locale == const Locale('ru')) {
+                                //   FlameAudio.play('i_danaya.mp3');
+                                // } else if (context.locale ==
+                                //     const Locale('ky')) {
+                                //   FlameAudio.play('i_danaya.mp3');
+                                //   // FlameAudio.play('i_danaya_ky.mp3');
+                                // } else if (context.locale ==
+                                //     const Locale('kk')) {
+                                //   FlameAudio.play('i_danaya.mp3');
+                                //   // FlameAudio.play('i_danaya_kk.mp3');
+                                // } else if (context.locale ==
+                                //     const Locale('uz')) {
+                                //   FlameAudio.play('i_danaya.mp3');
+                                //   // FlameAudio.play('i_danaya_uz.mp3');
+                                // } else {
+                                //   FlameAudio.play('i_danaya.mp3');
+                                //   // FlameAudio.play('i_danaya_en.mp3');
+                                // }
                               },
                               child: Image.asset('assets/images/girl1.png'),
                             ),
@@ -133,29 +129,25 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                           Tab(
                             child: InkWell(
                               onTap: () {
-<<<<<<< HEAD
-                                if (context.locale == const Locale('ru')) {
-                                  FlameAudio.play('i_deniz.mp3');
-                                } else if (context.locale ==
-                                    const Locale('ky')) {
-                                  FlameAudio.play('i_deniz.mp3');
-                                  // FlameAudio.play('i_deniz_ky.mp3');
-                                } else if (context.locale ==
-                                    const Locale('kk')) {
-                                  FlameAudio.play('i_deniz.mp3');
-                                  // FlameAudio.play('i_deniz_kk.mp3');
-                                } else if (context.locale ==
-                                    const Locale('uz')) {
-                                  FlameAudio.play('i_deniz.mp3');
-                                  // FlameAudio.play('i_deniz_uz.mp3');
-                                } else {
-                                  FlameAudio.play('i_deniz.mp3');
-                                  // FlameAudio.play('i_deniz_en.mp3');
-                                }
-=======
                                 checkMusic('i_deniz.mp3', foneticMusic);
-                                // FlameAudio.play('i_deniz.mp3');
->>>>>>> d2c18a7421ac7154c901667825b44acc88fa1214
+                                // if (context.locale == const Locale('ru')) {
+                                //   FlameAudio.play('i_deniz.mp3');
+                                // } else if (context.locale ==
+                                //     const Locale('ky')) {
+                                //   FlameAudio.play('i_deniz.mp3');
+                                //   // FlameAudio.play('i_deniz_ky.mp3');
+                                // } else if (context.locale ==
+                                //     const Locale('kk')) {
+                                //   FlameAudio.play('i_deniz.mp3');
+                                //   // FlameAudio.play('i_deniz_kk.mp3');
+                                // } else if (context.locale ==
+                                //     const Locale('uz')) {
+                                //   FlameAudio.play('i_deniz.mp3');
+                                //   // FlameAudio.play('i_deniz_uz.mp3');
+                                // } else {
+                                //   FlameAudio.play('i_deniz.mp3');
+                                //   // FlameAudio.play('i_deniz_en.mp3');
+                                // }
                               },
                               child: Image.asset('assets/images/boy1.png'),
                             ),
