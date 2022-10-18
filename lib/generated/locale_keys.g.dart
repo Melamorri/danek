@@ -27,5 +27,10 @@ abstract class  LocaleKeys {
   static const empty = 'empty';
   static const lets_play = 'lets_play';
   static const nomoney = 'nomoney';
+  static const change_hero = 'change_hero';
+  static const no = 'no';
+  static const yes = 'yes';
+  static const you_sure = 'you_sure';
+  static const you_sure_start_again = 'you_sure_start_again';
 
 }

@@ -119,8 +119,10 @@ class _MyPurchasesState extends State<MyPurchases> {
                       children: [
                         Stack(
                           children: [
-                            Text("Ничего нет", style: stackTextStyle_1()),
-                            Text("Ничего нет", style: stackTextStyle_2()),
+                            Text(LocaleKeys.empty.tr(),
+                                style: stackTextStyle_1()),
+                            Text(LocaleKeys.empty.tr(),
+                                style: stackTextStyle_2()),
                           ],
                         ),
                         SizedBox(

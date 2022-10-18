@@ -5,6 +5,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ActivityDetailsScreen extends StatefulWidget {
   final ActivityList activityList;
@@ -23,7 +24,21 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
 
   upCoin(int cash) {
     myCoins = myCoins + cash;
-    FlameAudio.play('well_done.mp3');
+    if (context.locale == const Locale('ru')) {
+      FlameAudio.play('well_done.mp3');
+    } else if (context.locale == const Locale('ky')) {
+      FlameAudio.play('well_done.mp3');
+      // FlameAudio.play('well_done_ky.mp3');
+    } else if (context.locale == const Locale('kk')) {
+      FlameAudio.play('well_done.mp3');
+      // FlameAudio.play('well_done_kk.mp3');
+    } else if (context.locale == const Locale('uz')) {
+      FlameAudio.play('well_done.mp3');
+      // FlameAudio.play('well_done_uz.mp3');
+    } else {
+      FlameAudio.play('well_done.mp3');
+      // FlameAudio.play('well_done_en.mp3');
+    }
     Future.delayed(const Duration(milliseconds: 1700),
         () => FlameAudio.play('zvukmonet.wav'));
     Future.delayed(const Duration(seconds: 2), () => toggle());
