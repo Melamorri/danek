@@ -24,5 +24,10 @@
     "my_purchases":"My purchases",
     "empty":"Empty",
     "lets_play":"Let's play!",
-    "nomoney":"Not enough coins"
+    "nomoney":"Not enough coins",
+    "change_hero":"Change character",
+    "no":"no",
+    "yes":"yes",
+    "you_sure":"Are you sure?",
+    "you_sure_start_again":"Are you sure you want to start a new game?"
 }
