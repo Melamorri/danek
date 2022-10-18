@@ -58,8 +58,6 @@ class _SettingPageState extends State<SettingPage> {
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
     foneticMusic = UserPreferences().getFoneticMusic() ?? true;
-
-    // checkMusic(foneticMusic);
   }
 
   @override
@@ -80,7 +78,6 @@ class _SettingPageState extends State<SettingPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Drop(),
-
                   ToggleSwitch(
                       minWidth: 82.0,
                       minHeight: 53.0,
@@ -103,8 +100,6 @@ class _SettingPageState extends State<SettingPage> {
                       animate: true,
                       curve: Curves.bounceInOut,
                       onToggle: (index) {
-                        print(index);
-                        print(foneticMusic);
                         switch (index) {
                           case 0:
                             setState(() {
@@ -113,32 +108,18 @@ class _SettingPageState extends State<SettingPage> {
                             });
                             changeFoneticMusic(foneticMusic);
                             checkFoneMusic(foneticMusic);
-                            // FlameAudio.bgm.play('fonemusic.wav');
+
                             break;
                           case 1:
                             setState(() {
                               foneticMusic = false;
                               print('state + $foneticMusic');
-                              // bgMusic.homeBGM.setVolume(0);
                             });
-                            // FlameAudio.bgm.dispose();
+
                             checkFoneMusic(foneticMusic);
                             changeFoneticMusic(foneticMusic);
                         }
                       }),
-                  // if (index == 0) {
-                  //   setState(() {
-                  //     foneticMusic = true;
-                  //     print('state + $foneticMusic');
-                  //   });
-                  //   checkMusic(foneticMusic);
-                  // } else if (index == 1) {
-                  //   setState(() {
-                  //     foneticMusic == false;
-                  //     print('state + $foneticMusic');
-                  //   });
-                  //   checkMusic(foneticMusic);
-                  // }
                   (formLaunch == true)
                       ? AnimatedButton(
                           color: CustomColors.lightBlueColor,

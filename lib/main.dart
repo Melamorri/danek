@@ -18,6 +18,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await UserPreferences().init();
+  FlameAudio.bgm.initialize();
+  loadMusic();
   // FlameAudio.playLongAudio('fonemusic.wav');
   // FlameAudio.bgm.play('fonemusic.wav');
 
@@ -51,22 +53,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // AudioPlayer bgMusic;
-  // checkMusic(foneticMusic) {
-  //   if (foneticMusic) {
-  //     bgMusic.homeBGM.setVolume(.50);
-  //   } else {
-  //     bgMusic.homeBGM.setVolume(0);
-  //   }
-  // }
-
   @override
   void initState() {
     super.initState();
-
-    // bgMusic = AudioPlayer();
-    // bgMusic = (FlameAudio.loopLongAudio('fonemusic.wav', volume: .50)) as Audio;
-    // checkMusic(foneticMusic);
   }
 
   @override

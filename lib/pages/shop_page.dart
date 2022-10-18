@@ -38,14 +38,6 @@ class _ShopPageState extends State<ShopPage> {
     });
   }
 
-  qwe() {
-    List<String> shopList =
-        List<String>.from(bloc.shopList['shop_items'].map((element) {
-      return element.toString();
-    }));
-    print(shopList is List);
-  }
-
   Future addPurchase(myPurchase, int myCoins, shopList) async {
     await UserPreferences().setMyPurchases(myPurchase);
     await UserPreferences().setCoins(myCoins);
@@ -59,9 +51,6 @@ class _ShopPageState extends State<ShopPage> {
     myCoins = UserPreferences().getCoins() ?? 0;
     formLaunch = UserPreferences().getFormLaunch() ?? false;
     shopList = UserPreferences().getShopList() ?? shopList;
-    qwe();
-
-    print(bloc.shopList['shop_items'] is List);
   }
 
   @override
@@ -151,10 +140,12 @@ Widget shopItemsListBuilder(snapshot, context, myPurchases, myCoins,
             return InkWell(
               // если монет не достаточно
               onTap: (() {
-                print(shopList);
+                print(shopList is List);
                 print(myshop);
-                print(myShopListMap);
-                (formLaunch == true) & (myCoins < myShopListMap['price'])
+                print(myShopListMap is Map);
+                print(myShopListMap['price']);
+                (formLaunch == true) &
+                        (myCoins < int.parse(myShopListMap['price']))
                     ? showAlertDialog2(context, formLaunch)
                     : showAlertDialog(
                         context,
@@ -302,11 +293,12 @@ showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      if (myShopListMap['price'] <= myCoins) {
-        int price = myShopListMap['price'];
+      if (int.parse(myShopListMap['price']) <= myCoins) {
+        int price = int.parse(myShopListMap['price']);
         myCoins = myCoins - price;
         myPurchases.add(myShopListMap.toString());
-        shopList.remove(myShopListMap);
+
+        shopList.remove(myShopListMap.toString());
         upgradeMyItems();
         addPurchase(myPurchases, myCoins, shopList);
 
