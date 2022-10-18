@@ -298,9 +298,6 @@ showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      // (myCoins < shopList[index]['price'])
-      //     ? 'Монет не достаточно'
-      //     :
       LocaleKeys.buy.tr(),
       style: buttonStyleAlertDialog(),
     ),
@@ -383,7 +380,7 @@ showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
     ],
   );
 
-  //Если попал в магазин не рарегистрированный "Начинай играть!"
+  //Если попал в магазин не зарегистрированный "Начинай играть!"
   AlertDialog noAlert = AlertDialog(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
@@ -428,3 +425,63 @@ showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
     },
   );
 }
+// Всплывающее окно "Уже сть!"
+// showAlertDialog3(context, formLaunch) {
+//   Widget playButton = TextButton(
+//     style: ButtonStyle(
+//         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+//     child: Text(
+//       'Назад',
+//       style: buttonStyleAlertDialog(),
+//     ),
+//     onPressed: () {
+//       Navigator.pushNamedAndRemoveUntil(
+//         context,
+//         '/shoppage',
+//         (route) => false,
+//       );
+//     },
+//   );
+//   AlertDialog noCachAlert = AlertDialog(
+//     shape: const RoundedRectangleBorder(
+//       borderRadius: BorderRadius.all(
+//         Radius.circular(20.0),
+//       ),
+//     ),
+//     titleTextStyle: textStyleNoAlertDialog(),
+//     actionsAlignment: MainAxisAlignment.center,
+//     title: Text(
+//       'Уже есть!',
+//       textAlign: TextAlign.center,
+//     ),
+//     content: Wrap(children: [
+//       Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Image.asset(
+//             'assets/images/smile_hello.png',
+//             width: 140,
+//             //width: MediaQuery.of(context).size.width * 0.4,
+//           ),
+//           const SizedBox(width: 10),
+//         ],
+//       ),
+//     ]),
+//     actions: [
+//       playButton,
+//     ],
+//   );
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Theme(
+//         data: ThemeData(
+//           dialogTheme: const DialogTheme(
+//             backgroundColor: CustomColors.blueGrey,
+//           ),
+//         ),
+//         child: noCachAlert,
+//       );
+//     },
+//   );
+// }

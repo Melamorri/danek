@@ -11,8 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:danek/generated/codegen_loader.g.dart';
 import 'package:danek/pages/hero_page_bars.dart';
 import 'package:danek/pages/my_purchases.dart';
-import 'package:audioplayers/audioplayers.dart';
-
+import 'package:flutter/services.dart';
 // import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
@@ -22,6 +21,10 @@ void main() async {
   // FlameAudio.playLongAudio('fonemusic.wav');
   // FlameAudio.bgm.play('fonemusic.wav');
 
+  // только вертикальная ориентация
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(
     EasyLocalization(
         supportedLocales: const [

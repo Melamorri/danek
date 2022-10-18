@@ -43,13 +43,9 @@ class _SettingPageState extends State<SettingPage> {
     await UserPreferences().clearData();
   }
 
-  // checkMusic(foneticMusic) {
-  //   if (foneticMusic) {
-  //     bgMusic.homeBGM.setVolume(.50);
-  //   } else {
-  //     bgMusic.homeBGM.setVolume(0);
-  //   }
-  // }
+  changeHeroInfo() async {
+    await UserPreferences().deleteHero();
+  }
 
   @override
   void initState() {
@@ -84,6 +80,7 @@ class _SettingPageState extends State<SettingPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Drop(),
+
                   ToggleSwitch(
                       minWidth: 82.0,
                       minHeight: 53.0,
@@ -142,38 +139,75 @@ class _SettingPageState extends State<SettingPage> {
                   //   });
                   //   checkMusic(foneticMusic);
                   // }
-
+                  (formLaunch == true)
+                      ? AnimatedButton(
+                          color: CustomColors.yellowColor,
+                          borderColor: CustomColors.yellowColor,
+                          shadowColor: CustomColors.orangeColor,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/chooseheroes');
+                          },
+                          child: Text(
+                            'Сменить героя',
+                            style: const TextStyle(
+                                fontFamily: 'RobotoCondensed',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                   AnimatedButton(
                     color: CustomColors.yellowColor,
                     borderColor: CustomColors.yellowColor,
                     shadowColor: CustomColors.orangeColor,
                     onPressed: () {
-                      Navigator.pushNamed(context, '/');
+                      (formLaunch == true)
+                          ? Navigator.pushNamed(context, '/heropage')
+                          : Navigator.pushNamed(context, '/');
                     },
                     child: Text(
-                      LocaleKeys.menu.tr().toUpperCase(),
-                      style: const TextStyle(
-                          fontFamily: 'RobotoCondensed',
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold),
+                      LocaleKeys.back.tr().toUpperCase(),
+                      style: textStyleButton(),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            elevation: 0,
-            backgroundColor: Colors.red,
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 2, color: CustomColors.blueGrey),
-                borderRadius: BorderRadius.circular(100)),
-            onPressed: () {
-              allDeleteShowAlertDialog(context, deleteInfo);
-            },
-            child: const Icon(Icons.delete_forever),
+          floatingActionButton: (formLaunch == true)
+              ? FloatingActionButton(
+                  elevation: 0,
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                          width: 2, color: CustomColors.blueGrey),
+                      borderRadius: BorderRadius.circular(100)),
+                  onPressed: () {
+                    allDeleteShowAlertDialog(context, deleteInfo);
+                  },
+                  child: const Icon(Icons.delete_forever),
+                )
+              : null,
+        ),
+      ),
+    );
+  }
+
+  Widget changeHero() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: TextButton(
+          onPressed: () {
+            changeHeroInfo();
+            Navigator.pushNamed(context, '/chooseheroes');
+          },
+          child: Text(
+            "Сменить героя",
+            style: buttonStyleAlertDialog(),
           ),
         ),
       ),
