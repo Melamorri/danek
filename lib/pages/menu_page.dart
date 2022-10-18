@@ -24,7 +24,7 @@ class _MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    FlameAudio.bgm.initialize();
+
     newFormLaunch = UserPreferences().getFormLaunch() ?? false;
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     foneMusic = UserPreferences().getFoneticMusic() ?? true;

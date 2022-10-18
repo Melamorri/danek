@@ -1,3 +1,4 @@
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -19,6 +20,7 @@ class ActivityDetailsScreen extends StatefulWidget {
 
 class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   int myCoins = 0;
+
   upCoin(int cash) {
     myCoins = myCoins + cash;
     FlameAudio.play('well_done.mp3');
