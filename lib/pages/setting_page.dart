@@ -141,9 +141,9 @@ class _SettingPageState extends State<SettingPage> {
                   // }
                   (formLaunch == true)
                       ? AnimatedButton(
-                          color: CustomColors.yellowColor,
-                          borderColor: CustomColors.yellowColor,
-                          shadowColor: CustomColors.orangeColor,
+                          color: CustomColors.lightBlueColor,
+                          borderColor: CustomColors.darkBlueColor,
+                          shadowColor: CustomColors.darkBlueColor,
                           onPressed: () {
                             Navigator.pushNamed(context, '/chooseheroes');
                           },
