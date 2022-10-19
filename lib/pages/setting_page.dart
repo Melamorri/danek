@@ -1,4 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/drop_down.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/main.dart';
@@ -25,6 +26,11 @@ class _SettingPageState extends State<SettingPage> {
   bool? newHeroLaunch;
   List<String> myPurchases = [];
   int myCoins = 0;
+  bool? foneticMusic;
+
+  Future changeFoneticMusic(foneticMusic) async {
+    await UserPreferences().setFoneticMusic(foneticMusic);
+  }
 
   deleteInfo() async {
     // await UserPreferences().deleteUserName();
@@ -37,6 +43,10 @@ class _SettingPageState extends State<SettingPage> {
     await UserPreferences().clearData();
   }
 
+  changeHeroInfo() async {
+    await UserPreferences().deleteHero();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -47,6 +57,7 @@ class _SettingPageState extends State<SettingPage> {
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
   }
 
   @override
@@ -88,38 +99,96 @@ class _SettingPageState extends State<SettingPage> {
                       ],
                       animate: true,
                       curve: Curves.bounceInOut,
-                      onToggle: (index) {}),
+                      onToggle: (index) {
+                        switch (index) {
+                          case 0:
+                            setState(() {
+                              foneticMusic = true;
+                              print('state + $foneticMusic');
+                            });
+                            changeFoneticMusic(foneticMusic);
+                            checkFoneMusic(foneticMusic);
+
+                            break;
+                          case 1:
+                            setState(() {
+                              foneticMusic = false;
+                              print('state + $foneticMusic');
+                            });
+
+                            checkFoneMusic(foneticMusic);
+                            changeFoneticMusic(foneticMusic);
+                        }
+                      }),
+                  (formLaunch == true)
+                      ? AnimatedButton(
+                          color: CustomColors.yellowColor,
+                          borderColor: CustomColors.yellowColor,
+                          shadowColor: CustomColors.orangeColor,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/chooseheroes');
+                          },
+                          child: Text(
+                            LocaleKeys.change_hero.tr(),
+                            style: const TextStyle(
+                                fontFamily: 'RobotoCondensed',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                   AnimatedButton(
                     color: CustomColors.yellowColor,
                     borderColor: CustomColors.yellowColor,
                     shadowColor: CustomColors.orangeColor,
                     onPressed: () {
-                      Navigator.pushNamed(context, '/');
+                      (formLaunch == true)
+                          ? Navigator.pushNamed(context, '/heropage')
+                          : Navigator.pushNamed(context, '/menupage');
                     },
                     child: Text(
-                      LocaleKeys.menu.tr().toUpperCase(),
-                      style: const TextStyle(
-                          fontFamily: 'RobotoCondensed',
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold),
+                      LocaleKeys.back.tr().toUpperCase(),
+                      style: textStyleButton(),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            elevation: 0,
-            backgroundColor: Colors.red,
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(width: 2, color: CustomColors.blueGrey),
-                borderRadius: BorderRadius.circular(100)),
-            onPressed: () {
-              allDeleteShowAlertDialog(context, deleteInfo);
-            },
-            child: const Icon(Icons.delete_forever),
+          floatingActionButton: (formLaunch == true)
+              ? FloatingActionButton(
+                  elevation: 0,
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                          width: 2, color: CustomColors.blueGrey),
+                      borderRadius: BorderRadius.circular(100)),
+                  onPressed: () {
+                    allDeleteShowAlertDialog(context, deleteInfo);
+                  },
+                  child: const Icon(Icons.delete_forever),
+                )
+              : null,
+        ),
+      ),
+    );
+  }
+
+  Widget changeHero() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: TextButton(
+          onPressed: () {
+            changeHeroInfo();
+            Navigator.pushNamed(context, '/chooseheroes');
+          },
+          child: Text(
+            LocaleKeys.change_hero.tr(),
+            style: buttonStyleAlertDialog(),
           ),
         ),
       ),
@@ -132,7 +201,7 @@ allDeleteShowAlertDialog(context, deleteInfo) {
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      'ДА',
+      LocaleKeys.yes.tr().toUpperCase(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
@@ -143,7 +212,7 @@ allDeleteShowAlertDialog(context, deleteInfo) {
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      'НЕТ',
+      LocaleKeys.no.tr().toUpperCase(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
@@ -164,7 +233,7 @@ allDeleteShowAlertDialog(context, deleteInfo) {
     titleTextStyle: textStyleNoAlertDialog(),
     actionsAlignment: MainAxisAlignment.center,
     title: Text(
-      'Точно хочешь начать игру сначала?',
+      LocaleKeys.you_sure_start_again.tr(),
       textAlign: TextAlign.center,
     ),
     content: Wrap(children: [
@@ -203,14 +272,14 @@ allDeleteShowAlertDialog2(context, deleteInfo) {
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      'ДА',
+      LocaleKeys.yes.tr().toUpperCase(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
       deleteInfo();
       Navigator.pushNamedAndRemoveUntil(
         context,
-        '/',
+        '/menupage',
         (route) => false,
       );
       // Сброс настроек
@@ -220,7 +289,7 @@ allDeleteShowAlertDialog2(context, deleteInfo) {
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      'НЕТ',
+      LocaleKeys.no.tr().toUpperCase(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
@@ -241,7 +310,7 @@ allDeleteShowAlertDialog2(context, deleteInfo) {
     titleTextStyle: textStyleNoAlertDialog(),
     actionsAlignment: MainAxisAlignment.center,
     title: Text(
-      'Ты уверен?',
+      LocaleKeys.you_sure.tr(),
       textAlign: TextAlign.center,
     ),
     content: Wrap(children: [

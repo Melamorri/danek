@@ -40,7 +40,12 @@ class CodegenLoader extends AssetLoader{
   "my_purchases": "My purchases",
   "empty": "Empty",
   "lets_play": "Let's play!",
-  "nomoney": "Not enough coins"
+  "nomoney": "Not enough coins",
+  "change_hero": "Change character",
+  "no": "no",
+  "yes": "yes",
+  "you_sure": "Are you sure?",
+  "you_sure_start_again": "Are you sure you want to start a new game?"
 };
 static const Map<String,dynamic> kk = {
   "shop": "Дүкен",
@@ -68,7 +73,12 @@ static const Map<String,dynamic> kk = {
   "my_purchases": "Менің сатып алуларым",
   "empty": "Бос",
   "lets_play": "Кел ойнайық!",
-  "nomoney": "Тиындар жеткіліксіз"
+  "nomoney": "Тиындар жеткіліксіз",
+  "change_hero": "Таңбаны өзгерту",
+  "no": "Жоқ",
+  "yes": "Иә",
+  "you_sure": "Сен сенімдісің бе?",
+  "you_sure_start_again": "Жаңа ойынды бастағыңыз келетініне сенімдісіз бе?"
 };
 static const Map<String,dynamic> ky = {
   "shop": "Дүкөн",
@@ -96,7 +106,12 @@ static const Map<String,dynamic> ky = {
   "my_purchases": "Менин сатып алууларым",
   "empty": "Бош",
   "lets_play": "Кел ойнойлу!",
-  "nomoney": "Монеталар жетишсиз"
+  "nomoney": "Монеталар жетишсиз",
+  "change_hero": "Символду өзгөртүү",
+  "no": "Жок",
+  "yes": "Ооба",
+  "you_sure": "Сен ишенесиңби?",
+  "you_sure_start_again": "Чын эле жаңы оюнду баштагыңыз келеби?"
 };
 static const Map<String,dynamic> ru = {
   "shop": "Магазин",
@@ -124,7 +139,12 @@ static const Map<String,dynamic> ru = {
   "my_purchases": "Мои покупки",
   "empty": "Ничего нет",
   "lets_play": "Начинай играть!",
-  "nomoney": "Недостаточно монет"
+  "nomoney": "Недостаточно монет",
+  "change_hero": "Сменить героя",
+  "no": "Нет",
+  "yes": "Да",
+  "you_sure": "Ты уверен?",
+  "you_sure_start_again": "Точно хочешь начать игру сначала?"
 };
 static const Map<String,dynamic> uz = {
   "shop": "Do'kon",
@@ -152,7 +172,12 @@ static const Map<String,dynamic> uz = {
   "my_purchases": "Mening xaridlarim",
   "empty": "Bo'sh",
   "lets_play": "Keling, o'ynaymiz!",
-  "nomoney": "Tangalar yetarli emas"
+  "nomoney": "Tangalar yetarli emas",
+  "change_hero": "Belgini o'zgartirish",
+  "no": "Yo'q",
+  "yes": "Ha",
+  "you_sure": "Ishonchingiz komilmi?",
+  "you_sure_start_again": "Haqiqatan ham yangi oʻyinni boshlamoqchimisiz?"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "kk": kk, "ky": ky, "ru": ru, "uz": uz};
 }

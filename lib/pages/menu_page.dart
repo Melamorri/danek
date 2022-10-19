@@ -1,4 +1,5 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
@@ -19,12 +20,17 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   bool? newFormLaunch;
   bool? newHeroLaunch;
+  bool foneMusic = true;
 
   @override
   void initState() {
     super.initState();
+
     newFormLaunch = UserPreferences().getFormLaunch() ?? false;
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    foneMusic = UserPreferences().getFoneticMusic() ?? true;
+    // checkFoneMusic(foneMusic);
+    resumeMusic(foneMusic);
   }
 
   @override
@@ -38,9 +44,9 @@ class _MenuPageState extends State<MenuPage> {
                 fit: BoxFit.cover)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
+          body: SingleChildScrollView(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
                   Row(

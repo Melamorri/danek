@@ -18,15 +18,17 @@ class MyPurchases extends StatefulWidget {
 class _MyPurchasesState extends State<MyPurchases> {
   List myPurchase = [];
   String heroImage = '';
-  Future addPurchase(myPurchase) async {
-    await UserPreferences().setMyPurchases(myPurchase);
-  }
+  // Future addPurchase(myPurchase) async {
+  //   await UserPreferences().setMyPurchases(myPurchase);
+  // }
 
   @override
   void initState() {
     super.initState();
     myPurchase = UserPreferences().getMyPurchases() ?? [];
     heroImage = UserPreferences().getHero() ?? '';
+    print(myPurchase);
+    print(bloc.getStream);
   }
 
   @override
@@ -117,8 +119,10 @@ class _MyPurchasesState extends State<MyPurchases> {
                       children: [
                         Stack(
                           children: [
-                            Text("Ничего нет", style: stackTextStyle_1()),
-                            Text("Ничего нет", style: stackTextStyle_2()),
+                            Text(LocaleKeys.empty.tr(),
+                                style: stackTextStyle_1()),
+                            Text(LocaleKeys.empty.tr(),
+                                style: stackTextStyle_2()),
                           ],
                         ),
                         SizedBox(

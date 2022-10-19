@@ -1,4 +1,6 @@
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/user_preferences.dart';
+import 'package:danek/models/models.dart';
 
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +19,15 @@ class HeroListState extends State<HeroList> {
   int _selectedIndex = -1;
   String heroImage = '';
   int myCoins = 0;
+  bool? foneticMusic;
 
   @override
   void initState() {
     super.initState();
     heroImage = UserPreferences().getHero() ?? '';
     myCoins = UserPreferences().getCoins() ?? 0;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+    resumeMusic(foneticMusic);
   }
 
   @override
@@ -41,10 +46,12 @@ class HeroListState extends State<HeroList> {
           child: Column(
             children: [
               _addSpace(30),
+              settings(),
               _addHorizontalListForAppBar(myCoins),
-              // _addSpace(10),
+              _addSpace(10),
+
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.75,
+                height: MediaQuery.of(context).size.height * 0.65,
                 child: Image.asset(heroImage),
               ),
               // _addSpace(10),
@@ -64,7 +71,7 @@ class HeroListState extends State<HeroList> {
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, '/');
+            Navigator.pushNamed(context, '/menupage');
           },
           child: const CircleAvatar(
             radius: 30.0,
@@ -83,7 +90,8 @@ class HeroListState extends State<HeroList> {
         InkWell(
           enableFeedback: false,
           onTap: () {
-            FlameAudio.play('zvukmonet.wav', volume: 5);
+            checkMusic('zvukmonet.wav', foneticMusic);
+            // FlameAudio.play('zvukmonet.wav', volume: 5);
           },
           child: CircleAvatar(
             radius: 30.0,
@@ -95,6 +103,20 @@ class HeroListState extends State<HeroList> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget settings() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/settingpage');
+            },
+            icon: const Icon(Icons.settings)),
+      ),
     );
   }
 
@@ -114,7 +136,8 @@ class HeroListState extends State<HeroList> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    FlameAudio.play(activity.wav);
+                    checkMusic(activity.wav, foneticMusic);
+                    // FlameAudio.play(activity.wav);
                     _selectedIndex = index;
                   });
                   Navigator.push(
