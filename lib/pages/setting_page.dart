@@ -129,7 +129,7 @@ class _SettingPageState extends State<SettingPage> {
                             Navigator.pushNamed(context, '/chooseheroes');
                           },
                           child: Text(
-                            'Сменить героя',
+                            LocaleKeys.change_hero.tr(),
                             style: const TextStyle(
                                 fontFamily: 'RobotoCondensed',
                                 fontSize: 20,
@@ -144,7 +144,7 @@ class _SettingPageState extends State<SettingPage> {
                     onPressed: () {
                       (formLaunch == true)
                           ? Navigator.pushNamed(context, '/heropage')
-                          : Navigator.pushNamed(context, '/');
+                          : Navigator.pushNamed(context, '/menupage');
                     },
                     child: Text(
                       LocaleKeys.back.tr().toUpperCase(),
@@ -187,7 +187,7 @@ class _SettingPageState extends State<SettingPage> {
             Navigator.pushNamed(context, '/chooseheroes');
           },
           child: Text(
-            "Сменить героя",
+            LocaleKeys.change_hero.tr(),
             style: buttonStyleAlertDialog(),
           ),
         ),
@@ -201,7 +201,7 @@ allDeleteShowAlertDialog(context, deleteInfo) {
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      'ДА',
+      LocaleKeys.yes.tr().toUpperCase(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
@@ -212,7 +212,7 @@ allDeleteShowAlertDialog(context, deleteInfo) {
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      'НЕТ',
+      LocaleKeys.no.tr().toUpperCase(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
@@ -233,7 +233,7 @@ allDeleteShowAlertDialog(context, deleteInfo) {
     titleTextStyle: textStyleNoAlertDialog(),
     actionsAlignment: MainAxisAlignment.center,
     title: Text(
-      'Точно хочешь начать игру сначала?',
+      LocaleKeys.you_sure_start_again.tr(),
       textAlign: TextAlign.center,
     ),
     content: Wrap(children: [
@@ -272,14 +272,14 @@ allDeleteShowAlertDialog2(context, deleteInfo) {
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      'ДА',
+      LocaleKeys.yes.tr().toUpperCase(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
       deleteInfo();
       Navigator.pushNamedAndRemoveUntil(
         context,
-        '/',
+        '/menupage',
         (route) => false,
       );
       // Сброс настроек
@@ -289,7 +289,7 @@ allDeleteShowAlertDialog2(context, deleteInfo) {
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
     child: Text(
-      'НЕТ',
+      LocaleKeys.no.tr().toUpperCase(),
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
@@ -310,7 +310,7 @@ allDeleteShowAlertDialog2(context, deleteInfo) {
     titleTextStyle: textStyleNoAlertDialog(),
     actionsAlignment: MainAxisAlignment.center,
     title: Text(
-      'Ты уверен?',
+      LocaleKeys.you_sure.tr(),
       textAlign: TextAlign.center,
     ),
     content: Wrap(children: [

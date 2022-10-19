@@ -28,7 +28,8 @@ class _MenuPageState extends State<MenuPage> {
     newFormLaunch = UserPreferences().getFormLaunch() ?? false;
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     foneMusic = UserPreferences().getFoneticMusic() ?? true;
-    checkFoneMusic(foneMusic);
+    // checkFoneMusic(foneMusic);
+    resumeMusic(foneMusic);
   }
 
   @override

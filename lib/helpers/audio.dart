@@ -17,6 +17,15 @@ checkMusic(musicFile, foneMusic) {
   }
 }
 
+checkMusicHeroPage(musicFile, foneMusic) {
+  if (foneMusic == true) {
+    // FlameAudio.bgm.stop();
+    FlameAudio.play(musicFile, volume: 10);
+  } else {
+    return;
+  }
+}
+
 resumeMusic(foneMusic) {
   if (foneMusic == true) {
     FlameAudio.bgm.resume();
