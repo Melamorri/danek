@@ -72,9 +72,15 @@ class _MyPurchasesState extends State<MyPurchases> {
                           child: checkoutListBuildertwo(
                               snapshot, context, myPurchase),
                         ),
-                        Image.asset(
-                          heroImage,
-                          height: MediaQuery.of(context).size.height * 0.55,
+                        DragTarget(
+                          builder: (BuildContext context,
+                              List<Object?> candidateData,
+                              List<dynamic> rejectedData) {
+                            return Image.asset(
+                              heroImage,
+                              height: MediaQuery.of(context).size.height * 0.55,
+                            );
+                          },
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -207,31 +213,45 @@ Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
         itemBuilder: (context, index) {
           String myPurchaseString = myPurchase.elementAt(index);
           var myPurchaseMap = StringToObject(myPurchaseString);
-          return SizedBox(
-            width: 110,
-            child: InkWell(
-              onTap: (() {
-                // примерка новой одежды
-                Navigator.pushNamed(context, '/heropage');
-              }),
-              child: Card(
-                color: CustomColors.blueGrey,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 5),
-                    // Text(
-                    //   cartList[index]['name'],
-                    //   style: const TextStyle(fontWeight: FontWeight.bold),
-                    // ),
-                    Image.asset(myPurchaseMap['image'], height: 70),
-                    Text(
-                      LocaleKeys.select.tr(),
-                      style: buttonStyleMyPurchases(),
+          return Column(
+            children: [
+              SizedBox(
+                width: 110,
+                child: InkWell(
+                  onTap: (() {
+                    // примерка новой одежды
+                    Navigator.pushNamed(context, '/heropage');
+                  }),
+                  child: Card(
+                    color: CustomColors.blueGrey,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        // Text(
+                        //   cartList[index]['name'],
+                        //   style: const TextStyle(fontWeight: FontWeight.bold),
+                        // ),
+                        Column(
+                          children: [
+                            Draggable(
+                              feedback: Image.asset(myPurchaseMap['image'],
+                                  height: 130),
+                              child: Image.asset(myPurchaseMap['image'],
+                                  height: 70),
+                            ),
+                          ],
+                        ),
+
+                        Text(
+                          LocaleKeys.select.tr(),
+                          style: buttonStyleMyPurchases(),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           );
         }),
   );
