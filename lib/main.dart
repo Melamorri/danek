@@ -1,6 +1,7 @@
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/pages/choose_heroes.dart';
+import 'package:danek/pages/cover_screen_page.dart';
 import 'package:danek/pages/form_page.dart';
 import 'package:danek/pages/menu_page.dart';
 import 'package:danek/pages/setting_page.dart';
@@ -67,7 +68,8 @@ class _MyAppState extends State<MyApp> {
         locale: context.locale,
         // title: '',
         routes: {
-          '/': (context) => MenuPage(),
+          '/': (context) => CoverScreenPage(),
+          '/menupage': (context) => MenuPage(),
           '/formpage': (context) => FormPage(),
           '/chooseheroes': (context) => ChooseHeroes(),
           '/shoppage': (context) => ShopPage(),

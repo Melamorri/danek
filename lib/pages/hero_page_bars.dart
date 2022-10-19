@@ -70,7 +70,7 @@ class HeroListState extends State<HeroList> {
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, '/');
+            Navigator.pushNamed(context, '/menupage');
           },
           child: const CircleAvatar(
             radius: 30.0,

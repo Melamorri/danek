@@ -144,7 +144,7 @@ class _SettingPageState extends State<SettingPage> {
                     onPressed: () {
                       (formLaunch == true)
                           ? Navigator.pushNamed(context, '/heropage')
-                          : Navigator.pushNamed(context, '/');
+                          : Navigator.pushNamed(context, '/menupage');
                     },
                     child: Text(
                       LocaleKeys.back.tr().toUpperCase(),
@@ -279,7 +279,7 @@ allDeleteShowAlertDialog2(context, deleteInfo) {
       deleteInfo();
       Navigator.pushNamedAndRemoveUntil(
         context,
-        '/',
+        '/menupage',
         (route) => false,
       );
       // Сброс настроек

@@ -113,7 +113,7 @@ class FormPageState extends State<FormPage> {
                       borderColor: CustomColors.darkBlueColor,
                       shadowColor: CustomColors.darkBlueColor,
                       onPressed: () {
-                        Navigator.pushNamed(context, '/');
+                        Navigator.pushNamed(context, '/menupage');
                       },
                       child: Text(
                         LocaleKeys.back.tr().toUpperCase(),

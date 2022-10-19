@@ -200,7 +200,7 @@ Widget shopItemsListBuilder(snapshot, context, myPurchases, myCoins,
       onPressed: () {
         (formLaunch == true)
             ? Navigator.pushNamed(context, '/heropage')
-            : Navigator.pushNamed(context, '/');
+            : Navigator.pushNamed(context, '/menupage');
       },
       child: Text(
         LocaleKeys.back.tr().toUpperCase(),
