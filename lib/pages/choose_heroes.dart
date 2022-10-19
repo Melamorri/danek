@@ -104,21 +104,26 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             child: InkWell(
                               onTap: () {
                                 if (context.locale == const Locale('ru')) {
-                                  checkMusic('i_danaya.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_danaya.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('ky')) {
-                                  checkMusic('i_danaya.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_danaya.mp3', foneticMusic);
                                   // checkMusic('i_danaya_ky.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('kk')) {
-                                  checkMusic('i_danaya.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_danaya.mp3', foneticMusic);
                                   // checkMusic('i_danaya_kk.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('uz')) {
-                                  checkMusic('i_danaya.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_danaya.mp3', foneticMusic);
                                   // checkMusic('i_danaya_uz.mp3', foneticMusic);
                                 } else {
-                                  checkMusic('i_danaya.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_danaya.mp3', foneticMusic);
                                   // checkMusic('i_danaya_en.mp3', foneticMusic);
                                 }
                               },
@@ -129,21 +134,26 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             child: InkWell(
                               onTap: () {
                                 if (context.locale == const Locale('ru')) {
-                                  checkMusic('i_deniz.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_deniz.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('ky')) {
-                                  checkMusic('i_deniz.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_deniz.mp3', foneticMusic);
                                   // checkMusic('i_deniz_ky.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('kk')) {
-                                  checkMusic('i_deniz.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_deniz.mp3', foneticMusic);
                                   // checkMusic('i_deniz_kk.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('uz')) {
-                                  checkMusic('i_deniz.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_deniz.mp3', foneticMusic);
                                   // checkMusic('i_deniz_uz.mp3', foneticMusic);
                                 } else {
-                                  checkMusic('i_deniz.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_deniz.mp3', foneticMusic);
                                   // checkMusic('i_deniz_en.mp3', foneticMusic);
                                 }
                               },
@@ -154,21 +164,26 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             child: InkWell(
                               onTap: () {
                                 if (context.locale == const Locale('ru')) {
-                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_chik.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('ky')) {
-                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_chik.mp3', foneticMusic);
                                   // checkMusic('i_chik_ky.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('kk')) {
-                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_chik.mp3', foneticMusic);
                                   // checkMusic('i_chik_kk.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('uz')) {
-                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_chik.mp3', foneticMusic);
                                   // checkMusic('i_chik_uz.mp3', foneticMusic);
                                 } else {
-                                  checkMusic('i_chik.mp3', foneticMusic);
+                                  checkMusicHeroPage(
+                                      'i_chik.mp3', foneticMusic);
                                   // checkMusic('i_chik_en.mp3', foneticMusic);
                                 }
                               },
@@ -179,21 +194,21 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             child: InkWell(
                               onTap: () {
                                 if (context.locale == const Locale('ru')) {
-                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  checkMusicHeroPage('i_bec.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('ky')) {
-                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  checkMusicHeroPage('i_bec.mp3', foneticMusic);
                                   // checkMusic('i_bec_ky.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('kk')) {
-                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  checkMusicHeroPage('i_bec.mp3', foneticMusic);
                                   // checkMusic('i_bec_kk.mp3', foneticMusic);
                                 } else if (context.locale ==
                                     const Locale('uz')) {
-                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  checkMusicHeroPage('i_bec.mp3', foneticMusic);
                                   // checkMusic('i_bec_uz.mp3', foneticMusic);
                                 } else {
-                                  checkMusic('i_bec.mp3', foneticMusic);
+                                  checkMusicHeroPage('i_bec.mp3', foneticMusic);
                                   // checkMusic('i_bec_en.mp3', foneticMusic);
                                 }
                               },
