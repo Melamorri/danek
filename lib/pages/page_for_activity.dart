@@ -5,12 +5,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:neon_circular_timer/neon_circular_timer.dart';
-<<<<<<< HEAD
-import 'package:danek/helpers/user_preferences.dart';
-import 'package:danek/models/days_in_row.dart';
-=======
 import 'package:easy_localization/easy_localization.dart';
->>>>>>> 66066976f02187efadea9d1ac35ca6f2edca83dc
 
 class ActivityDetailsScreen extends StatefulWidget {
   final ActivityList activityList;

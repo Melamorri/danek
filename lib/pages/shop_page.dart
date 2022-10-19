@@ -23,16 +23,12 @@ bool? formLaunch;
 
 class _ShopPageState extends State<ShopPage> {
   List<String> myPurchases = [];
-<<<<<<< HEAD
-  var myCoins = 0;
-=======
 
   List<String> shopList = List<String>.from(
       bloc.shopList['shop_items'].map((element) => element.toString()));
   int myCoins = 0;
   // String myPurchaseString = myPurchases.elementAt(index);
   //         var myPurchaseMap = StringToObject(myPurchaseString);
->>>>>>> 66066976f02187efadea9d1ac35ca6f2edca83dc
   upgradeMyItems() {
     setState(() {
       myPurchases;
@@ -41,11 +37,7 @@ class _ShopPageState extends State<ShopPage> {
     });
   }
 
-<<<<<<< HEAD
-  Future addPurchase(myPurchase, myCoins) async {
-=======
   Future addPurchase(myPurchase, int myCoins, shopList) async {
->>>>>>> 66066976f02187efadea9d1ac35ca6f2edca83dc
     await UserPreferences().setMyPurchases(myPurchase);
     await UserPreferences().setCoins(myCoins);
     await UserPreferences().setShopList(shopList);
@@ -301,14 +293,8 @@ showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-<<<<<<< HEAD
-      // if (shopList[index]['price'] <= coin) {
-      if (shopList[index]['price'] <= myCoins) {
-        int price = shopList[index]['price'];
-=======
       if (int.parse(myShopListMap['price']) <= myCoins) {
         int price = int.parse(myShopListMap['price']);
->>>>>>> 66066976f02187efadea9d1ac35ca6f2edca83dc
         myCoins = myCoins - price;
         myPurchases.add(myShopListMap.toString());
 
