@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/models.dart';
@@ -49,9 +51,14 @@ class HeroListState extends State<HeroList> {
               _addHorizontalListForAppBar(myCoins),
               _addSpace(10),
 
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.65,
-                child: Image.asset(heroImage),
+              InkWell(
+                onTap: (() {
+                  FlameAudio.play(_wavCharging());
+                }),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.65,
+                  child: Image.asset(heroImage),
+                ),
               ),
               // _addSpace(10),
               _addHorizontalList(),
@@ -60,6 +67,19 @@ class HeroListState extends State<HeroList> {
         ),
       ),
     );
+  }
+
+  String _wavCharging() {
+    var list = <String>[
+      'salam.mp3',
+      'masha_day.mp3',
+      'well_done.mp3',
+      'hello.mp3',
+      'masha_kasha.mp3',
+      'masha_play.mp3'
+    ];
+
+    return (list..shuffle()).first;
   }
 
   Widget _addHorizontalListForAppBar(amountCoins) {
