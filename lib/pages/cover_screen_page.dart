@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:danek/helpers/audio.dart';
+import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CoverScreenPage extends StatefulWidget {
   const CoverScreenPage({super.key});
@@ -19,7 +21,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     super.initState();
     foneMusic = UserPreferences().getFoneticMusic() ?? true;
     checkFoneMusic(foneMusic);
-    timer = Timer(Duration(seconds: 3), () {
+    timer = Timer(const Duration(seconds: 3), () {
       Navigator.pushNamed(context, '/menupage');
     });
   }
@@ -41,10 +43,19 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
               fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Center(
-            child: Image(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Image(
                 image: AssetImage('assets/images/coverpage.png'),
-                fit: BoxFit.cover)),
+                fit: BoxFit.cover),
+            SizedBox(height: 40),
+            SpinKitFadingCircle(
+              color: CustomColors.whiteColor,
+              size: 50,
+            )
+          ],
+        ),
       ),
     ));
   }
