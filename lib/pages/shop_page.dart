@@ -140,10 +140,6 @@ Widget shopItemsListBuilder(snapshot, context, myPurchases, myCoins,
             return InkWell(
               // если монет не достаточно
               onTap: (() {
-                print(shopList is List);
-                print(myshop);
-                print(myShopListMap is Map);
-                print(myShopListMap['price']);
                 (formLaunch == true) &
                         (myCoins < int.parse(myShopListMap['price']))
                     ? showAlertDialog2(context, formLaunch)
