@@ -23,6 +23,7 @@ class _SettingPageState extends State<SettingPage> {
   int? userAge;
   String? hero;
   bool? formLaunch;
+  bool? heroLaunch;
   bool? newHeroLaunch;
   List<String> myPurchases = [];
   int myCoins = 0;
@@ -54,6 +55,7 @@ class _SettingPageState extends State<SettingPage> {
     userAge = UserPreferences().getUserAge();
     hero = UserPreferences().getHero() ?? '';
     formLaunch = UserPreferences().getFormLaunch() ?? false;
+    heroLaunch = UserPreferences().getHeroLaunch() ?? false;
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
@@ -120,11 +122,11 @@ class _SettingPageState extends State<SettingPage> {
                             changeFoneticMusic(foneticMusic);
                         }
                       }),
-                  (formLaunch == true)
+                  (heroLaunch == true)
                       ? AnimatedButton(
-                          color: CustomColors.yellowColor,
-                          borderColor: CustomColors.yellowColor,
-                          shadowColor: CustomColors.orangeColor,
+                          color: CustomColors.lightBlueColor,
+                          borderColor: CustomColors.darkBlueColor,
+                          shadowColor: CustomColors.darkBlueColor,
                           onPressed: () {
                             Navigator.pushNamed(context, '/chooseheroes');
                           },
@@ -142,8 +144,8 @@ class _SettingPageState extends State<SettingPage> {
                     borderColor: CustomColors.yellowColor,
                     shadowColor: CustomColors.orangeColor,
                     onPressed: () {
-                      (formLaunch == true)
-                          ? Navigator.pushNamed(context, '/heropage')
+                      (heroLaunch == true)
+                          ? Navigator.pop(context)
                           : Navigator.pushNamed(context, '/menupage');
                     },
                     child: Text(
@@ -157,7 +159,7 @@ class _SettingPageState extends State<SettingPage> {
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: (formLaunch == true)
+          floatingActionButton: (heroLaunch == true)
               ? FloatingActionButton(
                   elevation: 0,
                   backgroundColor: Colors.red,

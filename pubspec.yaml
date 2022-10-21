@@ -41,6 +41,7 @@ dependencies:
   toggle_switch: ^2.0.1
   shared_preferences: ^2.0.15
   collection: ^1.16.0
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,7 @@ flutter:
     # - assets/sfx/
     - assets/images/bars.png
     - assets/audio/
+    - assets/videos/
     - assets/images/frog.gif
     - assets/images/fold_toys.gif
     - assets/images/eating.gif

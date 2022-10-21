@@ -45,6 +45,24 @@ class Shop {
         'price': 10,
         'id': 8
       },
+      {
+        'name': 'Костюм',
+        'image': 'assets/images/dress_kolpak_2.png',
+        'price': 120,
+        'id': 9
+      },
+      {
+        'name': 'Платье',
+        'image': 'assets/images/dress_2.png',
+        'price': 60,
+        'id': 10
+      },
+      {
+        'name': 'Шлапа',
+        'image': 'assets/images/kolpak_2.png',
+        'price': 10,
+        'id': 11
+      },
     ],
     'my_items': [],
     'items_id': []

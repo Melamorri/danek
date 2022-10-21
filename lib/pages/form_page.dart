@@ -6,6 +6,7 @@ import 'package:danek/models/models.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/services.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
@@ -80,6 +81,9 @@ class FormPageState extends State<FormPage> {
                         if (value!.isEmpty) {
                           return LocaleKeys.enter_age.tr();
                         }
+                        // if (!RegExp(r"[0-9.]").hasMatch(value)) {
+                        //   return 'Это не возраст';
+                        // }
                         return null;
                       },
                       keyboardType: TextInputType.number,
