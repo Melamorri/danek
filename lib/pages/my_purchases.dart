@@ -1,16 +1,38 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/colors.dart';
+import 'package:danek/helpers/StringToObject.dart';
+import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
 import 'package:danek/models/models.dart';
 import 'package:danek/models/shop_models.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class MyPurchases extends StatelessWidget {
+class MyPurchases extends StatefulWidget {
   const MyPurchases({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<MyPurchases> createState() => _MyPurchasesState();
+}
+
+class _MyPurchasesState extends State<MyPurchases> {
+  List myPurchase = [];
+  String heroImage = '';
+  // Future addPurchase(myPurchase) async {
+  //   await UserPreferences().setMyPurchases(myPurchase);
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    myPurchase = UserPreferences().getMyPurchases() ?? [];
+    heroImage = UserPreferences().getHero() ?? '';
+    print(myPurchase);
+    print(bloc.getStream);
+  }
+
+  @override
+  build(BuildContext context) {
     return SafeArea(
         child: Container(
       // height: MediaQuery.of(context).size.height,
@@ -27,60 +49,75 @@ class MyPurchases extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: StreamBuilder(
           stream: bloc.getStream,
-          initialData: bloc.shopList,
+          initialData: myPurchase,
           builder: (context, snapshot) {
-            return snapshot.data['my_items'].length > 0
-                ? Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Text('Мои покупки', style: stackTextStyle_1()),
-                            Text('Мои покупки', style: stackTextStyle_2())
-                          ],
+            return myPurchase.isNotEmpty
+                ? SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Stack(
+                            children: <Widget>[
+                              Text(LocaleKeys.my_purchases.tr(),
+                                  style: stackTextStyle_1()),
+                              Text(LocaleKeys.my_purchases.tr(),
+                                  style: stackTextStyle_2())
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        child: checkoutListBuildertwo(snapshot, context),
-                      ),
-                      Image.asset(
-                        'assets/images/girl1.png',
-                        height: MediaQuery.of(context).size.height * 0.55,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AnimatedButton(
-                            color: CustomColors.yellowColor,
-                            borderColor: CustomColors.yellowColor,
-                            shadowColor: CustomColors.orangeColor,
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/shoppage');
-                            },
-                            child: Text(
-                              'SHOP',
-                              style: textStyleButton(),
-                            ),
+                        SizedBox(
+                          height: 145,
+                          //height: MediaQuery.of(context).size.height * 0.2,
+                          child: checkoutListBuildertwo(
+                              snapshot, context, myPurchase),
+                        ),
+                        DragTarget(
+                          builder: (BuildContext context,
+                              List<Object?> candidateData,
+                              List<dynamic> rejectedData) {
+                            return Image.asset(
+                              heroImage,
+                              height: MediaQuery.of(context).size.height * 0.55,
+                            );
+                          },
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AnimatedButton(
+                                color: CustomColors.yellowColor,
+                                borderColor: CustomColors.yellowColor,
+                                shadowColor: CustomColors.orangeColor,
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/shoppage');
+                                },
+                                child: Text(
+                                  LocaleKeys.shop.tr().toUpperCase(),
+                                  style: textStyleButton(),
+                                ),
+                              ),
+                              AnimatedButton(
+                                color: CustomColors.pinkColor,
+                                borderColor: CustomColors.darkBlueColor,
+                                shadowColor: CustomColors.darkBlueColor,
+                                onPressed: () {
+                                  // герой в новой одежде переходит на свою страницу
+                                  Navigator.pushNamed(context, '/heropage');
+                                },
+                                child: Text(
+                                  LocaleKeys.play.tr().toUpperCase(),
+                                  style: textStyleButton(),
+                                ),
+                              ),
+                            ],
                           ),
-                          AnimatedButton(
-                            color: CustomColors.pinkColor,
-                            borderColor: CustomColors.darkBlueColor,
-                            shadowColor: CustomColors.darkBlueColor,
-                            onPressed: () {
-                              // герой в новой одежде переходит на свою страницу
-                              Navigator.pushNamed(context, '/heropage');
-                            },
-                            child: Text(
-                              LocaleKeys.play.tr().toUpperCase(),
-                              style: textStyleButton(),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 40)
-                    ],
+                        ),
+                        //const SizedBox(height: 40)
+                      ],
+                    ),
                   )
                 : Center(
                     child: Column(
@@ -92,21 +129,24 @@ class MyPurchases extends StatelessWidget {
                             Text("Ничего нет", style: stackTextStyle_2()),
                           ],
                         ),
-                        const SizedBox(height: 50),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1,
+                        ),
                         Image.asset(
                           'assets/images/smile.png',
                           width: 160,
                         ),
-                        const SizedBox(height: 70),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.1),
                         AnimatedButton(
                           color: CustomColors.yellowColor,
                           borderColor: CustomColors.yellowColor,
                           shadowColor: CustomColors.orangeColor,
                           onPressed: () {
-                            Navigator.pushNamed(context, '/heropage');
+                            Navigator.pushNamed(context, '/shoppage');
                           },
                           child: Text(
-                            LocaleKeys.back.tr().toUpperCase(),
+                            LocaleKeys.shop.tr().toUpperCase(),
                             style: textStyleButton(),
                           ),
                         ),
@@ -163,44 +203,55 @@ class MyPurchases extends StatelessWidget {
 //   );
 // }
 
-Widget checkoutListBuildertwo(snapshot, context) {
+Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
   return SizedBox(
-    //height: MediaQuery.of(context).size.height * 0.25,
     child: ListView.separated(
         padding: const EdgeInsets.all(15),
         scrollDirection: Axis.horizontal,
-        itemCount: snapshot.data["my_items"].length,
+        itemCount: myPurchase.length,
         separatorBuilder: (context, index) => const SizedBox(width: 5),
         itemBuilder: (context, index) {
-          final cartList = snapshot.data["my_items"];
-          return SizedBox(
-            width: MediaQuery.of(context).size.width * 0.28,
-            child: InkWell(
-              onTap: (() {
-                // примерка новой одежды
-                Navigator.pushNamed(context, '/heropage');
-              }),
-              child: Card(
-                color: CustomColors.blueGrey,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 5),
-                    // Text(
-                    //   cartList[index]['name'],
-                    //   style: const TextStyle(fontWeight: FontWeight.bold),
-                    // ),
-                    Image.asset(
-                      cartList[index]['image'],
-                      height: MediaQuery.of(context).size.height * 0.1,
+          String myPurchaseString = myPurchase.elementAt(index);
+          var myPurchaseMap = StringToObject(myPurchaseString);
+          return Column(
+            children: [
+              SizedBox(
+                width: 110,
+                child: InkWell(
+                  onTap: (() {
+                    // примерка новой одежды
+                    Navigator.pushNamed(context, '/heropage');
+                  }),
+                  child: Card(
+                    color: CustomColors.blueGrey,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        // Text(
+                        //   cartList[index]['name'],
+                        //   style: const TextStyle(fontWeight: FontWeight.bold),
+                        // ),
+                        Column(
+                          children: [
+                            Draggable(
+                              feedback: Image.asset(myPurchaseMap['image'],
+                                  height: 130),
+                              child: Image.asset(myPurchaseMap['image'],
+                                  height: 70),
+                            ),
+                          ],
+                        ),
+
+                        Text(
+                          LocaleKeys.select.tr(),
+                          style: buttonStyleMyPurchases(),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Выбрать',
-                      style: buttonStyleMyPurchases(),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           );
         }),
   );

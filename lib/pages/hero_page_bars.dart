@@ -1,4 +1,9 @@
-import 'package:danek/models/activity_button.dart';
+import 'dart:math';
+
+import 'package:danek/helpers/audio.dart';
+import 'package:danek/helpers/user_preferences.dart';
+import 'package:danek/models/models.dart';
+
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';
@@ -13,6 +18,18 @@ class HeroList extends StatefulWidget {
 
 class HeroListState extends State<HeroList> {
   int _selectedIndex = -1;
+  String heroImage = '';
+  int myCoins = 0;
+  bool? foneticMusic;
+
+  @override
+  void initState() {
+    super.initState();
+    heroImage = UserPreferences().getHero() ?? '';
+    myCoins = UserPreferences().getCoins() ?? 0;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+    resumeMusic(foneticMusic);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +47,18 @@ class HeroListState extends State<HeroList> {
           child: Column(
             children: [
               _addSpace(30),
-              _addHorizontalListForAppBar(),
-              // _addSpace(10),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.75,
-                child: Image.asset("assets/images/girl1.png"),
+              settings(),
+              _addHorizontalListForAppBar(myCoins),
+              _addSpace(10),
+
+              InkWell(
+                onTap: (() {
+                  FlameAudio.play(_wavCharging());
+                }),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.65,
+                  child: Image.asset(heroImage),
+                ),
               ),
               // _addSpace(10),
               _addHorizontalList(),
@@ -45,7 +69,20 @@ class HeroListState extends State<HeroList> {
     );
   }
 
-  Widget _addHorizontalListForAppBar() {
+  String _wavCharging() {
+    var list = <String>[
+      'salam.mp3',
+      'masha_day.mp3',
+      'well_done.mp3',
+      'hello.mp3',
+      'masha_kasha.mp3',
+      'masha_play.mp3'
+    ];
+
+    return (list..shuffle()).first;
+  }
+
+  Widget _addHorizontalListForAppBar(amountCoins) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -53,7 +90,7 @@ class HeroListState extends State<HeroList> {
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, '/');
+            Navigator.pushNamed(context, '/menupage');
           },
           child: const CircleAvatar(
             radius: 30.0,
@@ -72,18 +109,33 @@ class HeroListState extends State<HeroList> {
         InkWell(
           enableFeedback: false,
           onTap: () {
-            FlameAudio.play('zvukmonet.wav', volume: 5);
+            checkMusic('zvukmonet.wav', foneticMusic);
+            // FlameAudio.play('zvukmonet.wav', volume: 5);
           },
           child: CircleAvatar(
             radius: 30.0,
             backgroundImage: const AssetImage("assets/images/coin.png"),
             child: Text(
-              "$value",
+              "$amountCoins",
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget settings() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 20),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/settingpage');
+            },
+            icon: const Icon(Icons.settings)),
+      ),
     );
   }
 
@@ -94,32 +146,29 @@ class HeroListState extends State<HeroList> {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.all(1),
-          itemCount: ativityList.length,
+          itemCount: activityList.length,
           itemBuilder: (BuildContext context, int index) {
-            ActivityList activity = ativityList[index];
+            ActivityList activity = activityList[index];
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 1),
               width: MediaQuery.of(context).size.width * 0.3,
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    FlameAudio.play(activity.wav);
+                    checkMusic(activity.wav, foneticMusic);
+                    // FlameAudio.play(activity.wav);
                     _selectedIndex = index;
                   });
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              ActivityDetailsScreen(ativityList: activity)));
+                              ActivityDetailsScreen(activityList: activity)));
                 },
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(1),
                   leading: Container(
                     width: 70,
-                    child: CircleAvatar(
-                      radius: 70.0,
-                      backgroundImage: AssetImage(activity.image),
-                    ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -128,6 +177,10 @@ class HeroListState extends State<HeroList> {
                             : Colors.black12,
                         width: 3.0,
                       ),
+                    ),
+                    child: CircleAvatar(
+                      radius: 70.0,
+                      backgroundImage: AssetImage(activity.image),
                     ),
                   ),
                 ),

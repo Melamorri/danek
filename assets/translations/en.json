@@ -5,8 +5,7 @@
     "exit":"Exit",
     "menu":"Menu",
     "language":"Language",
-    "swipe":"Swipe left/right to",
-    "select_character":"select your character",
+    "select_character":"Select your character",    
     "name":"Name",
     "age":"Age",
     "enter_age":"Enter your age",
@@ -20,5 +19,15 @@
     "teeth":"Let's brush your teeth",
     "toys":"Let's clean up your room",
     "eat":"Bon appetit",
-    "exercise":"Let's do some exercise"
+    "exercise":"Let's do some exercise",
+    "select":"Select",
+    "my_purchases":"My purchases",
+    "empty":"Empty",
+    "lets_play":"Let's play!",
+    "nomoney":"Not enough coins",
+    "change_hero":"Change character",
+    "no":"no",
+    "yes":"yes",
+    "you_sure":"Are you sure?",
+    "you_sure_start_again":"Are you sure you want to start a new game?"
 }

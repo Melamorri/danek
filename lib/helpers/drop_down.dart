@@ -3,8 +3,18 @@ import 'package:danek/helpers/colors.dart';
 import 'package:danek/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:collection/collection.dart';
 
 // Эта страница создает кнопку выбора языка и вызыввется в страниц
+
+class Language {
+  Locale locale;
+  String langName;
+  Language({
+    required this.locale,
+    required this.langName,
+  });
+}
 
 class Drop extends StatefulWidget {
   @override
@@ -12,17 +22,34 @@ class Drop extends StatefulWidget {
 }
 
 class _DropState extends State<Drop> {
-  List<String> _language = [
-    ' Русский',
-    ' English',
-    ' Кыргыз',
-    ' қазақ',
-    ' ozbek',
-    ' тоҷикӣ'
+  List<Language> languageList = [
+    Language(
+      langName: '🇷🇺 Русский',
+      locale: const Locale('ru'),
+    ),
+    Language(
+      langName: '🇰🇬 Кыргыз',
+      locale: const Locale('ky'),
+    ),
+    Language(
+      langName: '🇰🇿 қазақ',
+      locale: const Locale('kk'),
+    ),
+    Language(
+      langName: '🇺🇿 ozbek',
+      locale: const Locale('uz'),
+    ),
+    Language(
+      langName: '🇬🇧 English',
+      locale: const Locale('en'),
+    ),
   ];
-  String? _selectedlanguage;
+
+  Language? selectedLang;
+
   @override
   Widget build(BuildContext context) {
+    selectedLang = languageList.singleWhere((e) => e.locale == context.locale);
     return Center(
       child: Container(
         // height: MediaQuery.of(context).size.height * 0.08,
@@ -40,7 +67,7 @@ class _DropState extends State<Drop> {
             borderRadius: BorderRadius.circular(40),
             border: Border.all(color: CustomColors.yellowColor, width: 4)),
         child: DropdownButtonHideUnderline(
-          child: DropdownButton(
+          child: DropdownButton<Language>(
             borderRadius: BorderRadius.circular(30),
             dropdownColor: CustomColors.orangeColor,
             hint: Text(
@@ -55,16 +82,30 @@ class _DropState extends State<Drop> {
                 fontSize: 20,
                 color: CustomColors.darkBlueColor,
                 fontWeight: FontWeight.bold),
-            value: _selectedlanguage,
+            value: selectedLang,
             onChanged: (newValue) {
               setState(() {
-                _selectedlanguage = newValue;
+                selectedLang = newValue!;
               });
+              if (newValue!.langName == '🇷🇺 Русский') {
+                context.setLocale(const Locale('ru'));
+              } else if (newValue.langName == '🇰🇬 Кыргыз') {
+                context.setLocale(const Locale('ky'));
+              } else if (newValue.langName == '🇰🇿 қазақ') {
+                context.setLocale(const Locale('kk'));
+              } else if (newValue.langName == '🇬🇧 English') {
+                context.setLocale(const Locale('en'));
+              } else {
+                context.setLocale(const Locale('uz'));
+              }
             },
-            items: _language.map((language) {
-              return DropdownMenuItem(
-                child: new Text(language),
-                value: language,
+            items:
+                languageList.map<DropdownMenuItem<Language>>((Language value) {
+              return DropdownMenuItem<Language>(
+                value: value,
+                child: Text(
+                  value.langName,
+                ),
               );
             }).toList(),
           ),
