@@ -3,7 +3,7 @@ import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
-import 'package:danek/models/models.dart';
+import 'package:danek/models/style.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

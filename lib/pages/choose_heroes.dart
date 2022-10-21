@@ -3,21 +3,13 @@ import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
-import 'package:danek/models/models.dart';
+import 'package:danek/models/style.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class ChooseHeroes extends StatefulWidget {
   const ChooseHeroes({super.key});
-
-  // static var kImages = [
-  //   Image.asset('assets/images/girl1.png'),
-  //   Image.asset('assets/images/boy1.png'),
-  //   Image.asset('assets/images/bird.png'),
-  //   Image.asset('assets/images/leo.png'),
-  // ];
 
   @override
   _ChooseHeroesState createState() => _ChooseHeroesState();
@@ -40,15 +32,22 @@ class _ChooseHeroesState extends State<ChooseHeroes>
     await UserPreferences().setHeroLaunch(launch);
   }
 
+  late PageController controller;
   @override
   void initState() {
     super.initState();
     hero = UserPreferences().getHero() ?? '';
     heroLaunch = UserPreferences().getHeroLaunch() ?? false;
     foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+    controller = PageController();
   }
 
-  final controller = PageController();
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   void _goForward() {
     controller.nextPage(
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
@@ -57,6 +56,12 @@ class _ChooseHeroesState extends State<ChooseHeroes>
   void _goBack() {
     controller.previousPage(
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  onChangedFunction(int index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 
   @override
@@ -75,12 +80,6 @@ class _ChooseHeroesState extends State<ChooseHeroes>
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: PageView.builder(
-            //itemCount: heroesImagesList.length,
-            // onPageChanged: (value) {
-            //   setState(() {
-            //     currentIndex = value;
-            //   });
-            // },
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [
@@ -109,79 +108,105 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                     ),
                   ]),
                   Expanded(
-                    child: PageView(controller: controller, children: [
-                      GestureDetector(
-                        onHorizontalDragEnd: (dragEndDetails) {
-                          if (dragEndDetails.primaryVelocity! < 0) {
-                            // Page forwards
-                            FlameAudio.play('i_deniz.mp3');
-                            _goForward();
-                          } else if (dragEndDetails.primaryVelocity! > 0) {
-                            // Page backwards
-                            FlameAudio.play('i_danaya.mp3');
-                            _goBack();
-                          }
-                        },
-                        child: Image.asset('assets/images/girl1.png'),
-                      ),
-                      GestureDetector(
-                        onHorizontalDragEnd: (dragEndDetails) {
-                          if (dragEndDetails.primaryVelocity! < 0) {
-                            // Page forwards
-                            FlameAudio.play('i_chik.mp3');
-                            _goForward();
-                          } else if (dragEndDetails.primaryVelocity! > 0) {
-                            // Page backwards
-                            FlameAudio.play('i_danaya.mp3');
-                            _goBack();
-                          }
-                        },
-                        child: Image.asset('assets/images/boy1.png'),
-                      ),
-                      GestureDetector(
-                        onHorizontalDragEnd: (dragEndDetails) {
-                          if (dragEndDetails.primaryVelocity! < 0) {
-                            // Page forwards
-                            FlameAudio.play('i_bec.mp3');
-                            _goForward();
-                          } else if (dragEndDetails.primaryVelocity! > 0) {
-                            // Page backwards
-                            FlameAudio.play('i_deniz.mp3');
-                            _goBack();
-                          }
-                        },
-                        child: Image.asset('assets/images/bird.png'),
-                      ),
-                      GestureDetector(
-                        onHorizontalDragEnd: (dragEndDetails) {
-                          if (dragEndDetails.primaryVelocity! < 0) {
-                            // Page forwards
-                            FlameAudio.play('i_bec.mp3');
-                            _goForward();
-                          } else if (dragEndDetails.primaryVelocity! > 0) {
-                            // Page backwards
-                            FlameAudio.play('i_chik.mp3');
-                            _goBack();
-                          }
-                        },
-                        child: Image.asset('assets/images/leo.png'),
-                      ),
-                    ]),
+                    child: PageView(
+                        controller: controller,
+                        onPageChanged: onChangedFunction,
+                        children: [
+                          GestureDetector(
+                            onHorizontalDragEnd: (dragEndDetails) {
+                              if (dragEndDetails.primaryVelocity! < 0) {
+                                // Page forwards
+                                FlameAudio.play('i_deniz.mp3');
+                                _goForward();
+                              } else if (dragEndDetails.primaryVelocity! > 0) {
+                                // Page backwards
+                                FlameAudio.play('i_danaya.mp3');
+                                _goBack();
+                              }
+                            },
+                            child: Image.asset('assets/images/girl1.png'),
+                          ),
+                          GestureDetector(
+                            onHorizontalDragEnd: (dragEndDetails) {
+                              if (dragEndDetails.primaryVelocity! < 0) {
+                                // Page forwards
+                                FlameAudio.play('i_chik.mp3');
+                                _goForward();
+                              } else if (dragEndDetails.primaryVelocity! > 0) {
+                                // Page backwards
+                                FlameAudio.play('i_danaya.mp3');
+                                _goBack();
+                              }
+                            },
+                            child: Image.asset('assets/images/boy1.png'),
+                          ),
+                          GestureDetector(
+                            onHorizontalDragEnd: (dragEndDetails) {
+                              if (dragEndDetails.primaryVelocity! < 0) {
+                                // Page forwards
+                                FlameAudio.play('i_bec.mp3');
+                                _goForward();
+                              } else if (dragEndDetails.primaryVelocity! > 0) {
+                                // Page backwards
+                                FlameAudio.play('i_deniz.mp3');
+                                _goBack();
+                              }
+                            },
+                            child: Image.asset('assets/images/bird.png'),
+                          ),
+                          GestureDetector(
+                            onHorizontalDragEnd: (dragEndDetails) {
+                              if (dragEndDetails.primaryVelocity! < 0) {
+                                // Page forwards
+                                FlameAudio.play('i_bec.mp3');
+                                _goForward();
+                              } else if (dragEndDetails.primaryVelocity! > 0) {
+                                // Page backwards
+                                FlameAudio.play('i_chik.mp3');
+                                _goBack();
+                              }
+                            },
+                            child: Image.asset('assets/images/leo.png'),
+                          ),
+                        ]),
                   ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Indicator(
+                        positionIndex: 0,
+                        currentIndex: currentIndex,
+                      ),
+                      const SizedBox(width: 5),
+                      Indicator(
+                        positionIndex: 1,
+                        currentIndex: currentIndex,
+                      ),
+                      const SizedBox(width: 5),
+                      Indicator(
+                        positionIndex: 2,
+                        currentIndex: currentIndex,
+                      ),
+                      const SizedBox(width: 5),
+                      Indicator(
+                        positionIndex: 3,
+                        currentIndex: currentIndex,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 40),
                   AnimatedButton(
                     color: CustomColors.lightBlueColor,
                     borderColor: CustomColors.darkBlueColor,
                     shadowColor: CustomColors.darkBlueColor,
                     onPressed: () {
-                      final TabController controller =
-                          DefaultTabController.of(context)!;
                       setState(() {
                         heroLaunch = true;
                       });
-                      addHero(heroesImagesList[controller.index], heroLaunch);
-                      if (!controller.indexIsChanging) {
-                        //controller.animateTo(ChooseHeroes.kImages.length - 1);
-
+                      addHero(heroesImagesList[currentIndex], heroLaunch);
+                      {
                         Navigator.pushNamed(context, '/heropage');
                         if (context.locale == const Locale('ru')) {
                           checkMusic('hello.mp3', foneticMusic);
@@ -204,7 +229,7 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                       style: textStyleButton(),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   AnimatedButton(
                     color: CustomColors.redColor,
                     borderColor: CustomColors.darkBlueColor,
@@ -219,13 +244,32 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                       style: textStyleButton(),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               );
             },
           ),
         ),
       ),
+    );
+  }
+}
+
+class Indicator extends StatelessWidget {
+  final int positionIndex, currentIndex;
+  const Indicator(
+      {super.key, required this.currentIndex, required this.positionIndex});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 12,
+      width: 12,
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.blue),
+          color: positionIndex == currentIndex
+              ? Colors.red
+              : CustomColors.lightBlueColor,
+          borderRadius: BorderRadius.circular(100)),
     );
   }
 }
