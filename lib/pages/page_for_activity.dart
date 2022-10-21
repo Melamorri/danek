@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/models.dart';
