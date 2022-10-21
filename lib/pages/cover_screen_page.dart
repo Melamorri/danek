@@ -14,6 +14,7 @@ class CoverScreenPage extends StatefulWidget {
 class _CoverScreenPageState extends State<CoverScreenPage> {
   Timer? timer;
   bool foneMusic = true;
+
   @override
   void initState() {
     super.initState();
