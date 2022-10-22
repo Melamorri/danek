@@ -73,8 +73,9 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
-    //List<int> timelist = [600, 60, 420, 300, 300];
-    List<int> timelist = [3, 3, 3, 3, 3];
+    List<int> timelist = [600, 60, 420, 300, 300];  
+    //List<int> timelist = [3, 3, 3, 3, 3];
+
 
     late int time;
 

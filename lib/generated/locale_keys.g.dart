@@ -32,5 +32,10 @@ abstract class  LocaleKeys {
   static const yes = 'yes';
   static const you_sure = 'you_sure';
   static const you_sure_start_again = 'you_sure_start_again';
+  static const wav_read_book = 'wav_read_book';
+  static const wav_teeth = 'wav_teeth';
+  static const wav_toys = 'wav_toys';
+  static const wav_eat = 'wav_eat';
+  static const wav_exercise = 'wav_exercise';
 
 }
