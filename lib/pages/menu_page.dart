@@ -42,9 +42,10 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     // if (extraMap.keys.contains(numberDays)) {
-    //   Future.delayed(Duration.zero, ()=> showAlert)
+    //   Future.delayed(
+    //       Duration.zero, () => addBonusShowAlertDialog(context, numberDays));
     // }
-    ;
+
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.only(top: 20),
@@ -153,3 +154,61 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 }
+
+// addBonusShowAlertDialog(context, numberDays) {
+//   Widget okButton = TextButton(
+//     style: ButtonStyle(
+//         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+//     child: Text(
+//       LocaleKeys.yes.tr().toUpperCase(),
+//       style: buttonStyleAlertDialog(),
+//     ),
+//     onPressed: () {
+//       Navigator.pop(context);
+//       // Navigator.pushNamed(context, '/menupage');
+//       // allDeleteShowAlertDialog2(context, deleteInfo);
+//     },
+//   );
+
+//   AlertDialog addBonus = AlertDialog(
+//     shape: const RoundedRectangleBorder(
+//       borderRadius: BorderRadius.all(
+//         Radius.circular(20.0),
+//       ),
+//     ),
+//     titleTextStyle: textStyleNoAlertDialog(),
+//     actionsAlignment: MainAxisAlignment.center,
+//     title: Text(
+//       '+  ${extraMap[numberDays]}',
+//       // LocaleKeys.you_sure_start_again.tr(),
+//       textAlign: TextAlign.center,
+//     ),
+//     content: Wrap(children: [
+//       Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Image.asset(
+//             'assets/images/smile_ok.png',
+//             width: 140,
+//             //width: MediaQuery.of(context).size.width * 0.4,
+//           ),
+//           const SizedBox(width: 10),
+//         ],
+//       ),
+//     ]),
+//     actions: [okButton],
+//   );
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Theme(
+//         data: ThemeData(
+//           dialogTheme: const DialogTheme(
+//             backgroundColor: CustomColors.blueGrey,
+//           ),
+//         ),
+//         child: addBonus,
+//       );
+//     },
+//   );
+// }

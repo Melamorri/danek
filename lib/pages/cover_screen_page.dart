@@ -73,9 +73,12 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
   }; // варианты добавления монет
 
   //функция добавления монеток
-  addCoins(numberDays) {
+  addCoins(numberDays, timeStorage, timeProba) {
     var keyList = extraMap.keys;
-    if (keyList.contains(numberDays)) {
+    if (timeStorage == timeProba) {
+      print('Сегодня уже бонус получили');
+      return;
+    } else if (keyList.contains(numberDays)) {
       myCoins = extraMap[numberDays]! + myCoins!;
       addCoinsPref(myCoins);
       //
@@ -102,7 +105,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     addTimeNow(
         timeProba); // перезаписываем данные в преференс на сегодняшнюю дату
     checkDays(timeStorage, timeProba); // проверяем подряд ли дни
-    addCoins(numberDays);
+    addCoins(numberDays, timeStorage, timeProba);
     foneMusic = UserPreferences().getFoneticMusic() ?? true;
     checkFoneMusic(foneMusic);
     timer = Timer(const Duration(seconds: 3), () {
@@ -144,3 +147,5 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     ));
   }
 }
+
+addCoinsShowAlertDialog(context) {}
