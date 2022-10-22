@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
