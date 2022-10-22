@@ -13,8 +13,17 @@ class UserPreferences {
   final _keyHeroLaunch = 'heroLaunch';
   final _keyFoneticMusic = 'foneticMusic';
   final _keyShopList = 'shopList';
+  final _keyTimeNow = 'timeNow';
+  final _keyNumberDays = 'numberDays';
 
   Future init() async => _preferences = await SharedPreferences.getInstance();
+
+  Future setTimeNow(int timeNow) async =>
+      await _preferences?.setInt(_keyTimeNow, timeNow);
+  Future setNumberDays(int numberDays) async =>
+      await _preferences?.setInt(_keyNumberDays, numberDays);
+  Future setFoneticMusic(bool foneticMusic) async =>
+      await _preferences?.setBool(_keyFoneticMusic, foneticMusic);
 
   Future setUserName(String userName) async =>
       await _preferences?.setString(_keyUserName, userName);
@@ -36,8 +45,10 @@ class UserPreferences {
       await _preferences?.setBool(_keyFormLaunch, formLaunch);
   Future setHeroLaunch(bool heroLaunch) async =>
       await _preferences?.setBool(_keyHeroLaunch, heroLaunch);
-  Future setFoneticMusic(bool foneticMusic) async =>
-      await _preferences?.setBool(_keyFoneticMusic, foneticMusic);
+
+  int? getTimeNow() => _preferences?.getInt(_keyTimeNow);
+  int? getNumberDays() => _preferences?.getInt(_keyNumberDays);
+  bool? getFoneticMusic() => _preferences?.getBool(_keyFoneticMusic);
 
   String? getUserName() => _preferences?.getString(_keyUserName);
   int? getUserAge() => _preferences?.getInt(_keyUserAge);
@@ -49,15 +60,14 @@ class UserPreferences {
   String? getLanguage() => _preferences?.getString(_keyLanguage);
   bool? getFormLaunch() => _preferences?.getBool(_keyFormLaunch);
   bool? getHeroLaunch() => _preferences?.getBool(_keyHeroLaunch);
-  bool? getFoneticMusic() => _preferences?.getBool(_keyFoneticMusic);
   List<String>? getShopList() => _preferences?.getStringList(_keyShopList);
 
-  // Future<bool>? deleteUserName() => _preferences?.remove(_keyUserName);
-  // Future<bool>? deleteUserAge() => _preferences?.remove(_keyUserAge);
+  Future<bool>? deleteUserName() => _preferences?.remove(_keyUserName);
+  Future<bool>? deleteUserAge() => _preferences?.remove(_keyUserAge);
   Future<bool>? deleteHero() => _preferences?.remove(_keyHero);
-  // Future<bool>? deleteCoins() => _preferences?.remove(_keyCoins);
-  // Future<bool>? deleteMyPurcahses() => _preferences?.remove(_keyMyPurchases);
-  // Future<bool>? deleteFormLaunch() => _preferences?.remove(_keyFormLaunch);
-  // Future<bool>? deleteHeroLaunch() => _preferences?.remove(_keyHeroLaunch);
+  Future<bool>? deleteCoins() => _preferences?.remove(_keyCoins);
+  Future<bool>? deleteMyPurcahses() => _preferences?.remove(_keyMyPurchases);
+  Future<bool>? deleteFormLaunch() => _preferences?.remove(_keyFormLaunch);
+  Future<bool>? deleteHeroLaunch() => _preferences?.remove(_keyHeroLaunch);
   Future<bool>? clearData() => _preferences?.clear();
 }
