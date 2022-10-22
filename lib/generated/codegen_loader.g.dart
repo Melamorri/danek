@@ -6,11 +6,11 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' show AssetLoader;
 
-class CodegenLoader extends AssetLoader {
+class CodegenLoader extends AssetLoader{
   const CodegenLoader();
 
   @override
-  Future<Map<String, dynamic>> load(String fullPath, Locale locale) {
+  Future<Map<String, dynamic>> load(String fullPath, Locale locale ) {
     return Future.value(mapLocales[locale.toString()]);
   }
 
@@ -45,7 +45,12 @@ class CodegenLoader extends AssetLoader {
   "no": "no",
   "yes": "yes",
   "you_sure": "Are you sure?",
-  "you_sure_start_again": "Are you sure you want to start a new game?"
+  "you_sure_start_again": "Are you sure you want to start a new game?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "salam.mp3",
+  "wav_toys": "salam.mp3",
+  "wav_eat": "salam.mp3",
+  "wav_exercise": "salam.mp3"
 };
 static const Map<String,dynamic> kk = {
   "shop": "Дүкен",
@@ -78,7 +83,12 @@ static const Map<String,dynamic> kk = {
   "no": "Жоқ",
   "yes": "Иә",
   "you_sure": "Сен сенімдісің бе?",
-  "you_sure_start_again": "Жаңа ойынды бастағыңыз келетініне сенімдісіз бе?"
+  "you_sure_start_again": "Жаңа ойынды бастағыңыз келетініне сенімдісіз бе?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "salam.mp3",
+  "wav_toys": "salam.mp3",
+  "wav_eat": "salam.mp3",
+  "wav_exercise": "salam.mp3"
 };
 static const Map<String,dynamic> ky = {
   "shop": "Дүкөн",
@@ -111,7 +121,12 @@ static const Map<String,dynamic> ky = {
   "no": "Жок",
   "yes": "Ооба",
   "you_sure": "Сен ишенесиңби?",
-  "you_sure_start_again": "Чын эле жаңы оюнду баштагыңыз келеби?"
+  "you_sure_start_again": "Чын эле жаңы оюнду баштагыңыз келеби?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "salam.mp3",
+  "wav_toys": "salam.mp3",
+  "wav_eat": "salam.mp3",
+  "wav_exercise": "salam.mp3"
 };
 static const Map<String,dynamic> ru = {
   "shop": "Магазин",
@@ -144,7 +159,12 @@ static const Map<String,dynamic> ru = {
   "no": "Нет",
   "yes": "Да",
   "you_sure": "Ты уверен?",
-  "you_sure_start_again": "Точно хочешь начать игру сначала?"
+  "you_sure_start_again": "Точно хочешь начать игру сначала?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "teeth.mp3",
+  "wav_toys": "toys.mp3",
+  "wav_eat": "masha.mp3",
+  "wav_exercise": "salam.mp3"
 };
 static const Map<String,dynamic> uz = {
   "shop": "Do'kon",
@@ -177,8 +197,12 @@ static const Map<String,dynamic> uz = {
   "no": "Yo'q",
   "yes": "Ha",
   "you_sure": "Ishonchingiz komilmi?",
-  "you_sure_start_again": "Haqiqatan ham yangi oʻyinni boshlamoqchimisiz?"
+  "you_sure_start_again": "Haqiqatan ham yangi oʻyinni boshlamoqchimisiz?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "salam.mp3",
+  "wav_toys": "salam.mp3",
+  "wav_eat": "salam.mp3",
+  "wav_exercise": "salam.mp3"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "kk": kk, "ky": ky, "ru": ru, "uz": uz};
-
 }
