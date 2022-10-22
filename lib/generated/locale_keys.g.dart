@@ -37,5 +37,11 @@ abstract class  LocaleKeys {
   static const wav_toys = 'wav_toys';
   static const wav_eat = 'wav_eat';
   static const wav_exercise = 'wav_exercise';
+  static const wav_i_danaya = 'wav_i_danaya';
+  static const wav_i_deniz = 'wav_i_deniz';
+  static const wav_i_bec = 'wav_i_bec';
+  static const wav_i_chik = 'wav_i_chik';
+  static const wav_hello = 'wav_hello';
+  static const wav_well_done = 'wav_well_done';
 
 }

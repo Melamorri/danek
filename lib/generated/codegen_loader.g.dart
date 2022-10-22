@@ -50,7 +50,13 @@ class CodegenLoader extends AssetLoader{
   "wav_teeth": "salam.mp3",
   "wav_toys": "salam.mp3",
   "wav_eat": "salam.mp3",
-  "wav_exercise": "salam.mp3"
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "salam.mp3",
+  "wav_i_deniz": "salam.mp3",
+  "wav_i_bec": "salam.mp3",
+  "wav_i_chik": "salam.mp3",
+  "wav_hello": "salam.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String,dynamic> kk = {
   "shop": "Дүкен",
@@ -88,7 +94,13 @@ static const Map<String,dynamic> kk = {
   "wav_teeth": "salam.mp3",
   "wav_toys": "salam.mp3",
   "wav_eat": "salam.mp3",
-  "wav_exercise": "salam.mp3"
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "salam.mp3",
+  "wav_i_deniz": "salam.mp3",
+  "wav_i_bec": "salam.mp3",
+  "wav_i_chik": "salam.mp3",
+  "wav_hello": "salam.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String,dynamic> ky = {
   "shop": "Дүкөн",
@@ -126,7 +138,13 @@ static const Map<String,dynamic> ky = {
   "wav_teeth": "salam.mp3",
   "wav_toys": "salam.mp3",
   "wav_eat": "salam.mp3",
-  "wav_exercise": "salam.mp3"
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "salam.mp3",
+  "wav_i_deniz": "salam.mp3",
+  "wav_i_bec": "salam.mp3",
+  "wav_i_chik": "salam.mp3",
+  "wav_hello": "salam.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String,dynamic> ru = {
   "shop": "Магазин",
@@ -164,7 +182,13 @@ static const Map<String,dynamic> ru = {
   "wav_teeth": "teeth.mp3",
   "wav_toys": "toys.mp3",
   "wav_eat": "masha.mp3",
-  "wav_exercise": "salam.mp3"
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "i_danaya.mp3",
+  "wav_i_deniz": "i_deniz.mp3",
+  "wav_i_bec": "i_bec.mp3",
+  "wav_i_chik": "i_chik.mp3",
+  "wav_hello": "hello.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String,dynamic> uz = {
   "shop": "Do'kon",
@@ -202,7 +226,13 @@ static const Map<String,dynamic> uz = {
   "wav_teeth": "salam.mp3",
   "wav_toys": "salam.mp3",
   "wav_eat": "salam.mp3",
-  "wav_exercise": "salam.mp3"
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "salam.mp3",
+  "wav_i_deniz": "salam.mp3",
+  "wav_i_bec": "salam.mp3",
+  "wav_i_chik": "salam.mp3",
+  "wav_hello": "salam.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "kk": kk, "ky": ky, "ru": ru, "uz": uz};
 }

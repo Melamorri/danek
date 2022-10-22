@@ -116,11 +116,13 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             onHorizontalDragEnd: (dragEndDetails) {
                               if (dragEndDetails.primaryVelocity! < 0) {
                                 // Page forwards
-                                FlameAudio.play('i_deniz.mp3');
+                                FlameAudio.play(
+                                    LocaleKeys.wav_i_deniz.tr().toString());
                                 _goForward();
                               } else if (dragEndDetails.primaryVelocity! > 0) {
                                 // Page backwards
-                                FlameAudio.play('i_danaya.mp3');
+                                FlameAudio.play(
+                                    LocaleKeys.wav_i_danaya.tr().toString());
                                 _goBack();
                               }
                             },
@@ -130,11 +132,13 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             onHorizontalDragEnd: (dragEndDetails) {
                               if (dragEndDetails.primaryVelocity! < 0) {
                                 // Page forwards
-                                FlameAudio.play('i_chik.mp3');
+                                FlameAudio.play(
+                                    LocaleKeys.wav_i_chik.tr().toString());
                                 _goForward();
                               } else if (dragEndDetails.primaryVelocity! > 0) {
                                 // Page backwards
-                                FlameAudio.play('i_danaya.mp3');
+                                FlameAudio.play(
+                                    LocaleKeys.wav_i_danaya.tr().toString());
                                 _goBack();
                               }
                             },
@@ -144,11 +148,13 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             onHorizontalDragEnd: (dragEndDetails) {
                               if (dragEndDetails.primaryVelocity! < 0) {
                                 // Page forwards
-                                FlameAudio.play('i_bec.mp3');
+                                FlameAudio.play(
+                                    LocaleKeys.wav_i_bec.tr().toString());
                                 _goForward();
                               } else if (dragEndDetails.primaryVelocity! > 0) {
                                 // Page backwards
-                                FlameAudio.play('i_deniz.mp3');
+                                FlameAudio.play(
+                                    LocaleKeys.wav_i_deniz.tr().toString());
                                 _goBack();
                               }
                             },
@@ -158,11 +164,13 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             onHorizontalDragEnd: (dragEndDetails) {
                               if (dragEndDetails.primaryVelocity! < 0) {
                                 // Page forwards
-                                FlameAudio.play('i_bec.mp3');
+                                FlameAudio.play(
+                                    LocaleKeys.wav_i_bec.tr().toString());
                                 _goForward();
                               } else if (dragEndDetails.primaryVelocity! > 0) {
                                 // Page backwards
-                                FlameAudio.play('i_chik.mp3');
+                                FlameAudio.play(
+                                    LocaleKeys.wav_i_chik.tr().toString());
                                 _goBack();
                               }
                             },
