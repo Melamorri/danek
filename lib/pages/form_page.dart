@@ -99,7 +99,8 @@ class FormPageState extends State<FormPage> {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
                             formLaunch = true;
-                            FlameAudio.play('i_danaya.mp3');
+                            FlameAudio.play(
+                                LocaleKeys.wav_i_danaya.tr().toString());
                           });
                           Navigator.pushNamed(context, '/chooseheroes');
                           addUser(userName, userAge, formLaunch);
