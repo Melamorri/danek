@@ -21,15 +21,6 @@ class Drop extends StatefulWidget {
 }
 
 class _DropState extends State<Drop> {
-  // List<String> language = [
-  //   '🇷🇺 Русский',
-  //   '🇬🇧 English',
-  //   '🇰🇬 Кыргыз',
-  //   '🇰🇿 қазақ',
-  //   '🇺🇿 ozbek',
-  //   '🇹🇯 тоҷикӣ'
-  // ];
-
   List<Language> languageList = [
     Language(
       langName: '🇷🇺 Русский',
@@ -46,10 +37,6 @@ class _DropState extends State<Drop> {
     Language(
       langName: '🇺🇿 ozbek',
       locale: const Locale('uz'),
-    ),
-    Language(
-      langName: '🇹🇯 тоҷикӣ',
-      locale: const Locale('tg'),
     ),
     Language(
       langName: '🇬🇧 English',
@@ -107,10 +94,8 @@ class _DropState extends State<Drop> {
                 context.setLocale(const Locale('kk'));
               } else if (newValue.langName == '🇬🇧 English') {
                 context.setLocale(const Locale('en'));
-              } else if (newValue.langName == '🇺🇿 ozbek') {
-                context.setLocale(const Locale('uz'));
               } else {
-                context.setLocale(const Locale('tg'));
+                context.setLocale(const Locale('uz'));
               }
             },
             items:

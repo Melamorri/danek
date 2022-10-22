@@ -27,6 +27,42 @@ class Shop {
         'price': 20,
         'id': 5
       },
+      {
+        'name': 'Костюм',
+        'image': 'assets/images/dress_kolpak.png',
+        'price': 120,
+        'id': 6
+      },
+      {
+        'name': 'Платье',
+        'image': 'assets/images/dress.png',
+        'price': 60,
+        'id': 7
+      },
+      {
+        'name': 'Шлапа',
+        'image': 'assets/images/kolpak.png',
+        'price': 10,
+        'id': 8
+      },
+      {
+        'name': 'Костюм',
+        'image': 'assets/images/dress_kolpak_2.png',
+        'price': 120,
+        'id': 9
+      },
+      {
+        'name': 'Платье',
+        'image': 'assets/images/dress_2.png',
+        'price': 60,
+        'id': 10
+      },
+      {
+        'name': 'Шлапа',
+        'image': 'assets/images/kolpak_2.png',
+        'price': 10,
+        'id': 11
+      },
     ],
     'my_items': [],
     'items_id': []
@@ -34,11 +70,13 @@ class Shop {
 
   void addToCart(item) {
     shopList['my_items'].add(item);
+    //shopList['shop_items'].remove(item);
+    //cartStreamController.sink.add(shopList);
   }
 
-  void addToListId(item) {
-    shopList['items_id'].add(item);
-  }
+  // void dispose() {
+  //   cartStreamController.close(); // close our StreamController
+  // }
 }
 
 final bloc = Shop();

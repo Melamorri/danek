@@ -3,7 +3,7 @@ import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/StringToObject.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
-import 'package:danek/models/models.dart';
+import 'package:danek/models/style.dart';
 import 'package:danek/models/shop_models.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -18,19 +18,17 @@ class MyPurchases extends StatefulWidget {
 class _MyPurchasesState extends State<MyPurchases> {
   List myPurchase = [];
   String heroImage = '';
-  Future addPurchase(myPurchase) async {
-    await UserPreferences().setMyPurchases(myPurchase);
-  }
-
-  deleteInfo() async {
-    await UserPreferences().deleteMyPurcahses();
-  }
+  // Future addPurchase(myPurchase) async {
+  //   await UserPreferences().setMyPurchases(myPurchase);
+  // }
 
   @override
   void initState() {
     super.initState();
     myPurchase = UserPreferences().getMyPurchases() ?? [];
     heroImage = UserPreferences().getHero() ?? '';
+    print(myPurchase);
+    print(bloc.getStream);
   }
 
   @override
@@ -61,8 +59,10 @@ class _MyPurchasesState extends State<MyPurchases> {
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Stack(
                             children: <Widget>[
-                              Text('Мои покупки', style: stackTextStyle_1()),
-                              Text('Мои покупки', style: stackTextStyle_2())
+                              Text(LocaleKeys.my_purchases.tr(),
+                                  style: stackTextStyle_1()),
+                              Text(LocaleKeys.my_purchases.tr(),
+                                  style: stackTextStyle_2())
                             ],
                           ),
                         ),
@@ -72,9 +72,15 @@ class _MyPurchasesState extends State<MyPurchases> {
                           child: checkoutListBuildertwo(
                               snapshot, context, myPurchase),
                         ),
-                        Image.asset(
-                          heroImage,
-                          height: MediaQuery.of(context).size.height * 0.55,
+                        DragTarget(
+                          builder: (BuildContext context,
+                              List<Object?> candidateData,
+                              List<dynamic> rejectedData) {
+                            return Image.asset(
+                              heroImage,
+                              height: MediaQuery.of(context).size.height * 0.55,
+                            );
+                          },
                         ),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -106,15 +112,6 @@ class _MyPurchasesState extends State<MyPurchases> {
                                   style: textStyleButton(),
                                 ),
                               ),
-                              //техническа кнопка для обнуления магазина
-                              IconButton(
-                                  onPressed: () {
-                                    deleteInfo();
-                                    setState(() {
-                                      myPurchase = [];
-                                    });
-                                  },
-                                  icon: const Icon(Icons.cancel)),
                             ],
                           ),
                         ),
@@ -216,31 +213,45 @@ Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
         itemBuilder: (context, index) {
           String myPurchaseString = myPurchase.elementAt(index);
           var myPurchaseMap = StringToObject(myPurchaseString);
-          return SizedBox(
-            width: 110,
-            child: InkWell(
-              onTap: (() {
-                // примерка новой одежды
-                Navigator.pushNamed(context, '/heropage');
-              }),
-              child: Card(
-                color: CustomColors.blueGrey,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 5),
-                    // Text(
-                    //   cartList[index]['name'],
-                    //   style: const TextStyle(fontWeight: FontWeight.bold),
-                    // ),
-                    Image.asset(myPurchaseMap['image'], height: 70),
-                    Text(
-                      'Выбрать',
-                      style: buttonStyleMyPurchases(),
+          return Column(
+            children: [
+              SizedBox(
+                width: 110,
+                child: InkWell(
+                  onTap: (() {
+                    // примерка новой одежды
+                    Navigator.pushNamed(context, '/heropage');
+                  }),
+                  child: Card(
+                    color: CustomColors.blueGrey,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        // Text(
+                        //   cartList[index]['name'],
+                        //   style: const TextStyle(fontWeight: FontWeight.bold),
+                        // ),
+                        Column(
+                          children: [
+                            Draggable(
+                              feedback: Image.asset(myPurchaseMap['image'],
+                                  height: 130),
+                              child: Image.asset(myPurchaseMap['image'],
+                                  height: 70),
+                            ),
+                          ],
+                        ),
+
+                        Text(
+                          LocaleKeys.select.tr(),
+                          style: buttonStyleMyPurchases(),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           );
         }),
   );

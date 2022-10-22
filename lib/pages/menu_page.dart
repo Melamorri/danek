@@ -1,8 +1,11 @@
 import 'package:danek/generated/locale_keys.g.dart';
+import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
+
+import 'package:danek/helpers/time.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
-import 'package:danek/models/models.dart';
+import 'package:danek/models/style.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,30 +21,31 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   bool? newFormLaunch;
   bool? newHeroLaunch;
+  bool foneMusic = true;
+  int numberDays = 0; // количество дней подряд, изначально 0
+
   @override
   void initState() {
     super.initState();
-    loadNewLaunch();
-  }
 
-  loadNewLaunch() async {
-    setState(() {
-      bool formLaunch = UserPreferences().getFormLaunch() ?? false;
-      bool heroLaunch = UserPreferences().getHeroLaunch() ?? false;
-      newFormLaunch = formLaunch;
-      newHeroLaunch = heroLaunch;
-    });
-  }
-
-  deleteInfo() async {
-    await UserPreferences().deleteUserName();
-    await UserPreferences().deleteUserAge();
-    await UserPreferences().deleteFormLaunch();
-    await UserPreferences().deleteHeroLaunch();
+    newFormLaunch = UserPreferences().getFormLaunch() ?? false;
+    newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    foneMusic = UserPreferences().getFoneticMusic() ?? true;
+    numberDays = UserPreferences().getNumberDays() ?? 0;
+    print(foneMusic);
+    print('hero $newFormLaunch');
+    print('form $newHeroLaunch');
+    // checkFoneMusic(foneMusic);
+    resumeMusic(foneMusic);
   }
 
   @override
   Widget build(BuildContext context) {
+    // if (extraMap.keys.contains(numberDays)) {
+    //   Future.delayed(
+    //       Duration.zero, () => addBonusShowAlertDialog(context, numberDays));
+    // }
+
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.only(top: 20),
@@ -51,25 +55,17 @@ class _MenuPageState extends State<MenuPage> {
                 fit: BoxFit.cover)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: SingleChildScrollView(
+          body: SingleChildScrollView(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      // техническая кнопка для обнуления
-                      IconButton(
-                          onPressed: () {
-                            deleteInfo();
-                            loadNewLaunch();
-                          },
-                          icon: const Icon(Icons.cancel)),
                       IconButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/settingpage');
-                            FlameAudio.play('fonemusic.wav', volume: 1);
                           },
                           icon: const Icon(Icons.settings))
                     ],
@@ -85,6 +81,10 @@ class _MenuPageState extends State<MenuPage> {
                           borderColor: CustomColors.darkBlueColor,
                           shadowColor: CustomColors.darkBlueColor,
                           onPressed: () {
+                            if (newFormLaunch == false &&
+                                newHeroLaunch == false) {
+                              Navigator.pushNamed(context, '/formpage');
+                            }
                             if (newFormLaunch! && newHeroLaunch!) {
                               Navigator.pushNamed(context, '/heropage');
                             } else if (newFormLaunch! &&
@@ -126,7 +126,7 @@ class _MenuPageState extends State<MenuPage> {
                             Navigator.pushNamed(context, '/shoppage');
                           },
                           child: Text(
-                            LocaleKeys.menu.tr().toUpperCase(),
+                            LocaleKeys.shop.tr().toUpperCase(),
                             style: textStyleButton(),
                           ),
                         ),
@@ -154,3 +154,61 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 }
+
+// addBonusShowAlertDialog(context, numberDays) {
+//   Widget okButton = TextButton(
+//     style: ButtonStyle(
+//         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+//     child: Text(
+//       LocaleKeys.yes.tr().toUpperCase(),
+//       style: buttonStyleAlertDialog(),
+//     ),
+//     onPressed: () {
+//       Navigator.pop(context);
+//       // Navigator.pushNamed(context, '/menupage');
+//       // allDeleteShowAlertDialog2(context, deleteInfo);
+//     },
+//   );
+
+//   AlertDialog addBonus = AlertDialog(
+//     shape: const RoundedRectangleBorder(
+//       borderRadius: BorderRadius.all(
+//         Radius.circular(20.0),
+//       ),
+//     ),
+//     titleTextStyle: textStyleNoAlertDialog(),
+//     actionsAlignment: MainAxisAlignment.center,
+//     title: Text(
+//       '+  ${extraMap[numberDays]}',
+//       // LocaleKeys.you_sure_start_again.tr(),
+//       textAlign: TextAlign.center,
+//     ),
+//     content: Wrap(children: [
+//       Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Image.asset(
+//             'assets/images/smile_ok.png',
+//             width: 140,
+//             //width: MediaQuery.of(context).size.width * 0.4,
+//           ),
+//           const SizedBox(width: 10),
+//         ],
+//       ),
+//     ]),
+//     actions: [okButton],
+//   );
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Theme(
+//         data: ThemeData(
+//           dialogTheme: const DialogTheme(
+//             backgroundColor: CustomColors.blueGrey,
+//           ),
+//         ),
+//         child: addBonus,
+//       );
+//     },
+//   );
+// }

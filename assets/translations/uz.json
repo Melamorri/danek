@@ -5,7 +5,7 @@
     "exit":"Chiqish",
     "menu":"Menyu",
     "language":"Til",
-    "swipe":"Qahramonni tanlang",
+    "select_character":"Qahramonni tanlang",
     "name":"Nomi",
     "age":"Yoshi",
     "enter_age":"Sizning yoshingizni kiriting",
@@ -19,5 +19,15 @@
     "teeth":"Keling, tishlaringizni yuvaylik",
     "toys":"Keling, xonangizni tozalaylik",
     "eat":"Yoqimli ishtaha",
-    "exercise":"Keling, bir nechta mashqlarni bajaramiz"    
+    "exercise":"Keling, bir nechta mashqlarni bajaramiz",
+    "select":"Tanlang",
+    "my_purchases":"Mening xaridlarim",
+    "empty":"Bo'sh",
+    "lets_play":"Keling, o'ynaymiz!",
+    "nomoney":"Tangalar yetarli emas",
+    "change_hero":"Belgini o'zgartirish",
+    "no":"Yo'q",
+    "yes":"Ha",
+    "you_sure":"Ishonchingiz komilmi?",
+    "you_sure_start_again":"Haqiqatan ham yangi oʻyinni boshlamoqchimisiz?"
 }
