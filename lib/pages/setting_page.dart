@@ -1,9 +1,9 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/drop_down.dart';
+
 import 'package:danek/helpers/user_preferences.dart';
-import 'package:danek/main.dart';
-import 'package:danek/models/models.dart';
+import 'package:danek/models/style.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -34,14 +34,16 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   deleteInfo() async {
-    // await UserPreferences().deleteUserName();
-    // await UserPreferences().deleteUserAge();
-    // await UserPreferences().deleteMyPurcahses();
-    // await UserPreferences().deleteCoins();
-    // await UserPreferences().deleteHero();
-    // await UserPreferences().deleteFormLaunch();
-    // await UserPreferences().deleteHeroLaunch();
-    await UserPreferences().clearData();
+    await UserPreferences().deleteUserName();
+    await UserPreferences().deleteUserAge();
+    await UserPreferences().deleteMyPurcahses();
+    await UserPreferences().deleteCoins();
+    await UserPreferences().deleteHero();
+    await UserPreferences().deleteFormLaunch();
+    await UserPreferences().deleteHeroLaunch();
+    heroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    print(heroLaunch);
+    // await UserPreferences().clearData();
   }
 
   changeHeroInfo() async {
