@@ -1,5 +1,4 @@
 import 'package:danek/helpers/user_preferences.dart';
-
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';
@@ -26,6 +25,7 @@ class HeroListState extends State<HeroList> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         width: double.infinity,

@@ -19,6 +19,7 @@ class ActivityDetailsScreen extends StatefulWidget {
 
 class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   int myCoins = 0;
+
   upCoin(int cash) {
     myCoins = myCoins + cash;
   }
@@ -37,6 +38,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
     List<int> timelist = [600, 60, 420, 300, 300];
+
     late int time;
 
     int _chekId() {
