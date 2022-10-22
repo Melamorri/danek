@@ -21,6 +21,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
   int numberDays = 0; // количество дней подряд, изначально 0
   int? timeProba; // имитация даты захода в программу
   int? myCoins; // количество монеток при заходе в игру
+  bool? heroLaunch;
 
   // функция добавления времени в преференс
   Future addTimeNow(time) async {
@@ -74,7 +75,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
   //функция добавления монеток
   addCoins(numberDays, timeStorage, timeProba) {
     var keyList = extraMap.keys;
-    if (timeStorage == timeProba) {
+    if ((timeStorage == timeProba) && (heroLaunch == true)) {
       print('Сегодня уже бонус получили');
       return;
     } else if (keyList.contains(numberDays)) {
@@ -110,6 +111,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     timer = Timer(const Duration(seconds: 3), () {
       Navigator.pushNamed(context, '/menupage');
     });
+    heroLaunch = UserPreferences().getHeroLaunch() ?? false;
   }
 
   @override
