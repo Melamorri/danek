@@ -41,9 +41,10 @@ class _SettingPageState extends State<SettingPage> {
     await UserPreferences().deleteHero();
     await UserPreferences().deleteFormLaunch();
     await UserPreferences().deleteHeroLaunch();
+    await UserPreferences().deleteShopList();
     heroLaunch = UserPreferences().getHeroLaunch() ?? false;
     print(heroLaunch);
-    // await UserPreferences().clearData();
+    //await UserPreferences().clearData();
   }
 
   changeHeroInfo() async {

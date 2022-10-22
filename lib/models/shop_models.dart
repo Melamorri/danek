@@ -68,11 +68,11 @@ class Shop {
     'items_id': []
   };
 
-  void addToCart(item) {
-    shopList['my_items'].add(item);
-    //shopList['shop_items'].remove(item);
-    //cartStreamController.sink.add(shopList);
-  }
+  // void addToCart(item) {
+  //   shopList['my_items'].add(item);
+  //   shopList['shop_items'].remove(item);
+  //   cartStreamController.sink.add(shopList);
+  // }
 
   // void dispose() {
   //   cartStreamController.close(); // close our StreamController

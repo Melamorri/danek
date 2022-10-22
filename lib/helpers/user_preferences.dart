@@ -69,5 +69,6 @@ class UserPreferences {
   Future<bool>? deleteMyPurcahses() => _preferences?.remove(_keyMyPurchases);
   Future<bool>? deleteFormLaunch() => _preferences?.remove(_keyFormLaunch);
   Future<bool>? deleteHeroLaunch() => _preferences?.remove(_keyHeroLaunch);
+  Future<bool>? deleteShopList() => _preferences?.remove(_keyShopList);
   Future<bool>? clearData() => _preferences?.clear();
 }
