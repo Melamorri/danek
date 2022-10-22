@@ -8,7 +8,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:danek/models/days_in_row.dart';
+import 'package:danek/helpers/days_in_row.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -21,6 +21,7 @@ class _MenuPageState extends State<MenuPage> {
   bool? newFormLaunch;
   bool? newHeroLaunch;
   bool foneMusic = true;
+  String thisTime = DateTime.now().toString();
 
   @override
   void initState() {
@@ -29,6 +30,7 @@ class _MenuPageState extends State<MenuPage> {
     newFormLaunch = UserPreferences().getFormLaunch() ?? false;
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     foneMusic = UserPreferences().getFoneticMusic() ?? true;
+    thisTime = UserPreferences().getLastTime().toString();
     // checkFoneMusic(foneMusic);
     resumeMusic(foneMusic);
   }

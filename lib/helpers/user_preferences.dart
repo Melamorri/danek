@@ -13,6 +13,7 @@ class UserPreferences {
   final _keyHeroLaunch = 'heroLaunch';
   final _keyFoneticMusic = 'foneticMusic';
   final _keyShopList = 'shopList';
+  final _keyLastTime = 'lastTime'; //последний вход, в первый раз он  первый
 
   Future init() async => _preferences = await SharedPreferences.getInstance();
 
@@ -38,6 +39,8 @@ class UserPreferences {
       await _preferences?.setBool(_keyHeroLaunch, heroLaunch);
   Future setFoneticMusic(bool foneticMusic) async =>
       await _preferences?.setBool(_keyFoneticMusic, foneticMusic);
+  Future lastTime(String lastTime) async =>
+      await _preferences?.setString(_keyLastTime, lastTime);
 
   String? getUserName() => _preferences?.getString(_keyUserName);
   int? getUserAge() => _preferences?.getInt(_keyUserAge);
@@ -51,6 +54,7 @@ class UserPreferences {
   bool? getHeroLaunch() => _preferences?.getBool(_keyHeroLaunch);
   bool? getFoneticMusic() => _preferences?.getBool(_keyFoneticMusic);
   List<String>? getShopList() => _preferences?.getStringList(_keyShopList);
+  String? getLastTime() => _preferences?.getString(_keyLastTime);
 
   // Future<bool>? deleteUserName() => _preferences?.remove(_keyUserName);
   // Future<bool>? deleteUserAge() => _preferences?.remove(_keyUserAge);

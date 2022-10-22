@@ -6,7 +6,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';
 import 'package:danek/models/activity_list.dart';
-import 'package:danek/models/days_in_row.dart';
+import 'package:danek/helpers/days_in_row.dart';
 
 class HeroList extends StatefulWidget {
   const HeroList({Key? key}) : super(key: key);
