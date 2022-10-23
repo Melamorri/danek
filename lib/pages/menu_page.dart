@@ -32,7 +32,7 @@ class _MenuPageState extends State<MenuPage> {
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     foneMusic = UserPreferences().getFoneticMusic() ?? false;
     numberDays = UserPreferences().getNumberDays() ?? 0;
-    print(foneMusic);
+    print('fone $foneMusic');
     print('hero $newFormLaunch');
     print('form $newHeroLaunch');
     // checkFoneMusic(foneMusic);

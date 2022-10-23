@@ -29,6 +29,8 @@ checkMusicHeroPage(musicFile, foneMusic) {
 resumeMusic(foneMusic) {
   if (foneMusic == true) {
     FlameAudio.bgm.resume();
+  } else {
+    FlameAudio.bgm.stop();
   }
 }
 
