@@ -29,5 +29,16 @@
 "no":"Жок",
 "yes":"Ооба",
 "you_sure":"Сен ишенесиңби?",
-"you_sure_start_again":"Чын эле жаңы оюнду баштагыңыз келеби?"
+"you_sure_start_again":"Чын эле жаңы оюнду баштагыңыз келеби?",
+"wav_read_book": "salam.mp3",
+"wav_teeth": "salam.mp3",
+"wav_toys": "salam.mp3",
+"wav_eat": "salam.mp3",
+"wav_exercise": "salam.mp3",
+"wav_i_danaya":"salam.mp3",
+"wav_i_deniz":"salam.mp3",
+"wav_i_bec":"salam.mp3",
+"wav_i_chik":"salam.mp3",
+"wav_hello":"salam.mp3",
+"wav_well_done":"well_done.mp3"
 }

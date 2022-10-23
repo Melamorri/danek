@@ -29,5 +29,16 @@
     "no":"no",
     "yes":"yes",
     "you_sure":"Are you sure?",
-    "you_sure_start_again":"Are you sure you want to start a new game?"
+    "you_sure_start_again":"Are you sure you want to start a new game?",
+    "wav_read_book": "salam.mp3",
+    "wav_teeth": "salam.mp3",
+    "wav_toys": "salam.mp3",
+    "wav_eat": "salam.mp3",
+    "wav_exercise": "salam.mp3",
+    "wav_i_danaya":"salam.mp3",
+    "wav_i_deniz":"salam.mp3",
+    "wav_i_bec":"salam.mp3",
+    "wav_i_chik":"salam.mp3",
+    "wav_hello":"salam.mp3",
+    "wav_well_done":"well_done.mp3"
 }

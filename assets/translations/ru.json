@@ -29,7 +29,18 @@
     "no":"Нет",
     "yes":"Да",
     "you_sure":"Ты уверен?",
-    "you_sure_start_again":"Точно хочешь начать игру сначала?"
+    "you_sure_start_again":"Точно хочешь начать игру сначала?",
+    "wav_read_book": "salam.mp3",
+    "wav_teeth": "teeth.mp3",
+    "wav_toys": "toys.mp3",
+    "wav_eat": "masha.mp3",
+    "wav_exercise": "salam.mp3",
+    "wav_i_danaya":"i_danaya.mp3",
+    "wav_i_deniz":"i_deniz.mp3",
+    "wav_i_bec":"i_bec.mp3",
+    "wav_i_chik":"i_chik.mp3",
+    "wav_hello":"hello.mp3",
+    "wav_well_done":"well_done.mp3"
     }
 
     

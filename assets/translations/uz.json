@@ -29,5 +29,16 @@
     "no":"Yo'q",
     "yes":"Ha",
     "you_sure":"Ishonchingiz komilmi?",
-    "you_sure_start_again":"Haqiqatan ham yangi oʻyinni boshlamoqchimisiz?"
+    "you_sure_start_again":"Haqiqatan ham yangi oʻyinni boshlamoqchimisiz?",
+    "wav_read_book": "salam.mp3",
+    "wav_teeth": "salam.mp3",
+    "wav_toys": "salam.mp3",
+    "wav_eat": "salam.mp3",
+    "wav_exercise": "salam.mp3",
+    "wav_i_danaya":"salam.mp3",
+    "wav_i_deniz":"salam.mp3",
+    "wav_i_bec":"salam.mp3",
+    "wav_i_chik":"salam.mp3",
+    "wav_hello":"salam.mp3",
+    "wav_well_done":"well_done.mp3"
 }

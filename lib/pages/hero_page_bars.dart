@@ -1,9 +1,7 @@
 import 'dart:math';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/user_preferences.dart';
-import 'package:danek/models/models.dart';
-
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'page_for_activity.dart';

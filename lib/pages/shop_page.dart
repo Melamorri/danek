@@ -4,8 +4,8 @@ import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/activity_list.dart';
 import 'package:danek/models/animation_button.dart';
-import 'package:danek/models/models.dart';
 import 'package:danek/models/shop_models.dart';
+import 'package:danek/models/style.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,7 @@ class ShopPage extends StatefulWidget {
 @override
 State<ShopPage> createState() => _ShopPageState();
 bool? formLaunch;
+bool? heroLaunch;
 
 class _ShopPageState extends State<ShopPage> {
   List<String> myPurchases = [];
@@ -49,6 +50,7 @@ class _ShopPageState extends State<ShopPage> {
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
     formLaunch = UserPreferences().getFormLaunch() ?? false;
+    heroLaunch = UserPreferences().getHeroLaunch() ?? false;
     shopList = UserPreferences().getShopList() ?? shopList;
   }
 
@@ -144,9 +146,9 @@ Widget shopItemsListBuilder(snapshot, context, myPurchases, myCoins,
                 print(myshop);
                 print(myShopListMap is Map);
                 print(myShopListMap['price']);
-                (formLaunch == true) &
+                (heroLaunch == true) &
                         (myCoins < int.parse(myShopListMap['price']))
-                    ? showAlertDialog2(context, formLaunch)
+                    ? showAlertDialog2(context, heroLaunch)
                     : showAlertDialog(
                         context,
                         index,
@@ -155,7 +157,7 @@ Widget shopItemsListBuilder(snapshot, context, myPurchases, myCoins,
                         myCoins,
                         upgradeMyItems,
                         addPurchase,
-                        formLaunch,
+                        heroLaunch,
                         myShopListMap);
               }),
               child: Card(
@@ -273,7 +275,7 @@ showAlertDialog2(context, formLaunch) {
 
 // Всплывающее окно купить/отмена
 showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
-    addPurchase, formLaunch, myShopListMap) {
+    addPurchase, heroLaunch, myShopListMap) {
   Widget cancelButton = TextButton(
     style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
@@ -326,11 +328,19 @@ showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
       style: buttonStyleAlertDialog(),
     ),
     onPressed: () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/formpage',
-        (route) => false,
-      );
+      if (formLaunch == true) {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/chooseheroes',
+          (route) => false,
+        );
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/formpage',
+          (route) => false,
+        );
+      }
     },
   );
 
@@ -412,68 +422,8 @@ showAlertDialog(context, index, shopList, myPurchases, myCoins, upgradeMyItems,
             backgroundColor: CustomColors.blueGrey,
           ),
         ),
-        child: formLaunch ? alert : noAlert,
+        child: heroLaunch ? alert : noAlert,
       );
     },
   );
 }
-// Всплывающее окно "Уже сть!"
-// showAlertDialog3(context, formLaunch) {
-//   Widget playButton = TextButton(
-//     style: ButtonStyle(
-//         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
-//     child: Text(
-//       'Назад',
-//       style: buttonStyleAlertDialog(),
-//     ),
-//     onPressed: () {
-//       Navigator.pushNamedAndRemoveUntil(
-//         context,
-//         '/shoppage',
-//         (route) => false,
-//       );
-//     },
-//   );
-//   AlertDialog noCachAlert = AlertDialog(
-//     shape: const RoundedRectangleBorder(
-//       borderRadius: BorderRadius.all(
-//         Radius.circular(20.0),
-//       ),
-//     ),
-//     titleTextStyle: textStyleNoAlertDialog(),
-//     actionsAlignment: MainAxisAlignment.center,
-//     title: Text(
-//       'Уже есть!',
-//       textAlign: TextAlign.center,
-//     ),
-//     content: Wrap(children: [
-//       Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Image.asset(
-//             'assets/images/smile_hello.png',
-//             width: 140,
-//             //width: MediaQuery.of(context).size.width * 0.4,
-//           ),
-//           const SizedBox(width: 10),
-//         ],
-//       ),
-//     ]),
-//     actions: [
-//       playButton,
-//     ],
-//   );
-//   showDialog(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return Theme(
-//         data: ThemeData(
-//           dialogTheme: const DialogTheme(
-//             backgroundColor: CustomColors.blueGrey,
-//           ),
-//         ),
-//         child: noCachAlert,
-//       );
-//     },
-//   );
-// }

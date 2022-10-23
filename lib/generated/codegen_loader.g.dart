@@ -45,7 +45,18 @@ class CodegenLoader extends AssetLoader{
   "no": "no",
   "yes": "yes",
   "you_sure": "Are you sure?",
-  "you_sure_start_again": "Are you sure you want to start a new game?"
+  "you_sure_start_again": "Are you sure you want to start a new game?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "salam.mp3",
+  "wav_toys": "salam.mp3",
+  "wav_eat": "salam.mp3",
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "salam.mp3",
+  "wav_i_deniz": "salam.mp3",
+  "wav_i_bec": "salam.mp3",
+  "wav_i_chik": "salam.mp3",
+  "wav_hello": "salam.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String,dynamic> kk = {
   "shop": "Дүкен",
@@ -78,7 +89,18 @@ static const Map<String,dynamic> kk = {
   "no": "Жоқ",
   "yes": "Иә",
   "you_sure": "Сен сенімдісің бе?",
-  "you_sure_start_again": "Жаңа ойынды бастағыңыз келетініне сенімдісіз бе?"
+  "you_sure_start_again": "Жаңа ойынды бастағыңыз келетініне сенімдісіз бе?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "salam.mp3",
+  "wav_toys": "salam.mp3",
+  "wav_eat": "salam.mp3",
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "salam.mp3",
+  "wav_i_deniz": "salam.mp3",
+  "wav_i_bec": "salam.mp3",
+  "wav_i_chik": "salam.mp3",
+  "wav_hello": "salam.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String,dynamic> ky = {
   "shop": "Дүкөн",
@@ -111,7 +133,18 @@ static const Map<String,dynamic> ky = {
   "no": "Жок",
   "yes": "Ооба",
   "you_sure": "Сен ишенесиңби?",
-  "you_sure_start_again": "Чын эле жаңы оюнду баштагыңыз келеби?"
+  "you_sure_start_again": "Чын эле жаңы оюнду баштагыңыз келеби?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "salam.mp3",
+  "wav_toys": "salam.mp3",
+  "wav_eat": "salam.mp3",
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "salam.mp3",
+  "wav_i_deniz": "salam.mp3",
+  "wav_i_bec": "salam.mp3",
+  "wav_i_chik": "salam.mp3",
+  "wav_hello": "salam.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String,dynamic> ru = {
   "shop": "Магазин",
@@ -144,7 +177,18 @@ static const Map<String,dynamic> ru = {
   "no": "Нет",
   "yes": "Да",
   "you_sure": "Ты уверен?",
-  "you_sure_start_again": "Точно хочешь начать игру сначала?"
+  "you_sure_start_again": "Точно хочешь начать игру сначала?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "teeth.mp3",
+  "wav_toys": "toys.mp3",
+  "wav_eat": "masha.mp3",
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "i_danaya.mp3",
+  "wav_i_deniz": "i_deniz.mp3",
+  "wav_i_bec": "i_bec.mp3",
+  "wav_i_chik": "i_chik.mp3",
+  "wav_hello": "hello.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String,dynamic> uz = {
   "shop": "Do'kon",
@@ -177,7 +221,18 @@ static const Map<String,dynamic> uz = {
   "no": "Yo'q",
   "yes": "Ha",
   "you_sure": "Ishonchingiz komilmi?",
-  "you_sure_start_again": "Haqiqatan ham yangi oʻyinni boshlamoqchimisiz?"
+  "you_sure_start_again": "Haqiqatan ham yangi oʻyinni boshlamoqchimisiz?",
+  "wav_read_book": "salam.mp3",
+  "wav_teeth": "salam.mp3",
+  "wav_toys": "salam.mp3",
+  "wav_eat": "salam.mp3",
+  "wav_exercise": "salam.mp3",
+  "wav_i_danaya": "salam.mp3",
+  "wav_i_deniz": "salam.mp3",
+  "wav_i_bec": "salam.mp3",
+  "wav_i_chik": "salam.mp3",
+  "wav_hello": "salam.mp3",
+  "wav_well_done": "well_done.mp3"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "kk": kk, "ky": ky, "ru": ru, "uz": uz};
 }

@@ -3,7 +3,7 @@ import 'package:danek/helpers/colors.dart';
 import 'package:danek/helpers/StringToObject.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';
-import 'package:danek/models/models.dart';
+import 'package:danek/models/style.dart';
 import 'package:danek/models/shop_models.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
