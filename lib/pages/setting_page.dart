@@ -34,16 +34,17 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   deleteInfo() async {
-    await UserPreferences().deleteUserName();
-    await UserPreferences().deleteUserAge();
-    await UserPreferences().deleteMyPurcahses();
-    await UserPreferences().deleteCoins();
-    await UserPreferences().deleteHero();
-    await UserPreferences().deleteFormLaunch();
-    await UserPreferences().deleteHeroLaunch();
+    // await UserPreferences().deleteUserName();
+    // await UserPreferences().deleteUserAge();
+    // await UserPreferences().deleteMyPurcahses();
+    // await UserPreferences().deleteCoins();
+    // await UserPreferences().deleteHero();
+    // await UserPreferences().deleteFormLaunch();
+    // await UserPreferences().deleteHeroLaunch();
+    // await UserPreferences().deleteShopList();
     heroLaunch = UserPreferences().getHeroLaunch() ?? false;
     print(heroLaunch);
-    // await UserPreferences().clearData();
+    await UserPreferences().clearData();
   }
 
   changeHeroInfo() async {

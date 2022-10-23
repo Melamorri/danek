@@ -25,7 +25,7 @@ class HeroListState extends State<HeroList> {
     super.initState();
     heroImage = UserPreferences().getHero() ?? '';
     myCoins = UserPreferences().getCoins() ?? 0;
-    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? false;
     resumeMusic(foneticMusic);
   }
 
