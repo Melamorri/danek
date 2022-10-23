@@ -24,7 +24,6 @@ class _MenuPageState extends State<MenuPage> {
   bool? newHeroLaunch;
   bool foneMusic = true;
   int numberDays = 0; // количество дней подряд, изначально 0
->>>>>>> f0cb3932e8b54ffd0c8e3a916ed57b7d341ad4bb
 
   @override
   void initState() {
@@ -33,9 +32,7 @@ class _MenuPageState extends State<MenuPage> {
     newFormLaunch = UserPreferences().getFormLaunch() ?? false;
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     foneMusic = UserPreferences().getFoneticMusic() ?? true;
-<<<<<<< HEAD
-    thisTime = UserPreferences().getLastTime().toString();
-=======
+
     numberDays = UserPreferences().getNumberDays() ?? 0;
     print(foneMusic);
     print('hero $newFormLaunch');
