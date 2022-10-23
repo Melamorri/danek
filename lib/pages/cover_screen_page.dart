@@ -152,5 +152,3 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     ));
   }
 }
-
-addCoinsShowAlertDialog(context) {}
