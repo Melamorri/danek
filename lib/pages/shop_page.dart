@@ -9,7 +9,6 @@ import 'package:danek/models/style.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:danek/helpers/user_preferences.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -29,8 +28,6 @@ class _ShopPageState extends State<ShopPage> {
   List<String> shopList = List<String>.from(
       bloc.shopList['shop_items'].map((element) => element.toString()));
   int myCoins = 0;
-  // String myPurchaseString = myPurchases.elementAt(index);
-  //         var myPurchaseMap = StringToObject(myPurchaseString);
   upgradeMyItems() {
     setState(() {
       myPurchases;
@@ -130,12 +127,9 @@ Widget shopItemsListBuilder(snapshot, context, myPurchases, myCoins,
       child: GridView.builder(
           padding: const EdgeInsets.all(15),
           itemCount: shopList.length,
-          // snapshot.data["shop_items"].length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3),
           itemBuilder: (contextsnapshot, index) {
-            // final shopList = snapshot.data["shop_items"];
-            // List myShop = StringToObject(shopList);
             var myshop = StringToObject1(shopList);
             String myShopList = shopList.elementAt(index);
             var myShopListMap = StringToObject(myShopList);

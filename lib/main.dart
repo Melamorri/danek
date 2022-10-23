@@ -13,7 +13,6 @@ import 'package:danek/generated/codegen_loader.g.dart';
 import 'package:danek/pages/hero_page_bars.dart';
 import 'package:danek/pages/my_purchases.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +36,6 @@ void main() async {
           Locale('ky'),
           Locale('uz')
         ],
-        // useFallbackTranslations: true,
-        // startLocale: const Locale('ru'),
         path: 'assets/translations',
         fallbackLocale: const Locale('ru'),
         assetLoader: CodegenLoader(),
@@ -66,7 +63,6 @@ class _MyAppState extends State<MyApp> {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        // title: '',
         routes: {
           '/': (context) => CoverScreenPage(),
           '/menupage': (context) => MenuPage(),

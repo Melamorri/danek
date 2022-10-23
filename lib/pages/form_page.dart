@@ -80,9 +80,6 @@ class FormPageState extends State<FormPage> {
                         if (value!.isEmpty) {
                           return LocaleKeys.enter_age.tr();
                         }
-                        // if (!RegExp(r"[0-9.]").hasMatch(value)) {
-                        //   return 'Это не возраст';
-                        // }
                         return null;
                       },
                       keyboardType: TextInputType.number,

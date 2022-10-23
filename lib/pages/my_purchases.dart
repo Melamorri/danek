@@ -18,9 +18,6 @@ class MyPurchases extends StatefulWidget {
 class _MyPurchasesState extends State<MyPurchases> {
   List myPurchase = [];
   String heroImage = '';
-  // Future addPurchase(myPurchase) async {
-  //   await UserPreferences().setMyPurchases(myPurchase);
-  // }
 
   @override
   void initState() {
@@ -125,8 +122,10 @@ class _MyPurchasesState extends State<MyPurchases> {
                       children: [
                         Stack(
                           children: [
-                            Text("Ничего нет", style: stackTextStyle_1()),
-                            Text("Ничего нет", style: stackTextStyle_2()),
+                            Text(LocaleKeys.empty.tr(),
+                                style: stackTextStyle_1()),
+                            Text(LocaleKeys.empty.tr(),
+                                style: stackTextStyle_2()),
                           ],
                         ),
                         SizedBox(
@@ -159,49 +158,6 @@ class _MyPurchasesState extends State<MyPurchases> {
     ));
   }
 }
-// Построение списка покупок без героя
-
-// Widget checkoutListBuilder(snapshot, context) {
-//   return SizedBox(
-//     height: MediaQuery.of(context).size.height * 0.75,
-//     child: GridView.builder(
-//         padding: const EdgeInsets.all(15),
-//         gridDelegate:
-//             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-//         itemCount: snapshot.data["my_items"].length,
-//         itemBuilder: (context, index) {
-//           final cartList = snapshot.data["my_items"];
-//           return InkWell(
-//             onTap: (() {}),
-//             child: Card(
-//               color: CustomColors.blueGrey,
-//               child: Column(
-//                 children: [
-//                   const SizedBox(height: 5),
-//                   // Text(
-//                   //   cartList[index]['name'],
-//                   //   style: const TextStyle(fontWeight: FontWeight.bold),
-//                   // ),
-//                   Image.asset(
-//                     cartList[index]['image'],
-//                     height: MediaQuery.of(context).size.height * 0.1,
-//                   ),
-//                   InkWell(
-//                     onTap: () {
-//                       Navigator.pushNamed(context, '/gamepage');
-//                     },
-//                     child: Text(
-//                       'Выбрать',
-//                       style: buttonStyleMyPurchases(),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           );
-//         }),
-//   );
-// }
 
 Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
   return SizedBox(
@@ -227,10 +183,6 @@ Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
                     child: Column(
                       children: [
                         const SizedBox(height: 5),
-                        // Text(
-                        //   cartList[index]['name'],
-                        //   style: const TextStyle(fontWeight: FontWeight.bold),
-                        // ),
                         Column(
                           children: [
                             Draggable(
@@ -241,7 +193,6 @@ Widget checkoutListBuildertwo(snapshot, context, myPurchase) {
                             ),
                           ],
                         ),
-
                         Text(
                           LocaleKeys.select.tr(),
                           style: buttonStyleMyPurchases(),

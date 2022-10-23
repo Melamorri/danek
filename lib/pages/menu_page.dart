@@ -1,7 +1,6 @@
 import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
-
 import 'package:danek/helpers/time.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/animation_button.dart';

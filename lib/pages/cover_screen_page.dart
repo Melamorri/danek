@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
-
 import 'package:danek/helpers/time.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/pages/shop_page.dart';
@@ -40,7 +39,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     await UserPreferences().setCoins(coins);
   }
 
-  // функция проверки дней подряд. Сравниваем текущую таду и дату из преференс, если разница равна 1(то есть зашли на след день),
+  // функция проверки дней подряд. Сравниваем текущую дату и дату из преференс, если разница равна 1(то есть зашли на след день),
   // то берем из перференс количество дней подряд(изначально 0), и прибавляем 1, и новой значение записываем в память, если разница не равна 1, то обнуляем.
   checkDays(timeStorage, timeProba) {
     if ((timeStorage == timeProba) &&
