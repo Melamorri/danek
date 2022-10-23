@@ -4,6 +4,7 @@ import 'package:danek/helpers/colors.dart';
 
 import 'package:danek/helpers/time.dart';
 import 'package:danek/helpers/user_preferences.dart';
+import 'package:danek/pages/shop_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -16,12 +17,13 @@ class CoverScreenPage extends StatefulWidget {
 
 class _CoverScreenPageState extends State<CoverScreenPage> {
   Timer? timer;
-  bool foneMusic = true;
+  bool foneMusic = false;
+  bool? heroLaunch;
+  bool? formLaunch;
   int? timeStorage; // первый заход, сохраняется в преференс
   int numberDays = 0; // количество дней подряд, изначально 0
   int? timeProba; // имитация даты захода в программу
   int? myCoins; // количество монеток при заходе в игру
-  bool? heroLaunch;
 
   // функция добавления времени в преференс
   Future addTimeNow(time) async {
@@ -41,13 +43,15 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
   // функция проверки дней подряд. Сравниваем текущую таду и дату из преференс, если разница равна 1(то есть зашли на след день),
   // то берем из перференс количество дней подряд(изначально 0), и прибавляем 1, и новой значение записываем в память, если разница не равна 1, то обнуляем.
   checkDays(timeStorage, timeProba) {
-    if (timeStorage == timeProba) {
+    if ((timeStorage == timeProba) &&
+        (formLaunch == true || heroLaunch == true)) {
       print(timeStorage);
       print(timeProba);
       numberDays = UserPreferences().getNumberDays() ?? 0;
       print(numberDays);
       return;
-    } else if (timeProba - timeStorage == 1) {
+    } else if ((timeProba - timeStorage == 1) &&
+        (formLaunch == true || heroLaunch == true)) {
       numberDays = UserPreferences().getNumberDays() ?? 0;
       print(numberDays);
       numberDays = numberDays + 1;
@@ -75,7 +79,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
   //функция добавления монеток
   addCoins(numberDays, timeStorage, timeProba) {
     var keyList = extraMap.keys;
-    if ((timeStorage == timeProba) && (heroLaunch == true)) {
+    if (timeStorage == timeProba) {
       print('Сегодня уже бонус получили');
       return;
     } else if (keyList.contains(numberDays)) {
@@ -94,7 +98,8 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     super.initState();
     timeStorage = UserPreferences().getTimeNow() ??
         time(); // при первом заходе получаем дату и отправляем ее в преференс
-    // numberDays = UserPreferences().getNumberDays() ?? 0;
+    heroLaunch = UserPreferences().getFormLaunch() ?? false;
+    formLaunch = UserPreferences().getHeroLaunch() ?? false;
     myCoins = UserPreferences().getCoins() ?? 0;
     // addTimeNow(timeStorage);
     print(timeStorage);
@@ -106,12 +111,11 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
         timeProba); // перезаписываем данные в преференс на сегодняшнюю дату
     checkDays(timeStorage, timeProba); // проверяем подряд ли дни
     addCoins(numberDays, timeStorage, timeProba);
-    foneMusic = UserPreferences().getFoneticMusic() ?? true;
+    foneMusic = UserPreferences().getFoneticMusic() ?? false;
     checkFoneMusic(foneMusic);
     timer = Timer(const Duration(seconds: 3), () {
       Navigator.pushNamed(context, '/menupage');
     });
-    heroLaunch = UserPreferences().getHeroLaunch() ?? false;
   }
 
   @override
@@ -148,5 +152,3 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     ));
   }
 }
-
-addCoinsShowAlertDialog(context) {}

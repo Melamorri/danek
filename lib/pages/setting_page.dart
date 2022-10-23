@@ -34,17 +34,19 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   deleteInfo() async {
-    await UserPreferences().deleteUserName();
-    await UserPreferences().deleteUserAge();
-    await UserPreferences().deleteMyPurcahses();
-    await UserPreferences().deleteCoins();
-    await UserPreferences().deleteHero();
-    await UserPreferences().deleteFormLaunch();
-    await UserPreferences().deleteHeroLaunch();
-    await UserPreferences().deleteShopList();
-    heroLaunch = UserPreferences().getHeroLaunch() ?? false;
+    // await UserPreferences().deleteUserName();
+    // await UserPreferences().deleteUserAge();
+    // await UserPreferences().deleteMyPurcahses();
+    // await UserPreferences().deleteCoins();
+    // await UserPreferences().deleteHero();
+    // await UserPreferences().deleteFormLaunch();
+    // await UserPreferences().deleteHeroLaunch();
+    // await UserPreferences().deleteShopList();
+    // await UserPreferences().deleteNumberDays();
+    // await UserPreferences().deleteTimeNow();
+    //heroLaunch = UserPreferences().getHeroLaunch() ?? false;
     print(heroLaunch);
-    //await UserPreferences().clearData();
+    await UserPreferences().clearData();
   }
 
   changeHeroInfo() async {
@@ -132,12 +134,15 @@ class _SettingPageState extends State<SettingPage> {
                           shadowColor: CustomColors.darkBlueColor,
                           onPressed: () {
                             Navigator.pushNamed(context, '/chooseheroes');
+                            FlameAudio.play(
+                                LocaleKeys.wav_i_danaya.tr().toString());
                           },
                           child: Text(
                             LocaleKeys.change_hero.tr(),
+                            textAlign: TextAlign.center,
                             style: const TextStyle(
                                 fontFamily: 'RobotoCondensed',
-                                fontSize: 20,
+                                fontSize: 19,
                                 fontWeight: FontWeight.bold),
                           ),
                         )

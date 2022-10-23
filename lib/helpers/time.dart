@@ -21,10 +21,10 @@ int time() {
 
 // функция имитации даты захода в программу, возвращает количество дней с 1970 года
 int timeProbaToday() {
-  var timeNow = DateTime.parse("2022-10-22 03:29:15.3215").toString();
+  var timeNow = DateTime.parse("2022-11-23 03:29:15.3215").toString();
   print(timeNow);
   var timeNowMilisec =
-      (DateTime.parse("2022-10-22 03:29:15.3215")).millisecondsSinceEpoch /
+      (DateTime.parse("2022-11-23 03:29:15.3215")).millisecondsSinceEpoch /
           1000 /
           60 /
           60 /

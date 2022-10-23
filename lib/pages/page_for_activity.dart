@@ -1,3 +1,4 @@
+import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/user_preferences.dart';
 import 'package:danek/models/style.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -23,21 +24,7 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
 
   upCoin(int cash) {
     myCoins = myCoins + cash;
-    if (context.locale == const Locale('ru')) {
-      FlameAudio.play('well_done.mp3');
-    } else if (context.locale == const Locale('ky')) {
-      FlameAudio.play('well_done.mp3');
-      // FlameAudio.play('well_done_ky.mp3');
-    } else if (context.locale == const Locale('kk')) {
-      FlameAudio.play('well_done.mp3');
-      // FlameAudio.play('well_done_kk.mp3');
-    } else if (context.locale == const Locale('uz')) {
-      FlameAudio.play('well_done.mp3');
-      // FlameAudio.play('well_done_uz.mp3');
-    } else {
-      FlameAudio.play('well_done.mp3');
-      // FlameAudio.play('well_done_en.mp3');
-    }
+    FlameAudio.play(LocaleKeys.wav_well_done.tr().toString());
     Future.delayed(const Duration(milliseconds: 1700),
         () => FlameAudio.play('zvukmonet.wav'));
     Future.delayed(const Duration(seconds: 2), () => toggle());
@@ -73,8 +60,8 @@ class _ActivityDetailsScreenState extends State<ActivityDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final CountDownController controller = CountDownController();
-    //List<int> timelist = [600, 60, 420, 300, 300];
-    List<int> timelist = [3, 3, 3, 3, 3];
+    List<int> timelist = [600, 60, 420, 300, 300];
+    //List<int> timelist = [3, 3, 3, 3, 3];
 
     late int time;
 
