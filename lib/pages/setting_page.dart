@@ -34,16 +34,16 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   deleteInfo() async {
-    await UserPreferences().deleteUserName();
-    await UserPreferences().deleteUserAge();
-    await UserPreferences().deleteMyPurcahses();
-    await UserPreferences().deleteCoins();
-    await UserPreferences().deleteHero();
-    await UserPreferences().deleteFormLaunch();
-    await UserPreferences().deleteHeroLaunch();
+    // await UserPreferences().deleteUserName();
+    // await UserPreferences().deleteUserAge();
+    // await UserPreferences().deleteMyPurcahses();
+    // await UserPreferences().deleteCoins();
+    // await UserPreferences().deleteHero();
+    // await UserPreferences().deleteFormLaunch();
+    // await UserPreferences().deleteHeroLaunch();
     heroLaunch = UserPreferences().getHeroLaunch() ?? false;
     print(heroLaunch);
-    // await UserPreferences().clearData();
+    await UserPreferences().clearData();
   }
 
   changeHeroInfo() async {
@@ -61,7 +61,7 @@ class _SettingPageState extends State<SettingPage> {
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
     myPurchases = UserPreferences().getMyPurchases() ?? [];
     myCoins = UserPreferences().getCoins() ?? 0;
-    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? false;
   }
 
   @override

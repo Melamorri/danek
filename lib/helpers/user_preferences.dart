@@ -72,6 +72,5 @@ class UserPreferences {
   Future<bool>? deleteShopList() => _preferences?.remove(_keyShopList);
   Future<bool>? deleteTimeNow() => _preferences?.remove(_keyTimeNow);
   Future<bool>? deleteNumberDays() => _preferences?.remove(_keyNumberDays);
-  Future<bool>? deleteShopList() => _preferences?.remove(_keyShopList);
   Future<bool>? clearData() => _preferences?.clear();
 }
