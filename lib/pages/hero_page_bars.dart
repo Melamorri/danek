@@ -25,7 +25,7 @@ class HeroListState extends State<HeroList> {
     super.initState();
     heroImage = UserPreferences().getHero() ?? '';
     myCoins = UserPreferences().getCoins() ?? 0;
-    foneticMusic = UserPreferences().getFoneticMusic() ?? true;
+    foneticMusic = UserPreferences().getFoneticMusic() ?? false;
     resumeMusic(foneticMusic);
   }
 
@@ -107,8 +107,8 @@ class HeroListState extends State<HeroList> {
         InkWell(
           enableFeedback: false,
           onTap: () {
-            checkMusic('zvukmonet.wav', foneticMusic);
-            // FlameAudio.play('zvukmonet.wav', volume: 5);
+            //checkMusic('zvukmonet.wav', foneticMusic);
+            FlameAudio.play('zvukmonet.wav', volume: 5);
           },
           child: CircleAvatar(
             radius: 30.0,
@@ -153,8 +153,8 @@ class HeroListState extends State<HeroList> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    checkMusic(activity.wav, foneticMusic);
-                    // FlameAudio.play(activity.wav);
+                    //checkMusic(activity.wav, foneticMusic);
+                    FlameAudio.play(activity.wav);
                     _selectedIndex = index;
                   });
                   Navigator.push(

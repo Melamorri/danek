@@ -21,7 +21,7 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   bool? newFormLaunch;
   bool? newHeroLaunch;
-  bool foneMusic = true;
+  bool foneMusic = false;
   int numberDays = 0; // количество дней подряд, изначально 0
 
   @override
@@ -30,7 +30,7 @@ class _MenuPageState extends State<MenuPage> {
 
     newFormLaunch = UserPreferences().getFormLaunch() ?? false;
     newHeroLaunch = UserPreferences().getHeroLaunch() ?? false;
-    foneMusic = UserPreferences().getFoneticMusic() ?? true;
+    foneMusic = UserPreferences().getFoneticMusic() ?? false;
     numberDays = UserPreferences().getNumberDays() ?? 0;
     print(foneMusic);
     print('hero $newFormLaunch');
@@ -106,10 +106,10 @@ class _MenuPageState extends State<MenuPage> {
                               const Image(
                                 image: AssetImage('assets/images/logotype.png'),
                               ),
-                              SizedBox(height: 4),
+                              const SizedBox(height: 4),
                               Text(
                                 LocaleKeys.portal.tr(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: CustomColors.whiteColor,
                                     fontFamily: 'LeOslerRoughRegular',
                                     fontWeight: FontWeight.w300,
@@ -155,60 +155,60 @@ class _MenuPageState extends State<MenuPage> {
   }
 }
 
-// addBonusShowAlertDialog(context, numberDays) {
-//   Widget okButton = TextButton(
-//     style: ButtonStyle(
-//         backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
-//     child: Text(
-//       LocaleKeys.yes.tr().toUpperCase(),
-//       style: buttonStyleAlertDialog(),
-//     ),
-//     onPressed: () {
-//       Navigator.pop(context);
-//       // Navigator.pushNamed(context, '/menupage');
-//       // allDeleteShowAlertDialog2(context, deleteInfo);
-//     },
-//   );
+addBonusShowAlertDialog(context, numberDays) {
+  Widget okButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      LocaleKeys.yes.tr().toUpperCase(),
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.pop(context);
+      // Navigator.pushNamed(context, '/menupage');
+      // allDeleteShowAlertDialog2(context, deleteInfo);
+    },
+  );
 
-//   AlertDialog addBonus = AlertDialog(
-//     shape: const RoundedRectangleBorder(
-//       borderRadius: BorderRadius.all(
-//         Radius.circular(20.0),
-//       ),
-//     ),
-//     titleTextStyle: textStyleNoAlertDialog(),
-//     actionsAlignment: MainAxisAlignment.center,
-//     title: Text(
-//       '+  ${extraMap[numberDays]}',
-//       // LocaleKeys.you_sure_start_again.tr(),
-//       textAlign: TextAlign.center,
-//     ),
-//     content: Wrap(children: [
-//       Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Image.asset(
-//             'assets/images/smile_ok.png',
-//             width: 140,
-//             //width: MediaQuery.of(context).size.width * 0.4,
-//           ),
-//           const SizedBox(width: 10),
-//         ],
-//       ),
-//     ]),
-//     actions: [okButton],
-//   );
-//   showDialog(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return Theme(
-//         data: ThemeData(
-//           dialogTheme: const DialogTheme(
-//             backgroundColor: CustomColors.blueGrey,
-//           ),
-//         ),
-//         child: addBonus,
-//       );
-//     },
-//   );
-// }
+  AlertDialog addBonus = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: Text(
+      '+  ${extraMap[numberDays]}',
+      // LocaleKeys.you_sure_start_again.tr(),
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/smile_ok.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [okButton],
+  );
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Theme(
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
+          ),
+        ),
+        child: addBonus,
+      );
+    },
+  );
+}
