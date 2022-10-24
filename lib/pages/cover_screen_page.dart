@@ -22,7 +22,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
   bool? formLaunch;
   int? timeStorage; // первый заход, сохраняется в преференс
   int numberDays = 0; // количество дней подряд, изначально 0
-  int? timeProba; // имитация даты захода в программу
+  int? timeToday; //  дата захода в программу
   int? myCoins; // количество монеток при заходе в игру
 
   // функция добавления времени в преференс
@@ -42,15 +42,15 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
 
   // функция проверки дней подряд. Сравниваем текущую таду и дату из преференс, если разница равна 1(то есть зашли на след день),
   // то берем из перференс количество дней подряд(изначально 0), и прибавляем 1, и новой значение записываем в память, если разница не равна 1, то обнуляем.
-  checkDays(timeStorage, timeProba) {
-    if ((timeStorage == timeProba) &&
+  checkDays(timeStorage, timeToday) {
+    if ((timeStorage == timeToday) &&
         (formLaunch == true || heroLaunch == true)) {
       print(timeStorage);
-      print(timeProba);
+      print(timeToday);
       numberDays = UserPreferences().getNumberDays() ?? 0;
       print(numberDays);
       return;
-    } else if ((timeProba - timeStorage == 1) &&
+    } else if ((timeToday - timeStorage == 1) &&
         (formLaunch == true || heroLaunch == true)) {
       numberDays = UserPreferences().getNumberDays() ?? 0;
       print(numberDays);
@@ -77,9 +77,9 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
   }; // варианты добавления монет
 
   //функция добавления монеток
-  addCoins(numberDays, timeStorage, timeProba) {
+  addCoins(numberDays, timeStorage, timeToday) {
     var keyList = extraMap.keys;
-    if (timeStorage == timeProba) {
+    if (timeStorage == timeToday) {
       print('Сегодня уже бонус получили');
       return;
     } else if (keyList.contains(numberDays)) {
@@ -103,14 +103,14 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     myCoins = UserPreferences().getCoins() ?? 0;
     // addTimeNow(timeStorage);
     print(timeStorage);
-    timeProba = timeProbaToday(); // считываем время заходя в программу
-    print(timeProba);
+    timeToday = time(); // считываем время заходя в программу
+    print(timeToday);
     // numberDays = (timeProba! -
     //     timeStorage!); // вычисляем разницу в количестве дней между сегодняжним и последним заходом
     addTimeNow(
-        timeProba); // перезаписываем данные в преференс на сегодняшнюю дату
-    checkDays(timeStorage, timeProba); // проверяем подряд ли дни
-    addCoins(numberDays, timeStorage, timeProba);
+        timeToday); // перезаписываем данные в преференс на сегодняшнюю дату
+    checkDays(timeStorage, timeToday); // проверяем подряд ли дни
+    addCoins(numberDays, timeStorage, timeToday);
     foneMusic = UserPreferences().getFoneticMusic() ?? false;
     checkFoneMusic(foneMusic);
     timer = Timer(const Duration(seconds: 3), () {
