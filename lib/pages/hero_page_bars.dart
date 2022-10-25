@@ -51,7 +51,7 @@ class HeroListState extends State<HeroList> {
 
               InkWell(
                 onTap: (() {
-                  FlameAudio.play(_wavCharging());
+                  // FlameAudio.play(_wavCharging());
                 }),
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.65,
@@ -67,15 +67,15 @@ class HeroListState extends State<HeroList> {
     );
   }
 
-  String _wavCharging() {
-    var list = <String>[
-      'salam.mp3',
-      'masha_day.mp3',
-      'well_done.mp3',
-      'hello.mp3',
-      'masha_kasha.mp3',
-      'masha_play.mp3'
-    ];
+  // String _wavCharging() {
+  //   var list = <String>[
+  //     'salam.mp3',
+  //     'masha_day.mp3',
+  //     'well_done.mp3',
+  //     'hello.mp3',
+  //     'masha_kasha.mp3',
+  //     'masha_play.mp3'
+  //   ];
 
     return (list..shuffle()).first;
   }
