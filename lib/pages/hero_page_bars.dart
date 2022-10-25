@@ -77,8 +77,8 @@ class HeroListState extends State<HeroList> {
   //     'masha_play.mp3'
   //   ];
 
-    return (list..shuffle()).first;
-  }
+  //   return (list..shuffle()).first;
+  // }
 
   Widget _addHorizontalListForAppBar(amountCoins) {
     return Row(
