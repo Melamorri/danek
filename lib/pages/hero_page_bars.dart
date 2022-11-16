@@ -153,7 +153,7 @@ class HeroListState extends State<HeroList> {
                 onTap: () {
                   setState(() {
                     checkMusic(activity.wav, foneticMusic);
-                    // FlameAudio.play(activity.wav);
+                    FlameAudio.play(activity.wav);
                     _selectedIndex = index;
                   });
                   Navigator.push(

@@ -81,6 +81,12 @@ flutter:
     - assets/images/eating.gif
     - assets/images/excercise.gif
     - assets/images/reeding_books.gif
+    - assets/images/BookBars.gif
+    - assets/images/BreakfastBars.gif
+    - assets/images/HelloBars.gif
+    - assets/images/SportBars.gif
+    - assets/images/ToothbrushBars.gif
+    - assets/images/ToysBars.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
