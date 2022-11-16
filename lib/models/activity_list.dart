@@ -13,7 +13,7 @@ class ActivityList {
     required this.name,
     required this.image,
     required this.gif,
-    this.wav = 'null.mp3',
+    required this.wav,
     required this.id,
     required this.cash,
   });

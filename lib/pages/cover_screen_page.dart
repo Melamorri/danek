@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'package:danek/generated/locale_keys.g.dart';
 import 'package:danek/helpers/audio.dart';
 import 'package:danek/helpers/colors.dart';
 
 import 'package:danek/helpers/time.dart';
 import 'package:danek/helpers/user_preferences.dart';
+import 'package:danek/models/style.dart';
 import 'package:danek/pages/shop_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -113,7 +116,7 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
     addCoins(numberDays, timeStorage, timeToday);
     foneMusic = UserPreferences().getFoneticMusic() ?? false;
     checkFoneMusic(foneMusic);
-    timer = Timer(const Duration(seconds: 3), () {
+    timer = Timer(const Duration(seconds: 4), () {
       Navigator.pushNamed(context, '/menupage');
     });
   }
@@ -126,6 +129,10 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (extraMap.keys.contains(numberDays)) {
+      Future.delayed(
+          Duration.zero, () => addBonusShowAlertDialog(context, numberDays));
+    }
     return SafeArea(
         child: Container(
       // padding: const EdgeInsets.only(top: 20),
@@ -151,4 +158,64 @@ class _CoverScreenPageState extends State<CoverScreenPage> {
       ),
     ));
   }
+}
+
+addBonusShowAlertDialog(context, numberDays) async {
+  Widget okButton = TextButton(
+    style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(CustomColors.darkBlueGrey)),
+    child: Text(
+      LocaleKeys.yes.tr().toUpperCase(),
+      style: buttonStyleAlertDialog(),
+    ),
+    onPressed: () {
+      Navigator.pop(context);
+      // Navigator.pushNamed(context, '/menupage');
+      // allDeleteShowAlertDialog2(context, deleteInfo);
+    },
+  );
+  AlertDialog addBonus = AlertDialog(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(20.0),
+      ),
+    ),
+    titleTextStyle: textStyleNoAlertDialog(),
+    actionsAlignment: MainAxisAlignment.center,
+    title: Text(
+      '+  ${extraMap[numberDays]}',
+      // LocaleKeys.you_sure_start_again.tr(),
+      textAlign: TextAlign.center,
+    ),
+    content: Wrap(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/images/smile_ok.png',
+            width: 140,
+            //width: MediaQuery.of(context).size.width * 0.4,
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+    ]),
+    actions: [okButton],
+  );
+
+  await showGeneralDialog(
+    barrierDismissible: false,
+    context: context,
+    pageBuilder: (BuildContext context, Animation<double> animation,
+        Animation<double> secondaryAnimation) {
+      return Theme(
+        data: ThemeData(
+          dialogTheme: const DialogTheme(
+            backgroundColor: CustomColors.blueGrey,
+          ),
+        ),
+        child: addBonus,
+      );
+    },
+  );
 }
