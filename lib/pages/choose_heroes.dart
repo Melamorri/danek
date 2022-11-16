@@ -268,3 +268,20 @@ class Indicator extends StatelessWidget {
     );
   }
 }
+
+// class Genres {
+//   String name;
+//   String image;
+
+//   Genres({
+//     required this.name,
+//     required this.image,
+//   });
+// }
+
+// List<Genres> heroesImagesList1 = [
+//   Genres(name: 'Danaya', image: 'assets/images/girl1.png'),
+//   Genres(name: 'Deniz', image: 'assets/images/boy1.png'),
+//   Genres(name: 'Bird', image: 'assets/images/bird.png'),
+//   Genres(name: 'Leo', image: 'assets/images/leo.png'),
+// ];
