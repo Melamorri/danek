@@ -55,7 +55,11 @@ class HeroListState extends State<HeroList> {
                 }),
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.65,
-                  child: Image.asset(heroImage),
+                  child: Image.asset(
+                    heroImage,
+                    fit: BoxFit.scaleDown,
+                    scale: 6.0,
+                  ),
                 ),
               ),
               // _addSpace(10),
