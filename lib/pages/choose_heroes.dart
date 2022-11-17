@@ -21,7 +21,8 @@ class _ChooseHeroesState extends State<ChooseHeroes>
     'assets/images/girl1.png',
     'assets/images/boy1.png',
     'assets/images/bird.png',
-    'assets/images/leo.png'
+    //'assets/images/leo.png'
+    'assets/images/bars/bars_hello_2.gif'
   ];
   int currentIndex = 0;
   String? hero;
@@ -161,21 +162,27 @@ class _ChooseHeroesState extends State<ChooseHeroes>
                             child: Image.asset('assets/images/bird.png'),
                           ),
                           GestureDetector(
-                            onHorizontalDragEnd: (dragEndDetails) {
-                              if (dragEndDetails.primaryVelocity! < 0) {
-                                // Page forwards
-                                FlameAudio.play(
-                                    LocaleKeys.wav_i_bec.tr().toString());
-                                _goForward();
-                              } else if (dragEndDetails.primaryVelocity! > 0) {
-                                // Page backwards
-                                FlameAudio.play(
-                                    LocaleKeys.wav_i_chik.tr().toString());
-                                _goBack();
-                              }
-                            },
-                            child: Image.asset('assets/images/leo.png'),
-                          ),
+                              onHorizontalDragEnd: (dragEndDetails) {
+                                if (dragEndDetails.primaryVelocity! < 0) {
+                                  // Page forwards
+                                  FlameAudio.play(
+                                      LocaleKeys.wav_i_bec.tr().toString());
+                                  _goForward();
+                                } else if (dragEndDetails.primaryVelocity! >
+                                    0) {
+                                  // Page backwards
+                                  FlameAudio.play(
+                                      LocaleKeys.wav_i_chik.tr().toString());
+                                  _goBack();
+                                }
+                              },
+                              child: Image.asset(
+                                'assets/images/bars/bars_hello_2.gif',
+                                fit: BoxFit.scaleDown,
+                                scale: 7.0,
+                              )
+                              //child: Image.asset('assets/images/leo.png'),
+                              ),
                         ]),
                   ),
                   Row(
